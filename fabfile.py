@@ -15,7 +15,7 @@ from fabric.operations import _prefix_commands, _prefix_env_vars
 
 # CHANGEME
 env.home = '/opt/www'
-env.hosts = ['user@DjangoApp.example.com']
+env.hosts = ['jbo@app03.089.com.ua']
 env.code_dir = "{0}/DjangoApp".format(env.home)
 env.project_dir = "{0}/DjangoApp/DjangoApp".format(env.home)
 env.static_root = "{0}/DjangoApp/static/".format(env.home)
@@ -210,6 +210,12 @@ def deploy():
     build_static()
     webserver_start()
 
-#recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.css
-#recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.min.css
-#cp /opt/www/DjangoApp/lib/bootstrap/img/* /opt/www/DjangoApp/DjangoApp/base/static/img/
+@task
+def bootstrap():
+  #recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.css
+  #recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.min.css
+  run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.css")
+  run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.min.css")
+  #cp /opt/www/DjangoApp/lib/bootstrap/img/* /opt/www/DjangoApp/DjangoApp/base/static/img/
+  #recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.min.css
+  #recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css
