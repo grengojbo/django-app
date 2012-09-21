@@ -212,11 +212,13 @@ def deploy():
 
 @task
 def bootstrap():
-  #recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.css
-  #recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.min.css
+  run("cp /opt/www/DjangoApp/lib/bootstrap/img/* /opt/www/DjangoApp/DjangoApp/base/static/img/")
+  run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.css")
+  run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.min.css")
   run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.css")
   run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.min.css")
   run("cd /opt/www/DjangoApp/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js")
-  #cp /opt/www/DjangoApp/lib/bootstrap/img/* /opt/www/DjangoApp/DjangoApp/base/static/img/
-  #recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.min.css
-  #recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css
+  run("uglifyjs -nc /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.min.js")
+
+  run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.min.css")
+  run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css")
