@@ -84,3 +84,7 @@ INTERNAL_IPS = ('127.0.0.1')
 SERVER_EMAIL = "webmaster@example.com"
 DEFAULT_FROM_EMAIL = "webmaster@example.com"
 SYSTEM_EMAIL_PREFIX = "[DjangoApp]"
+
+#GRAPPELLI_ADMIN_TITLE = "Admin Django App"
+#Number of items to show with autocomplete drop-downs
+#AUTOCOMPLETE_LIMIT = 10

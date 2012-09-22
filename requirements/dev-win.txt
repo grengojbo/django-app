@@ -55,6 +55,7 @@ python-memcached
 # Admin
 django-debug-toolbar
 #-e git://github.com/sehmaschine/django-grappelli.git#egg=django-grappelli
+django-grappelli>=2.4.2
 # There are useful panels for debug-toolbar, but have not quite been updated yet for 1.4
 #-e git://github.com/playfire/django-debug-toolbar-user-panel#egg=django_debug_toolbar_user_panel-dev
 #-e git://github.com/ross/memcache-debug-panel#egg=memcache_toolbar-dev

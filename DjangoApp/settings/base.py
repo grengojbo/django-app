@@ -40,7 +40,7 @@ SITE_ID = 1
 ROOT_URLCONF = 'DjangoApp.urls'
 
 INSTALLED_APPS = [
-    'lemon',
+    'grappelli',
     # Template apps
     'jingo_minify',
 
