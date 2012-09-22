@@ -213,6 +213,7 @@ def deploy():
 @task
 def bootstrap():
   run("cp /opt/www/DjangoApp/lib/bootstrap/img/* /opt/www/DjangoApp/DjangoApp/base/static/img/")
+  run("cp /opt/www/DjangoApp/extras/fontawesome/font/* /opt/www/DjangoApp/DjangoApp/base/static/font/")
   run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.css")
   run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.min.css")
   run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.css")
