@@ -29,6 +29,7 @@
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+{% block header %}
 <header id="header">
     <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -59,6 +60,8 @@
     </div>
     </div>
 </header>
+{% endblock %}
+{% block main %}
 <div id="main">
   <div class="container">
       <div class="row">
@@ -75,23 +78,24 @@
       </div>
   </div>
 </div>
+{% endblock %}
+{% block footer %}
 <footer id="footer" class="navbar-fixed-bottom">
     <div class="container">
         <p id="copy">Авторские права &copy; <a href="http://sky5.com.ua">Oleg Dolya</a> 2012</p>
     </div>
 </footer>
+{% endblock %}
   <!-- JavaScript at the bottom for fast page loading -->
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-  <script src="{{ STATIC_URL }}js/prettify.js"></script>
+  <script src="{{ STATIC_URL }}js/libs/prettify.js"></script>
   <script src="{{ STATIC_URL }}js/libs/bootstrap.min.js"></script>
-
   <!-- scripts concatenated and minified via build script -->
   <script src="{{ STATIC_URL }}js/plugins.js"></script>
   <script src="{{ STATIC_URL }}js/script.js"></script>
   <!-- end scripts -->
-
   <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
        mathiasbynens.be/notes/async-analytics-snippet -->
   <script>

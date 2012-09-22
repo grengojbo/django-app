@@ -15,6 +15,8 @@ from fabric.operations import _prefix_commands, _prefix_env_vars
 
 # CHANGEME
 env.home = '/opt/www'
+env.dev_ip = '192.168.125.94'
+env.dev_port = '8000'
 env.hosts = ['jbo@app03.089.com.ua']
 env.code_dir = "{0}/DjangoApp".format(env.home)
 env.project_dir = "{0}/DjangoApp/DjangoApp".format(env.home)
@@ -52,7 +54,8 @@ def install_dependencies():
     ensure_virtualenv()
     with virtualenv(env.virtualenv):
         with cd(env.code_dir):
-            run_venv("pip install -r requirements/prod.txt")
+            #run_venv("pip install -r requirements/prod.txt")
+            run_venv("pip install -r requirements/dev.txt")
 
 
 def ensure_virtualenv():
@@ -147,6 +150,18 @@ def build_static():
 
     run("chmod -R ugo+r %s" % env.static_root)
 
+#def build_bootstrap():
+#    run("cp /opt/www/DjangoApp/lib/bootstrap/img/* /opt/www/DjangoApp/DjangoApp/base/static/img/")
+#    run("cp /opt/www/DjangoApp/extras/fontawesome/font/* /opt/www/DjangoApp/DjangoApp/base/static/font/")
+#    run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.css")
+#    run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.min.css")
+#    run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.css")
+#    run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.min.css")
+#    run("cd /opt/www/DjangoApp/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js")
+#    run("uglifyjs -nc /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.min.js")
+#
+#    run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.min.css")
+#    run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css")
 
 @task
 def first_deployment_mode():
@@ -202,26 +217,19 @@ def deploy():
     """
     Deploy the project.
     """
-    with settings(warn_only=True):
-        webserver_stop()
-    push_sources()
+    #with settings(warn_only=True):
+    #    webserver_stop()
+    #push_sources()
     install_dependencies()
     update_database()
     build_static()
-    webserver_start()
+   # webserver_start()
 
 @task
 def bootstrap():
-  run("cp /opt/www/DjangoApp/lib/bootstrap/img/* /opt/www/DjangoApp/DjangoApp/base/static/img/")
-  run("cp /opt/www/DjangoApp/extras/fontawesome/font/* /opt/www/DjangoApp/DjangoApp/base/static/font/")
-  run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.css")
-  run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.min.css")
-  run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.css")
-  run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.min.css")
-  run("cd /opt/www/DjangoApp/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js")
-  run("uglifyjs -nc /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.min.js")
+    build_static()
 
-  run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.min.css")
-  run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css")
-  build_static()
-
+@task
+def run():
+    run_venv("./manage.py runserver {0}:{1}".format(env.dev_ip, env.dev_port))
+  
