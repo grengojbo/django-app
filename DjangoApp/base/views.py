@@ -1,3 +1,4 @@
+# -*- mode: python; coding: utf-8; -*-
 """ Views for the base application """
 
 from django.shortcuts import render_to_response

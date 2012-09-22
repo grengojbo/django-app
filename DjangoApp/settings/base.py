@@ -1,9 +1,11 @@
+# -*- mode: python; coding: utf-8; -*-
 """
 This is your project's main settings file that can be committed to your
 repo. If you need to override a setting locally, use local.py
 """
 
 import os
+import logging
 #import memcache_toolbar.panels.memcache
 
 # Your project root
@@ -38,7 +40,7 @@ SITE_ID = 1
 ROOT_URLCONF = 'DjangoApp.urls'
 
 INSTALLED_APPS = [
-    'lemon',
+    #'lemon',
     # Template apps
     'jingo_minify',
 
@@ -139,16 +141,16 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
     'django.contrib.messages.middleware.MessageMiddleware',
     #'commonware.middleware.FrameOptionsHeader',
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
-]
+)
 
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.contrib.auth.context_processors.auth',
@@ -157,6 +159,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.request',
     'django.core.context_processors.i18n',
     'django.core.context_processors.static',
+    'django.core.context_processors.tz',
     'session_csrf.context_processor',
     'django.contrib.messages.context_processors.messages',
     #'jingo_minify.helpers.build_ids',
@@ -210,3 +213,42 @@ JINGO_EXCLUDE_APPS = [
 #JINJA_CONFIG = {'extensions': ['jinja2.ext.i18n', 'jinja2.ext.InternationalizationExtension'],}
 # The WSGI Application to use for runserver
 WSGI_APPLICATION = 'DjangoApp.wsgi.application'
+
+## Log settings
+
+LOG_LEVEL = logging.INFO
+HAS_SYSLOG = True
+SYSLOG_TAG = "http_app_DjangoApp"  # Make this unique to your project.
+# Remove this configuration variable to use your custom logging configuration
+LOGGING_CONFIG = None
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error when DEBUG=False.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'DjangoApp': {
+            'level': "DEBUG"
+        }
+    }
+}

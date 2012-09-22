@@ -1,6 +1,28 @@
-# Install everything that needs to be compiled
--r compiled.txt
+lemon
+# This file pulls in everything a developer needs. If it's a basic package
+# needed to run the site, it belongs in requirements/prod.txt. If it's a
+# package for developers (testing, docs, etc.), it goes in this file.
 
+
+# Deployment
+Fabric
+
+# Documentation
+Sphinx
+
+# Testing
+nose
+mock
+django-nose
+-e git://github.com/jbalogh/test-utils.git#egg=test-utils
+coverage
+pep8
+pylint
+
+# Use Jinja2 for templates instead of django's templating system
+Jinja2
+
+# FROM PROD.txt
 # Django stuff
 Django>=1.4
 
@@ -32,7 +54,6 @@ python-memcached
 # Admin
 django-debug-toolbar
 #-e git://github.com/sehmaschine/django-grappelli.git#egg=django-grappelli
--e git://github.com/trilan/lemon.git#egg=lemon
 # There are useful panels for debug-toolbar, but have not quite been updated yet for 1.4
 #-e git://github.com/playfire/django-debug-toolbar-user-panel#egg=django_debug_toolbar_user_panel-dev
 #-e git://github.com/ross/memcache-debug-panel#egg=memcache_toolbar-dev
@@ -43,4 +64,3 @@ South
 # Various tidbits
 commonware
 -e git://github.com/mozilla/nuggets.git#egg=nuggets
-
