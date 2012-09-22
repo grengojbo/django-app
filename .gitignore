@@ -1,4 +1,5 @@
 */settings/local.py
+.virtualenv/
 *.py[co]
 *.sw[po]
 .coverage
