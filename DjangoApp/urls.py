@@ -7,6 +7,7 @@ from session_csrf import anonymous_csrf
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
+from filebrowser.sites import site
 admin.autodiscover()
 
 # django-session-csrf monkeypatcher
@@ -22,6 +23,7 @@ urlpatterns = patterns('',
     (r'^grappelli/', include('grappelli.urls')),
     #(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
     (r'', include('DjangoApp.base.urls')),
+    (r'^admin/filebrowser/', include(site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/$', anonymous_csrf(admin.site.admin_view(admin.site.index))),
     (r'^admin/', include(admin.site.urls)),
