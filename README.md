@@ -10,6 +10,15 @@ Describe your project here.
 - Python >= 2.5
 - pip
 - virtualenv (virtualenvwrapper is recommended for use during development)
+-
+
+    aptitude purge python-imaging
+    aptitude install gettext libjpeg libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev
+    ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib
+    ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib
+    ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib
+    pip install -U PIL
+-
 
 ## Installation ##
 
