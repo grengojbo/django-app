@@ -223,3 +223,5 @@ def bootstrap():
 
   run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.min.css")
   run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css")
+  build_static()
+
