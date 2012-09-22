@@ -1,18 +1,18 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translate Django App base template.
+# Copyright (C) 2012 Oleg Dolya
+# This file is distributed under the same license as the DjangoApp package.
+# Oleg Dolya <oleg.dolya@gmail.com>, 2012.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: DjangoApp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-22 03:52-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-09-22 04:59-0700\n"
+"PO-Revision-Date: 2012-03-15 09:46+0000\n"
+"Last-Translator: Oleg Dolya <oleg.dolya@gmail.com>\n"
+"Language-Team: Russian (http://www.transifex.net/projects/p/django/language/"
+"ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,11 @@ msgstr ""
 
 #: DjangoApp/base/templates/base.html:9
 msgid "Your Site"
-msgstr ""
+msgstr "Мой сайт"
+
+#: DjangoApp/base/templates/base/home.html:5
+msgid "Hello! It works!"
+msgstr "Привет! Работает"
 
 #: DjangoApp/settings/base.py:36
 msgid "English"
@@ -29,4 +33,4 @@ msgstr ""
 
 #: DjangoApp/settings/base.py:37
 msgid "Russian"
-msgstr ""
+msgstr "Русский"

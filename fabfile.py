@@ -226,7 +226,7 @@ def deploy():
     #push_sources()
     install_dependencies()
     update_database()
-    build_trans()
+    #build_trans()
     build_bootstrap()
     build_static()
    # webserver_start()
@@ -248,3 +248,4 @@ def trans():
     with cd(env.code_dir):
       run_venv("./manage.py makemessages -l {0}".format(env.sup_lang))
       run_venv("./manage.py makemessages -d djangojs -l {0}".format(env.sup_lang))
+  build_trans()
