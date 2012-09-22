@@ -102,12 +102,12 @@ TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.example.com/media/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = FILEBROWSER_MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.example.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = FILEBROWSER_MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -218,7 +218,7 @@ JINGO_EXCLUDE_APPS = [
 WSGI_APPLICATION = 'DjangoApp.wsgi.application'
 
 GRAPPELLI_INDEX_DASHBOARD = 'DjangoApp.dashboard.CustomIndexDashboard'
-
+DIRECTORY = 'uploads/'
 ## Log settings
 
 LOG_LEVEL = logging.INFO

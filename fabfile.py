@@ -51,12 +51,18 @@ def run_venv(command, **kwargs):
 
 
 def install_dependencies():
-    ensure_virtualenv()
-    with virtualenv(env.virtualenv):
-        with cd(env.code_dir):
-            #run_venv("pip install -r requirements/prod.txt")
-            run_venv("pip install -r requirements/dev.txt")
-
+  if not exists("{0}/media/uploads".format(env.code_dir)):
+    run("mkdir -p {0}/media/uploads".format(env.code_dir))
+  ensure_virtualenv()
+  if not exists("{0}/lib/libz.so".format(env.virtualenv)):
+    with cd("{0}/lib".format(env.virtualenv)):
+      run("ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so")
+      run("ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so")
+      run("ln -s /usr/lib/x86_64-linux-gnu/libz.so")
+  with virtualenv(env.virtualenv):
+    with cd(env.code_dir):
+      #run_venv("pip install -r requirements/prod.txt")
+      run_venv("pip install -r requirements/dev.txt")
 
 def ensure_virtualenv():
     if exists(env.virtualenv):
