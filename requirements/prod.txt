@@ -8,6 +8,7 @@ Django>=1.4
 jingo
 jingo-minify
 Markdown
+#-e git://github.com/hcarvalhoalves/django-taggit.git
 
 # Security
 bleach
@@ -30,6 +31,7 @@ python-memcached
 
 # Admin
 django-debug-toolbar
+#-e git://github.com/sehmaschine/django-grappelli.git#egg=django-grappelli
 # There are useful panels for debug-toolbar, but have not quite been updated yet for 1.4
 #-e git://github.com/playfire/django-debug-toolbar-user-panel#egg=django_debug_toolbar_user_panel-dev
 #-e git://github.com/ross/memcache-debug-panel#egg=memcache_toolbar-dev
