@@ -229,6 +229,7 @@ def deploy():
     #build_trans()
     build_bootstrap()
     build_static()
+    build_trans()
    # webserver_start()
 
 @task

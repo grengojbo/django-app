@@ -40,7 +40,7 @@ SITE_ID = 1
 ROOT_URLCONF = 'DjangoApp.urls'
 
 INSTALLED_APPS = [
-    #'lemon',
+    'lemon',
     # Template apps
     'jingo_minify',
 
@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     #'debug_toolbar',
     #'debug_toolbar_user_panel',
     #'memcache_toolbar',
+    'intellipages',
 
     # Database migrations
     'south',

@@ -9,6 +9,7 @@ jingo
 jingo-minify
 Markdown
 #-e git://github.com/hcarvalhoalves/django-taggit.git
+django-intellipages
 
 # Security
 bleach
