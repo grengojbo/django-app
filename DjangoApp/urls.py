@@ -1,5 +1,5 @@
 """ Default urlconf for DjangoApp """
-
+import lemon
 from django.conf import settings
 from django.conf.urls.defaults import include, patterns
 from session_csrf import anonymous_csrf

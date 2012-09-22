@@ -8,7 +8,7 @@ import os
 
 # Your project root
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__) + "../../../")
-
+#path = lambda *a: os.path.join(ROOT, *a)
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
@@ -30,19 +30,15 @@ SUPPORTED_NONLOCALES = ['media', 'admin', 'static']
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'ru-ru'
-gettext = lambda s: s
 
-LANGUAGES = (
-    ('en', gettext('English')),
-    ('ru', gettext('Russian')),
-)
-
+#LOCALE_PATHS
 SITE_ID = 1
 
 # Defines the views served for root URLs.
 ROOT_URLCONF = 'DjangoApp.urls'
 
 INSTALLED_APPS = [
+    'lemon',
     # Template apps
     'jingo_minify',
 
@@ -144,9 +140,9 @@ STATICFILES_FINDERS = (
 )
 
 MIDDLEWARE_CLASSES = [
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -176,7 +172,7 @@ TEMPLATE_DIRS = (
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'jingo.Loader',
+    #'jingo.Loader',
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
@@ -185,7 +181,16 @@ FIXTURE_DIRS = (
     os.path.join(PROJECT_ROOT, 'fixtures'),
 )
 
+gettext = lambda s: s
 
+LANGUAGES = (
+    ('en', gettext('English')),
+    ('fr', gettext('French')),
+    ('es', gettext('Spanish')),
+    ('pt', gettext('Portuguese')),
+    ('de', gettext('German')),
+    ('ru', gettext('Russian')),
+)
 # Specify a model to use for user profiles, if desired.
 #AUTH_PROFILE_MODULE = 'DjangoApp.accounts.UserProfile'
 
@@ -195,11 +200,13 @@ FILE_UPLOAD_PERMISSIONS = 0664
 # apps here:
 JINGO_EXCLUDE_APPS = [
     'admin',
+    'DjangoApp',
     'registration',
     'debug_toolbar',
     'debug_toolbar_user_panel',
     'memcache_toolbar',
 ]
 
+#JINJA_CONFIG = {'extensions': ['jinja2.ext.i18n', 'jinja2.ext.InternationalizationExtension'],}
 # The WSGI Application to use for runserver
 WSGI_APPLICATION = 'DjangoApp.wsgi.application'
