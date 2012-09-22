@@ -42,6 +42,7 @@ ROOT_URLCONF = 'DjangoApp.urls'
 INSTALLED_APPS = [
     'grappelli.dashboard',
     'grappelli',
+    'filebrowser',
     # Template apps
     'jingo_minify',
 
