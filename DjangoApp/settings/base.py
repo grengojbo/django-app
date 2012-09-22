@@ -40,6 +40,7 @@ SITE_ID = 1
 ROOT_URLCONF = 'DjangoApp.urls'
 
 INSTALLED_APPS = [
+    'grappelli.dashboard',
     'grappelli',
     # Template apps
     'jingo_minify',
@@ -214,6 +215,8 @@ JINGO_EXCLUDE_APPS = [
 #JINJA_CONFIG = {'extensions': ['jinja2.ext.i18n', 'jinja2.ext.InternationalizationExtension'],}
 # The WSGI Application to use for runserver
 WSGI_APPLICATION = 'DjangoApp.wsgi.application'
+
+GRAPPELLI_INDEX_DASHBOARD = 'DjangoApp.dashboard.CustomIndexDashboard'
 
 ## Log settings
 

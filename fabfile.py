@@ -241,6 +241,7 @@ def bootstrap():
 def runs():
   with virtualenv(env.virtualenv):
     with cd(env.code_dir):
+      #run_venv("./manage.py customdashboard")
       run_venv("./manage.py runserver {0}".format(env.dev_server))
 
 @task
