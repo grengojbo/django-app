@@ -1,5 +1,4 @@
-{% load i18n %}
-<!doctype html>
+<!doctype html>{% load i18n %}
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
@@ -17,6 +16,7 @@
   {% block css %}{% endblock %}
   <!--<script src="{{ STATIC_URL }}js/libs/modernizr-2.5.3.min.js"></script>-->
   <script src="{{ STATIC_URL }}js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+  {% block extrajs %}{% endblock %}
   <!--<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">-->
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}apple-touch-icon-114x114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}apple-touch-icon-72x72-precomposed.png">
@@ -24,6 +24,7 @@
   <link rel="shortcut icon" href="{{ STATIC_URL }}apple-touch-icon.png">
   <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
   <!--<script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>-->
+  {% block extrahead %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
 {% block body %}
@@ -44,16 +45,21 @@
         <div class="nav-collapse">
         <ul class="nav">
           <li class="active"><a href="/"><i class="icon-home icon-large"></i> {% trans 'Home' %}</a></li>
-            <li><a href="#about"><i class="icon-info-sign icon-large"></i> About</a></li>
+            <li><a href="#about"><i class="icon-info-sign icon-large"></i> {% trans 'About' %}</a></li>
         </ul>
             <ul class="nav pull-right">
-                <li  class="divider-vertical"><a href="#contact"><i class="icon-envelope-alt icon-large"></i> Contact</a></li>
+                <li  class="divider-vertical"><a href="#contact"><i class="icon-envelope-alt icon-large"></i> {% trans 'Contact' %}</a></li>
                 <li  class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-large"></i> Login <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                    {% if user.is_authenticated %}
+                        <li><a href="#"><i class="icon-signin"></i> Login In</a></li>
+                        <li class="divider"></li>
+                    {% else %}
                         <li><a href="#"><i class="icon-signin"></i> Login In</a></li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="icon-key"></i> Registered</a></li>
+                    {% endif %}
                     </ul>
                 </li>
             </ul>
