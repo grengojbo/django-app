@@ -1,3 +1,4 @@
+# -*- mode: python; coding: utf-8; -*-
 """urlconf for the base application"""
 
 from django.conf.urls.defaults import url, patterns
