@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     #url(r'^', include('debug_toolbar_user_panel.urls')),
     (r'^bad/$', bad),
+    (r'^accounts/', include('registration.backends.default.urls')),
 )
 
 #https://docs.djangoproject.com/en/dev/topics/i18n/translation/#url-internationalization
