@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'taggit',
     'intellipages',
     'django_extensions',
+    'registration',
     # Database migrations
     'south',
 
@@ -77,7 +78,7 @@ INSTALLED_APPS = [
     'DjangoApp.base',
 
     # Local apps, referenced via DjangoApp.appname
-    #'flatpages_plus',
+    'flatpages_plus',
 ]
 
 # Place bcrypt first in the list, so it will be the default password hashing
@@ -153,7 +154,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
     'django.contrib.messages.middleware.MessageMiddleware',
-    #'flatpages_plus.middleware.FlatpageFallbackMiddleware',
+    'flatpages_plus.middleware.FlatpageFallbackMiddleware',
     #'commonware.middleware.FrameOptionsHeader',
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
@@ -222,6 +223,9 @@ WSGI_APPLICATION = 'DjangoApp.wsgi.application'
 
 GRAPPELLI_INDEX_DASHBOARD = 'DjangoApp.dashboard.CustomIndexDashboard'
 DIRECTORY = 'uploads/'
+
+ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
+
 ## Log settings
 
 LOG_LEVEL = logging.INFO

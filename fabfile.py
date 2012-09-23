@@ -167,6 +167,8 @@ def build_bootstrap():
     run("uglifyjs -nc /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.min.js")
     run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.min.css")
     run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css")
+    run("cp -u /opt/www/DjangoApp/extras/tinymce_setup.js /opt/www/DjangoApp/static/js/")
+    run("cp -ur /opt/www/DjangoApp/extras/tinymce_language_pack/* /opt/www/DjangoApp/static/grappelli/tinymce/jscripts/tiny_mce/")
 
 def build_trans():
   with virtualenv(env.virtualenv):
@@ -233,8 +235,8 @@ def deploy():
     install_dependencies()
     update_database()
     #build_trans()
-    build_bootstrap()
     build_static()
+    build_bootstrap()
     build_trans()
    # webserver_start()
 
@@ -257,3 +259,13 @@ def trans():
       run_venv("./manage.py makemessages -l {0}".format(env.sup_lang))
       run_venv("./manage.py makemessages -d djangojs -l {0}".format(env.sup_lang))
   build_trans()
+
+@task
+def m(a1='help'):
+  """
+  Run manager command Exemple fab m:help
+  """
+  with virtualenv(env.virtualenv):
+    with cd(env.code_dir):
+      run_venv("./manage.py {0}".format(a1))
+

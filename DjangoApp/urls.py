@@ -46,6 +46,6 @@ if settings.DEBUG:
          {'document_root': settings.MEDIA_ROOT}),
     )
 
-#urlpatterns = patterns('flatpages_plus.views',
-#    (r'^(?P<url>.*)$', 'flatpage'),
-#)
+urlpatterns += patterns('flatpages_plus.views',
+    (r'^(?P<url>.*)$', 'flatpage'),
+)
