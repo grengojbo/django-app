@@ -35,6 +35,7 @@ django-intellipages
 # Security
 bleach
 django-session-csrf
+django-registration
 #cef
 
 # Logging
