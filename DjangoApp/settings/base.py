@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     #'memcache_toolbar',
     'taggit',
     'intellipages',
+    'django_extensions',
     # Database migrations
     'south',
 

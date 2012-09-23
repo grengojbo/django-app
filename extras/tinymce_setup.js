@@ -25,6 +25,7 @@ tinyMCE.init({
     // see http://www.tinymce.com/wiki.php/Configuration
     
     // Init
+    language : "ru",
     mode: 'textareas',
     theme: 'advanced',
     skin: 'grappelli',
