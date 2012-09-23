@@ -25,7 +25,6 @@ class Publication(models.Model):
         ordering = ['-publication_start_date']
         verbose_name = _(u'text page')
         verbose_name_plural = _(u'text pages')
-        unique_together = ('slug')
 
     def __unicode__(self):
         return u'%s (%s)' % (self.title, self.slug)
