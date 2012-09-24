@@ -3,18 +3,16 @@
 {% load widget_tweaks %}
 {% block content %}
 <h1>Авторизация</h1>
-
 {% if user.is_authenticated %}
 Что такое, {{ user.username }}? Вы же уже авторизорваны. 
 Впрочем, всегда можно <a href="{% url auth_logout %}">{% trans 'Log Out' %}</a>.<br/><br/>
 {% else %}
 
-<form method="post" action=""> {% csrf_token %}
+<form method="post" id="login_form" action="{{ request.get_full_path }}" class="form-horizontal"> {% csrf_token %}
 {% if form.non_field_errors %}
 {{ form.non_field_errors }}
 {% endif %}
-
-<dl class="register">   
+<legend>{% trans 'Log In' %}</legend>
 {% for field in form %}
     <dt>{{ field.label_tag }}</dt>
     <dd class="clearfix">{{ field }}
@@ -22,8 +20,7 @@
     {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
     </dd>
 {% endfor %}
-</dl>
-<input type="submit" value="Вход" class="clearfix">
+<button name="login_submit" type="submit" value="Log In" class="btn btn-large btn-primary">{% trans 'Log In' %}</button>
 </form>
     
 <script type="text/javascript">
