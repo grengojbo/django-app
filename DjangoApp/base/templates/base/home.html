@@ -2,6 +2,9 @@
 {% load i18n %}
 {% block page_class %}home-page{% endblock %}
 {% block content %}
-<h1>{% trans 'Hello! It works!' %}</h1>
-    {% get_current_language as LANGUAGE_CODE %}.
+<div class="hero-unit">
+  <h1>{% trans 'Hello! It works!' %}</h1>
+  <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <p>{% get_current_language as LANGUAGE_CODE %}<a class="btn btn-primary btn-large">Language: {{ LANGUAGE_CODE }}</a>.</p>
+</div>
 {% endblock %}
