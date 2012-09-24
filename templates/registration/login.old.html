@@ -13,10 +13,21 @@
 {{ form.non_field_errors }}
 {% endif %}
 <legend>{% trans 'Log In' %}</legend>
-    {% include "base/form_fields.html" with form=login_form %}
+{% for field in form %}
+    <dt>{{ field.label_tag }}</dt>
+    <dd class="clearfix">{{ field }}
+    {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
+    {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
+    </dd>
+{% endfor %}
 <button name="login_submit" type="submit" value="Log In" class="btn btn-large btn-primary">{% trans 'Log In' %}</button>
 </form>
-<br/><br/>
+    
+<script type="text/javascript">
+document.getElementById('id_username').focus()
+</script>
+
+ <br/><br/>
 <ul>
     <li><a href="{% url auth_password_reset %}">Забыли пароль?</a></li>
     <li><a href="{% url registration_register %}">Регистрация</a></li>
