@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     #'debug_toolbar',
     #'debug_toolbar_user_panel',
     #'memcache_toolbar',
+    'widget_tweaks',
     'taggit',
     'intellipages',
     'django_extensions',
@@ -153,6 +154,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
+    #django.middleware.csrf.CsrfViewMiddleware
     'django.contrib.messages.middleware.MessageMiddleware',
     'flatpages_plus.middleware.FlatpageFallbackMiddleware',
     #'commonware.middleware.FrameOptionsHeader',
@@ -223,6 +225,9 @@ WSGI_APPLICATION = 'DjangoApp.wsgi.application'
 
 GRAPPELLI_INDEX_DASHBOARD = 'DjangoApp.dashboard.CustomIndexDashboard'
 DIRECTORY = 'uploads/'
+
+# https://github.com/mozilla/django-session-csrf
+ANON_ALWAYS = True # always provide CSRF protection for anonymous users (неработает registration Login)
 
 ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
 

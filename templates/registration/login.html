@@ -9,11 +9,11 @@
 Впрочем, всегда можно <a href="{% url auth_logout %}">{% trans 'Log Out' %}</a>.<br/><br/>
 {% else %}
 
+<form method="post" action=""> {% csrf_token %}
 {% if form.non_field_errors %}
 {{ form.non_field_errors }}
 {% endif %}
 
-<form method="post" action="">{% csrf_token %}
 <dl class="register">   
 {% for field in form %}
     <dt>{{ field.label_tag }}</dt>
