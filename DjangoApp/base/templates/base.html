@@ -45,12 +45,12 @@
         <div class="nav-collapse">
         <ul class="nav">
           <li class="active"><a href="{% url home %}"><i class="icon-home icon-large"></i> {% trans 'Home' %}</a></li>
-            <li><a href="/about"><i class="icon-info-sign icon-large"></i> {% trans 'About' %}</a></li>
+            <li><a href="/about"><i class="icon-info-sign"></i> {% trans 'About' %}</a></li>
         </ul>
             <ul class="nav pull-right">
-                <li  class="divider-vertical"><a href="/contact"><i class="icon-envelope-alt icon-large"></i> {% trans 'Contact' %}</a></li>
+                <li  class="divider-vertical"><a href="/contact"><i class="icon-envelope-alt"></i> {% trans 'Contact' %}</a></li>
                 <li  class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-large"></i> {% if user.is_authenticated %}{{ user.username }}{% else %}{% trans 'Login or register' %}{% endif %} <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {% if user.is_authenticated %}{{ user.username }}{% else %}{% trans 'Login or register' %}{% endif %} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     {% if user.is_authenticated %}
                         <li><a href="{% url auth_logout %}"><i class="icon-signin"></i> {% trans 'Log Out' %}</a></li>
@@ -71,14 +71,15 @@
     </div>
 </header>
 {% endblock %}
-{% block main %}
+{% block layout %}
 <div id="main">
   <div class="container">
       <div class="row">
           <div class="span3" id="sidebar">
           {% block sidebar %}
-            <h3>Sidebar</h3></div>
+            <h3>Sidebar</h3>
           {% endblock %}
+          </div>
           <div class="span9" id="content">
           {% block content %}
               <h1>Content</h1>

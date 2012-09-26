@@ -15,8 +15,8 @@
   {{ form.non_field_errors }}
 </div>
 {% endif %}
-    {% include "base/field.html" with field=form.username|attr:"autofocus"|add_error_class:"error" %}
-    {% include "base/field.html" with field=form.password|add_error_class:"error" %}
+    {% include "base/field_email.html" with field=form.username|attr:"autofocus" %}
+    {% include "base/field_password.html" with field=form.password %}
 <button name="login_submit" type="submit" value="Log In" class="btn btn-large btn-primary">{% trans 'Log In' %}</button>
 </form>
 <br/><br/>
