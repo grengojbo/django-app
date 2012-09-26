@@ -7,3 +7,6 @@
 [submodule "extras/jquery-equal-heights"]
 	path = extras/jquery-equal-heights
 	url = git://github.com/filamentgroup/jQuery-Equal-Heights.git
+[submodule "extras/jquery-pixel-em-converter"]
+	path = extras/jquery-pixel-em-converter
+	url = git://github.com/filamentgroup/jQuery-Pixel-Em-Converter.git
