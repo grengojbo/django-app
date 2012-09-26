@@ -1,9 +1,7 @@
-{% extends "flatpages_plus/base_flatpages_plus.html" %}
-
+{% extends "layout_2_col.html" %}
+{% load i18n %}
 {% block title %}{{ flatpage.title }}{% endblock %}
-
 {% block content %}
-
     {% if breadcrumbs %}
         <div id="breadcrumbs">
             {% for b in breadcrumbs %}
@@ -28,5 +26,4 @@
     {% endif %}
 
     {{ flatpage.content }}
-
 {% endblock %}

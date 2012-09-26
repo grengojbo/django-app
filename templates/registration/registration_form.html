@@ -1,6 +1,7 @@
-{% extends "base.html" %}
+{% extends "layout_3_col.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
+{% block title %}{% trans 'Register' %}{% endblock %}
 {% block content %}
 <h1>Регистрация</h1>
 <form method="post" action=""> {% csrf_token %}
