@@ -6,6 +6,6 @@
 Что такое, {{ user.username }}? Вы же уже авторизорваны. 
 Впрочем, всегда можно <a href="{% url auth_logout %}">{% trans 'Log Out' %}</a>.<br/><br/>
 {% else %}
-{% include "ajax_login.html"%}
+{% include "registration/ajax_login.html"%}
 {% endif %}
 {% endblock %}

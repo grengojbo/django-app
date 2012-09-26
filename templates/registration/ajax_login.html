@@ -7,17 +7,19 @@
   {{ form.non_field_errors }}
 </div>
 {% endif %}
-    <div class="control-group{% if form.username.errors %} error{% endif %}">
-        <div class="controls">
-            {{ form.username|attr:"autofocus" }}
-        </div>
+  <div class="control-group{% if form.username.errors %} error{% endif %}">
+    <label class="control-label" for="{{ form.username.html_name}}">Email</label>
+    <div class="controls">
+      <div class="input-prepend"><span class="add-on"><i class="icon-envelope"></i></span>{{ form.username|attr:"autofocus" }}</div>
     </div>
-    <div class="control-group{% if form.username.errors %} error{% endif %}">
-        <div class="controls">
-            {{ form.password }}
-        </div>
+  </div>
+  <div class="control-group{% if form.username.errors %} error{% endif %}">
+    <label class="control-label" for="{{ form.password.html_name}}">Password</label>
+    <div class="controls">
+      <div class="input-prepend"><span class="add-on"><i class="icon-key"></i></span>{{ form.password }}</div>
     </div>
-    <button name="login_submit" type="submit" value="Log In" class="btn btn-large btn-primary">{% trans 'Log In' %}</button>
+  </div>
+  <button name="login_submit" type="submit" value="Log In" class="btn btn-large btn-primary">{% trans 'Log In' %}</button>
 </form>
 <br/><br/>
 <ul>
