@@ -1,28 +1,17 @@
 {% load i18n %}
 {% load widget_tweaks %}
-<div class="modal" id="ajaxRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">{% trans 'Register' %}</h3>
-  </div>
-  <div class="modal-body">
-      <form method="post" action=""> {% csrf_token %}
-      {% if form.non_field_errors %}
+<form method="post" action=""> {% csrf_token %}
+    {% if form.non_field_errors %}
         <div class="alert alert-error">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          {{ form.non_field_errors }}
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{ form.non_field_errors }}
         </div>
-      {% endif %}
-      {% include "base/field_user.html" with field=form.username %}
-      {% include "base/field_email.html" with field=form.email %}
-      {% include "base/field_password.html" with field=form.password1 %}
-      {% include "base/field_password.html" with field=form.password2 %}
-      </form>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans 'Close' %}</button>
-    <button name="registration_submit" type="submit" value="Register" class="btn btn-primary js-disable-on-click" data-loading-text="{%trans 'Registering...' %}">{% trans 'Register' %}</button>
-  </div>
-</div>
+    {% endif %}
+    {% include "base/field_user.html" with field=form.username %}
+    {% include "base/field_email.html" with field=form.email %}
+    {% include "base/field_password.html" with field=form.password1 %}
+    {% include "base/field_password.html" with field=form.password2 %}
+</form>
+
 
 
