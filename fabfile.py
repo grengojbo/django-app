@@ -169,7 +169,8 @@ def build_bootstrap():
     run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css")
     run("cp -u /opt/www/DjangoApp/extras/tinymce_setup.js /opt/www/DjangoApp/static/js/")
     run("cp -ur /opt/www/DjangoApp/extras/tinymce_language_pack/* /opt/www/DjangoApp/static/grappelli/tinymce/jscripts/tiny_mce/")
-    run("cp -u /opt/www/DjangoApp/extras/jquery-equal-heights/jQuery.equalHeights.js /op/www/DjangoApp/DjangoApp/base/static/js/libs/")
+    run("cp -u /opt/www/DjangoApp/extras/jquery-equal-heights/jQuery.equalHeights.js /opt/www/DjangoApp/DjangoApp/base/static/js/libs/")
+    run("cp -u /opt/www/DjangoApp/extras/jquery-pixel-em-converter/pxem.jQuery.js /opt/www/DjangoApp/DjangoApp/base/static/js/libs/")
 
 def build_trans():
   with virtualenv(env.virtualenv):

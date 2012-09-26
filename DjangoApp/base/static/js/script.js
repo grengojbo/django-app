@@ -1,10 +1,4 @@
 /* Author:
 
 */
-$('#sidebar').equalHeights();
-$('#content').equalHeights();
-
-
-
-
-
+$(function(){ $('#layout').equalHeights(); });
