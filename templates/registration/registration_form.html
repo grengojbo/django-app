@@ -11,8 +11,10 @@
     {{ form.non_field_errors }}
   </div>
 {% endif %}
-    <label class="control-label{% if form.username.field.required %} required{% endif %}" for="{{ form.username.auto_id}}">{{ form.username.label_tag }}</label>
-    {{ form.username }}
+{% include "base/field_user.html" with field=form.username %}
+{% include "base/field_email.html" with field=form.email %}
+{% include "base/field_password.html" with field=form.password1 %}
+{% include "base/field_password.html" with field=form.password2 %}
 <button name="registration_submit" type="submit" value="Register" class="btn btn-large btn-primary js-disable-on-click" data-loading-text="{%trans 'Registering...' %}">{% trans 'Register' %}</button>
 </form>
 {% endblock %}
