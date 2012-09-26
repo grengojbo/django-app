@@ -4,3 +4,6 @@
 [submodule "extras/fontawesome"]
 	path = extras/fontawesome
 	url = git://github.com/FortAwesome/Font-Awesome.git
+[submodule "extras/jquery-equal-heights"]
+	path = extras/jquery-equal-heights
+	url = git://github.com/filamentgroup/jQuery-Equal-Heights.git
