@@ -59,7 +59,7 @@
                         <li><a href="/admin/"><i class="icon-signin"></i> {% trans 'Admin' %}</a></li>
                         {% endif %}
                     {% else %}
-                        <li><a href="{% url auth_login %}"><i class="icon-signin"></i> {% trans 'Log In' %}</a></li>
+                        <li><a data-toggle="modal" data-target="#ajaxRegister"><i class="icon-signin"></i> {% trans 'Log In' %}</a></li>
                         <li class="divider"></li>
                         <li><a href="{% url registration_register %}"><i class="icon-key"></i> {% trans 'Register' %}</a></li>
                     {% endif %}
@@ -89,6 +89,7 @@
       </div>
   </div>
 </div>
+<div class="modal hide fade" id='ajaxRegister'></div>
 {% endblock %}
 {% block footer %}
 <footer id="footer" class="navbar-fixed-bottom">
@@ -115,7 +116,6 @@
   <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js"><\/script>')</script>
   <script src="{{ STATIC_URL }}js/libs/prettify.js"></script>
   <script src="{{ STATIC_URL }}js/libs/bootstrap.min.js"></script>
-  <script src="{{ STATIC_URL }}js/libs/pxem.jQuery.js"></script>
   <script src="{{ STATIC_URL }}js/libs/jQuery.equalHeights.js"></script>
   <!-- scripts concatenated and minified via build script -->
   <script src="{{ STATIC_URL }}js/plugins.js"></script>
@@ -133,6 +133,10 @@
   // Use the modernizr.load() function to run polyfills for older browsers.
   Modernizr.load({
       
+  });
+  
+  $('#ajaxRegister').modal({
+    remote: 'http://192.168.125.94:8000/register/'
   });
 </script>
 <script type="text/javascript"> $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}}) </script>
