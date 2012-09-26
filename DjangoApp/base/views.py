@@ -3,9 +3,15 @@
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.views.generic.simple import direct_to_template
+from registration.forms import RegistrationFormUniqueEmail
 
 
 def home(request):
     """ Default view for the root """
     return render_to_response('base/home.html',
         context_instance=RequestContext(request))
+
+def register(request):
+    form = RegistrationFormUniqueEmail()
+    return direct_to_template(request, "registration/ajax_registration.html", extra_context={'form': form })
