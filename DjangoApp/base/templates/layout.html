@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block layout %}
-    <div class="container">
-        <div class="row">
-            <div class="12" id="content">
-                {% block content %}
-                    <h1>Content</h1>
-                    <a href="index.html">Sample</a>
-                {% endblock %}
-            </div>
-        </div>
+    <div id="main">
+      <div class="container">
+          <div class="row">
+              <div class="span12" id="content">
+              {% block content %}
+                  <h1>Content</h1>
+                  <a href="index.html">Sample</a>
+              {% endblock %}
+              </div>
+          </div>
+      </div>
     </div>
 {% endblock %}
