@@ -12,6 +12,9 @@ Describe your project here.
 - virtualenv (virtualenvwrapper is recommended for use during development)
 -
 
+    pip install -U django-fab-deploy
+    pip install -U jinja2
+    pip install -U "fabric >= 1.4"
     aptitude purge python-imaging
     aptitude install gettext libjpeg libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev
     ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib

@@ -70,6 +70,18 @@ def install_dependencies():
     run("ln -s {0}/media {1}".format(env.shared_dir, env.media_root))
   if not exists(env.static_root):
     run("mkdir -p {0}".format(env.static_root))
+  if not exists("{0}/config}".format(env.shared_dir)):
+    run("mkdir -p {0}/config".format(env.shared_dir))
+  if not exists("{0}/log}".format(env.shared_dir)):
+    run("mkdir -p {0}/log".format(env.shared_dir))
+  if not exists("{0}/log}".format(env.project_dir)):
+    run("ln -s {0}/log".format(env.project_dir))
+  if not exists("{0}/pids".format(env.shared_dir)):
+    run("mkdir -p {0}/pids".format(env.shared_dir))
+  if not exists("{0}/system".format(env.shared_dir)):
+    run("mkdir -p {0}/system".format(env.shared_dir))
+  if not exists("{0}/system".format(env.public_root)):
+    run("ln -s {0}/system".format(env.project_dir))
   ensure_virtualenv()
   if not exists("{0}/lib/libz.so".format(env.virtualenv)):
     with cd("{0}/lib".format(env.virtualenv)):
@@ -163,34 +175,33 @@ def webserver_restart():
 
 
 def restart():
-    """ Restart the wsgi process """
-    with cd(env.code_dir):
-        run("touch %s/kvazar/wsgi.py" % env.code_dir)
+  """ Restart the wsgi process """
+  with cd(env.code_dir):
+    run("touch %s/kvazar/wsgi.py" % env.code_dir)
 
 
 def build_static():
-    assert env.static_root.strip() != '' and env.static_root.strip() != '/'
-    with virtualenv(env.virtualenv):
-        with cd(env.code_dir):
-            run_venv("./manage.py collectstatic -v 0 --clear --noinput")
-
-    run("chmod -R ugo+r {0}".format(env.static_root))
+  assert env.static_root.strip() != '' and env.static_root.strip() != '/'
+  with virtualenv(env.virtualenv):
+    with cd(env.code_dir):
+      run_venv("./manage.py collectstatic -v 0 --clear --noinput")
+      run("chmod -R ugo+r {0}".format(env.static_root))
 
 def build_bootstrap():
-    run("cp {0}/lib/bootstrap/img/* {1}/base/static/img/".format(env.code_dir, env.app_dir))
-    run("cp {0}/extras/fontawesome/font/* {1}/base/static/font/".format(env.code_dir, env.app_dir))
-    run("recess --compile {0}/base/static/less/bootstrap.less > {0}/base/static/css/bootstrap.css".format(env.app_dir))
-    run("recess --compress {0}/base/static/less/bootstrap.less > {0}/base/static/css/bootstrap.min.css".format(env.app_dir))
-    run("recess --compile {0}/base/static/less/responsive.less > {0}/base/static/css/bootstrap-responsive.css".format(env.app_dir))
-    run("recess --compress {0}/base/static/less/responsive.less > {0}/base/static/css/bootstrap-responsive.min.css".format(env.app_dir))
-    run("cd {0}/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > {0}/base/static/js/libs/bootstrap.js".format(env.app_dir))
-    run("uglifyjs -nc {0}/base/static/js/libs/bootstrap.js > {0}/base/static/js/libs/bootstrap.min.js".format(env.app_dir))
-    run("recess --compress {0}/base/static/less/aplication.less > {0}/base/static/css/aplication.min.css".format(env.app_dir))
-    run("recess --compile {0}/base/static/less/aplication.less > {0}/base/static/css/aplication.css".format(env.app_dir))
-    run("cp -u {0}/extras/tinymce_setup.js {1}static/js/".format(env.code_dir, env.static_root))
-    run("cp -ur {0}/extras/tinymce_language_pack/* {1}static/grappelli/tinymce/jscripts/tiny_mce/".format(env.code_dir, env.app_dir))
-    #run("cp -u {0}/extras/jquery-equal-heights/jQuery.equalHeights.js {0}/base/static/js/libs/".format(env.code_dir, env.app_dir))
-    #run("cp -u {0}/extras/jquery-pixel-em-converter/pxem.jQuery.js {0}/base/static/js/libs/".format(env.code_dir, env.app_dir))
+  run("cp {0}/lib/bootstrap/img/* {1}/base/static/img/".format(env.code_dir, env.app_dir))
+  run("cp {0}/extras/fontawesome/font/* {1}/base/static/font/".format(env.code_dir, env.app_dir))
+  run("recess --compile {0}/base/static/less/bootstrap.less > {0}/base/static/css/bootstrap.css".format(env.app_dir))
+  run("recess --compress {0}/base/static/less/bootstrap.less > {0}/base/static/css/bootstrap.min.css".format(env.app_dir))
+  run("recess --compile {0}/base/static/less/responsive.less > {0}/base/static/css/bootstrap-responsive.css".format(env.app_dir))
+  run("recess --compress {0}/base/static/less/responsive.less > {0}/base/static/css/bootstrap-responsive.min.css".format(env.app_dir))
+  run("cd {0}/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > {0}/base/static/js/libs/bootstrap.js".format(env.app_dir))
+  run("uglifyjs -nc {0}/base/static/js/libs/bootstrap.js > {0}/base/static/js/libs/bootstrap.min.js".format(env.app_dir))
+  run("recess --compress {0}/base/static/less/aplication.less > {0}/base/static/css/aplication.min.css".format(env.app_dir))
+  run("recess --compile {0}/base/static/less/aplication.less > {0}/base/static/css/aplication.css".format(env.app_dir))
+  run("cp -u {0}/extras/tinymce_setup.js {1}static/js/".format(env.code_dir, env.static_root))
+  run("cp -ur {0}/extras/tinymce_language_pack/* {1}static/grappelli/tinymce/jscripts/tiny_mce/".format(env.code_dir, env.app_dir))
+  #run("cp -u {0}/extras/jquery-equal-heights/jQuery.equalHeights.js {0}/base/static/js/libs/".format(env.code_dir, env.app_dir))
+  #run("cp -u {0}/extras/jquery-pixel-em-converter/pxem.jQuery.js {0}/base/static/js/libs/".format(env.code_dir, env.app_dir))
 
 def build_trans():
   with virtualenv(env.virtualenv):
@@ -199,51 +210,46 @@ def build_trans():
 
 @task
 def first_deployment_mode():
-    """
-    Use before first deployment to switch on fake south migrations.
-    """
-    env.initial_deploy = True
+  """
+  Use before first deployment to switch on fake south migrations.
+  """
+  env.initial_deploy = True
 
 
 @task
 def update_database(app=None):
-    """
-    Update the database (run the migrations)
-    Usage: fab update_database:app_name
-    """
-    with virtualenv(env.virtualenv):
-        with cd(env.code_dir):
-            if getattr(env, 'initial_deploy', False):
-                run_venv("./manage.py syncdb --all")
-                run_venv("./manage.py migrate --fake --noinput")
-            else:
-                run_venv("./manage.py syncdb --noinput")
-                if app:
-                    run_venv("./manage.py migrate %s --noinput" % app)
-                else:
-                    run_venv("./manage.py migrate --noinput")
-
+  """
+  Update the database (run the migrations)
+  Usage: fab update_database:app_name
+  """
+  with virtualenv(env.virtualenv):
+    with cd(env.code_dir):
+      if getattr(env, 'initial_deploy', False):
+        run_venv("./manage.py syncdb --all")
+        run_venv("./manage.py migrate --fake --noinput")
+      else:
+        run_venv("./manage.py syncdb --noinput")
+        if app:
+          run_venv("./manage.py migrate %s --noinput" % app)
+        else:
+          run_venv("./manage.py migrate --noinput")
 
 @task
 def sshagent_run(cmd):
-    """
-    Helper function.
-    Runs a command with SSH agent forwarding enabled.
+  """
+  Helper function.
+  Runs a command with SSH agent forwarding enabled.
 
-    Note:: Fabric (and paramiko) can't forward your SSH agent.
-    This helper uses your system's ssh to do so.
-    """
-    # Handle context manager modifications
-    wrapped_cmd = _prefix_commands(_prefix_env_vars(cmd), 'remote')
-    try:
-        host, port = env.host_string.split(':')
-        return local(
-            "ssh -p %s -A %s@%s '%s'" % (port, env.user, host, wrapped_cmd)
-        )
-    except ValueError:
-        return local(
-            "ssh -A %s@%s '%s'" % (env.user, env.host_string, wrapped_cmd)
-        )
+  Note:: Fabric (and paramiko) can't forward your SSH agent.
+  This helper uses your system's ssh to do so.
+  """
+  # Handle context manager modifications
+  wrapped_cmd = _prefix_commands(_prefix_env_vars(cmd), 'remote')
+  try:
+    host, port = env.host_string.split(':')
+    return local("ssh -p %s -A %s@%s '%s'" % (port, env.user, host, wrapped_cmd))
+  except ValueError:
+    return local("ssh -A %s@%s '%s'" % (env.user, env.host_string, wrapped_cmd))
 
 
 @task
