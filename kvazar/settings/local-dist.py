@@ -3,7 +3,7 @@ This is an example settings/local.py file.
 These settings overrides what's in settings/base.py
 """
 
-#import logging
+import logging
 
 # To extend any settings from settings/base.py here's an example:
 #from . import base
@@ -44,7 +44,7 @@ MANAGERS = ADMINS
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'Europe/Kiev'
 
 # Debugging displays nice error messages, but leaks memory. Set this to False
 # on all server instances and True only for development.
@@ -66,8 +66,16 @@ SECRET_KEY = 'n5!e^9w$4z6an_nju9y#muwed%xi8spii-64)1pff&amp;1tukwbd8'
 # BROKER_VHOST = 'django'
 # CELERY_RESULT_BACKEND = 'amqp'
 
+## Log settings
+
+LOG_LEVEL = logging.DEBUG
+HAS_SYSLOG = True
+SYSLOG_TAG = "http_app_DjangoApp"  # Make this unique to your project.
+# Remove this configuration variable to use your custom logging configuration
+LOGGING_CONFIG = None
+
 # Common Event Format logging parameters
-#CEF_PRODUCT = 'kvazar'
+#CEF_PRODUCT = 'DjangoApp'
 #CEF_VENDOR = 'Your Company'
 #CEF_VERSION = '0'
 #CEF_DEVICE_VERSION = '0'
@@ -83,8 +91,7 @@ INTERNAL_IPS = ('127.0.0.1')
 
 SERVER_EMAIL = "webmaster@example.com"
 DEFAULT_FROM_EMAIL = "webmaster@example.com"
-SYSTEM_EMAIL_PREFIX = "[kvazar]"
+SYSTEM_EMAIL_PREFIX = "[DjangoApp]"
 
-#GRAPPELLI_ADMIN_TITLE = "Admin Django App"
-#Number of items to show with autocomplete drop-downs
-#AUTOCOMPLETE_LIMIT = 10
+from django.core.urlresolvers import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('home')

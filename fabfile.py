@@ -10,8 +10,10 @@ import posixpath
 from fabric.api import run, local, env, settings, cd, task
 from fabric.contrib.files import exists
 from fabric.operations import _prefix_commands, _prefix_env_vars
+from fabric.colors import red, green
 #from fabric.decorators import runs_once
 #from fabric.context_managers import cd, lcd, settings, hide
+from fab_deploy import *
 
 # CHANGEME
 env.home = '/opt/www/kvazar/kvazar-app'
@@ -35,6 +37,13 @@ env.media_root = "{0}/current/public/media".format(env.home)
 env.virtualenv = "{0}/shared/env".format(env.home)
 env.code_repo = 'git@git.089.com.ua:kvazar-app.git'
 env.django_settings_module = 'kvazar.settings'
+env.conf = dict(
+    VCS = 'git',
+    GIT_BRANCH = env.deploy_revision,
+    LOCAL_CONFIG = 'local.py',
+    DB_USER = 'my_site',
+    DB_PASSWORD = 'password',
+    )
 
 # Python version
 PYTHON_BIN = "python2.7"
@@ -76,6 +85,10 @@ def install_dependencies():
     run("mkdir -p {0}/log".format(env.shared_dir))
   if not exists("{0}/log".format(env.project_dir)):
     run("ln -s {0}/log {1}/log".format(env.shared_dir, env.project_dir))
+  if not exists("{0}/db".format(env.shared_dir)):
+    run("mkdir -p {0}/db".format(env.shared_dir))
+  if not exists("{0}/db".format(env.project_dir)):
+    run("ln -s {0}/db {1}/db".format(env.shared_dir, env.project_dir))
   if not exists("{0}/pids".format(env.shared_dir)):
     run("mkdir -p {0}/pids".format(env.shared_dir))
   if not exists("{0}/system".format(env.shared_dir)):
@@ -194,12 +207,12 @@ def build_bootstrap():
   run("recess --compress {0}/base/static/less/bootstrap.less > {0}/base/static/css/bootstrap.min.css".format(env.app_dir))
   run("recess --compile {0}/base/static/less/responsive.less > {0}/base/static/css/bootstrap-responsive.css".format(env.app_dir))
   run("recess --compress {0}/base/static/less/responsive.less > {0}/base/static/css/bootstrap-responsive.min.css".format(env.app_dir))
-  run("cd {0}/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > {0}/base/static/js/libs/bootstrap.js".format(env.app_dir))
+  run("cd {1}/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > {0}/base/static/js/libs/bootstrap.js".format(env.app_dir, env.code_dir))
   run("uglifyjs -nc {0}/base/static/js/libs/bootstrap.js > {0}/base/static/js/libs/bootstrap.min.js".format(env.app_dir))
   run("recess --compress {0}/base/static/less/aplication.less > {0}/base/static/css/aplication.min.css".format(env.app_dir))
   run("recess --compile {0}/base/static/less/aplication.less > {0}/base/static/css/aplication.css".format(env.app_dir))
-  run("cp -u {0}/extras/tinymce_setup.js {1}static/js/".format(env.code_dir, env.static_root))
-  run("cp -ur {0}/extras/tinymce_language_pack/* {1}static/grappelli/tinymce/jscripts/tiny_mce/".format(env.code_dir, env.app_dir))
+  run("cp -u {0}/extras/tinymce_setup.js {1}js/".format(env.code_dir, env.static_root))
+  run("cp -ur {0}/extras/tinymce_language_pack/* {1}grappelli/tinymce/jscripts/tiny_mce/".format(env.code_dir, env.static_root))
   #run("cp -u {0}/extras/jquery-equal-heights/jQuery.equalHeights.js {0}/base/static/js/libs/".format(env.code_dir, env.app_dir))
   #run("cp -u {0}/extras/jquery-pixel-em-converter/pxem.jQuery.js {0}/base/static/js/libs/".format(env.code_dir, env.app_dir))
 
@@ -262,8 +275,9 @@ def deploy():
   #push_sources()
   install_dependencies()
   if exists("{0}/{1}".format(env.shared_dir, env.local_settings_file)):
-    if not exists("{0}/{1}".format(env.app_dir, env.local_settings_file)):
-      run("ln -s {0}/{1}".format(env.app_dir, env.local_settings_file))
+    if not exists("{0}/settings/{1}".format(env.app_dir, env.local_settings_file)):
+      run("ln -s {0}/{2} {1}/settings/{2}".format(env.shared_dir, env.app_dir, env.local_settings_file))
+      first_deployment_mode()
     update_database()
     #build_trans()
     build_static()
@@ -287,7 +301,7 @@ def trans():
   with virtualenv(env.virtualenv):
     with cd(env.code_dir):
       run_venv("./manage.py makemessages -l {0}".format(env.sup_lang))
-      run_venv("./manage.py makemessages -d djangojs -l {0}".format(env.sup_lang))
+      run_venv(red("./manage.py makemessages -d djangojs -l {0}".format(env.sup_lang)))
   build_trans()
 
 @task

@@ -16,13 +16,14 @@ build
 tmp/*
 *~
 *.mo
-db/
+/db
 test_db/
 .vagrant
 *.sublime-project
 *.sublime-workspace
-media/*
+/public/media
 static/*
+/public/static
 public/system
 .idea/
 */base/static/css/bootstrap*
