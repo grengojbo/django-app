@@ -29,8 +29,9 @@ env.code_dir = "{0}/current".format(env.home)
 env.shared_dir = "{0}/shared".format(env.home)
 env.project_dir = "{0}/current".format(env.home)
 env.app_dir = "{0}/current/{1}".format(env.home, env.app_name)
+env.public_root = "{0}/current/public".format(env.home)
 env.static_root = "{0}/current/public/static/".format(env.home)
-env.media_root = "{0}/current/public/media/".format(env.home)
+env.media_root = "{0}/current/public/media".format(env.home)
 env.virtualenv = "{0}/shared/env".format(env.home)
 env.code_repo = 'git@git.089.com.ua:kvazar-app.git'
 env.django_settings_module = 'kvazar.settings'
@@ -61,6 +62,8 @@ def run_venv(command, **kwargs):
 
 
 def install_dependencies():
+  if not exists(env.public_root):
+    run("mkdir -p {0}".format(env.public_root))
   if not exists("{0}/media/uploads".format(env.shared_dir)):
     run("mkdir -p {0}/media/uploads".format(env.shared_dir))
   if not exists(env.media_root):
@@ -245,24 +248,27 @@ def sshagent_run(cmd):
 
 @task
 def deploy():
-    """
-    Deploy the project.
-    """
-    #with settings(warn_only=True):
-    #    webserver_stop()
-    #push_sources()
-    install_dependencies()
+  """
+  Deploy the project.
+  """
+  #with settings(warn_only=True):
+  #    webserver_stop()
+  #push_sources()
+  install_dependencies()
+  if exists("{0}/{1}".format(env.shared_dir, env.local_settings_file)):
+    if not exists("{0}/{1}".format(env.app_dir, env.local_settings_file)):
+      run("ln -s {0}/{1}".format(env.app_dir, env.local_settings_file))
     update_database()
     #build_trans()
     build_static()
     build_bootstrap()
     build_trans()
-   # webserver_start()
+    # webserver_start()
 
 @task
 def bootstrap():
-    build_bootstrap()
-    build_static()
+  build_bootstrap()
+  build_static()
 
 @task
 def runs():
