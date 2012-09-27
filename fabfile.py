@@ -43,6 +43,7 @@ env.conf = dict(
     LOCAL_CONFIG = 'local.py',
     DB_USER = 'my_site',
     DB_PASSWORD = 'password',
+    DB_NAME = ''
     )
 
 # Python version
