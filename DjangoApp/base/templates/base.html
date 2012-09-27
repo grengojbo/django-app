@@ -59,9 +59,9 @@
                         <li><a href="/admin/"><i class="icon-signin"></i> {% trans 'Admin' %}</a></li>
                         {% endif %}
                     {% else %}
-                        <li><a data-toggle="modal" data-target="#ajaxRegister"><i class="icon-signin"></i> {% trans 'Log In' %}</a></li>
+                    <li><a href="{% url auth_login %}" id='goLogin'><i class="icon-signin"></i> {% trans 'Log In' %}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{% url registration_register %}"><i class="icon-key"></i> {% trans 'Register' %}</a></li>
+                        <li><a href="{% url registration_register %}" id='goRigister' data-toggle="modal" data-target="#ajaxRegister"><i class="icon-key"></i> {% trans 'Register' %}</a></li>
                     {% endif %}
                     </ul>
                 </li>
@@ -98,7 +98,7 @@
     </div>
 </footer>
 {% endblock %}
-    <div class="modal" id="ajaxRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id='ajaxRegister'>
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel">{% trans 'Register' %}</h3>
@@ -134,9 +134,10 @@
   Modernizr.load({
       
   });
-  
+$('#goLogin').click(function(){ $('#ajaxRegister').show(); });
   $('#ajaxRegister').modal({
-    remote: 'http://192.168.125.94:8000/register/'
+    remote: 'http://192.168.125.94:8000/register/',
+    show: false
   });
 </script>
 <script type="text/javascript"> $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}}) </script>
