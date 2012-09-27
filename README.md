@@ -1,5 +1,5 @@
 
-# kvazar Project #
+# DjangoApp Project #
 
 ## About ##
 
@@ -25,13 +25,13 @@ Describe your project here.
 
 ## Installation ##
 
-mkdir -p /opt/www/kvazar/kvazar-app/releases/
-mkdir -p /opt/www/kvazar/kvazar-app/shared/
-cd /opt/www/kvazar/kvazar-app/releases/
-git clone git@git.089.com.ua:kvazar-app.git dev
-git branch --track -b kvazar origin/kvazar
-ln -s /opt/www/kvazar/kvazar-app/releases/dev /opt/www/kvazar/kvazar-app/current
-cd /opt/www/kvazar/kvazar-app/current
+mkdir -p /opt/www/DjangoApp/DjangoApp-app/releases/
+mkdir -p /opt/www/DjangoApp/DjangoApp-app/shared/
+cd /opt/www/DjangoApp/DjangoApp-app/releases/
+git clone git@git.089.com.ua:DjangoApp-app.git dev
+git branch --track -b DjangoApp origin/DjangoApp
+ln -s /opt/www/DjangoApp/DjangoApp-app/releases/dev /opt/www/DjangoApp/DjangoApp-app/current
+cd /opt/www/DjangoApp/DjangoApp-app/current
 git submodule update --init
 
 

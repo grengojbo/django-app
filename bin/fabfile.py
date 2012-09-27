@@ -5,11 +5,11 @@ import os
 import string
 
 
-env.hosts = ['kvazar.example.com']
-env.code_dir = '/srv/www/kvazar'
-env.virtualenv = '/srv/www/kvazar/.virtualenv'
-env.code_repo = 'git@github.com:user/kvazar.git'
-env.django_settings_module = 'kvazar.settings'
+env.hosts = ['DjangoApp.example.com']
+env.code_dir = '/srv/www/DjangoApp'
+env.virtualenv = '/srv/www/DjangoApp/.virtualenv'
+env.code_repo = 'git@github.com:user/DjangoApp.git'
+env.django_settings_module = 'DjangoApp.settings'
 
 
 def run_tests():
@@ -59,7 +59,7 @@ def version():
 def restart():
     """ Restart the wsgi process """
     with cd(env.code_dir):
-        run("touch %s/kvazar/wsgi.py" % env.code_dir)
+        run("touch %s/DjangoApp/wsgi.py" % env.code_dir)
 
 
 def ve_run(cmd):
