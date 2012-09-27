@@ -1,4 +1,4 @@
-""" Settings for DjangoApp """
+""" Settings for kvazar """
 
 from .base import *
 try:

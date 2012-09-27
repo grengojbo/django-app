@@ -1,5 +1,5 @@
 """
-Starter fabfile for deploying the DjangoApp project.
+Starter fabfile for deploying the kvazar project.
 
 Change all the things marked CHANGEME. Other things can be left at their
 defaults if you are happy with the default layout.
@@ -18,12 +18,12 @@ env.home = '/opt/www'
 env.dev_server = '192.168.125.94:8000'
 env.sup_lang = 'ru'
 env.hosts = ['jbo@app03.089.com.ua']
-env.code_dir = "{0}/DjangoApp".format(env.home)
-env.project_dir = "{0}/DjangoApp/DjangoApp".format(env.home)
-env.static_root = "{0}/DjangoApp/static/".format(env.home)
-env.virtualenv = "{0}/DjangoApp/.virtualenv".format(env.home)
-env.code_repo = 'git@github.com:user/DjangoApp.git'
-env.django_settings_module = 'DjangoApp.settings'
+env.code_dir = "{0}/kvazar".format(env.home)
+env.project_dir = "{0}/kvazar/kvazar".format(env.home)
+env.static_root = "{0}/kvazar/static/".format(env.home)
+env.virtualenv = "{0}/kvazar/.virtualenv".format(env.home)
+env.code_repo = 'git@github.com:user/kvazar.git'
+env.django_settings_module = 'kvazar.settings'
 
 # Python version
 PYTHON_BIN = "python2.7"
@@ -145,7 +145,7 @@ def webserver_restart():
 def restart():
     """ Restart the wsgi process """
     with cd(env.code_dir):
-        run("touch %s/DjangoApp/wsgi.py" % env.code_dir)
+        run("touch %s/kvazar/wsgi.py" % env.code_dir)
 
 
 def build_static():
@@ -157,20 +157,20 @@ def build_static():
     run("chmod -R ugo+r %s" % env.static_root)
 
 def build_bootstrap():
-    run("cp /opt/www/DjangoApp/lib/bootstrap/img/* /opt/www/DjangoApp/DjangoApp/base/static/img/")
-    run("cp /opt/www/DjangoApp/extras/fontawesome/font/* /opt/www/DjangoApp/DjangoApp/base/static/font/")
-    run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.css")
-    run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/bootstrap.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap.min.css")
-    run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.css")
-    run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/responsive.less > /opt/www/DjangoApp/DjangoApp/base/static/css/bootstrap-responsive.min.css")
-    run("cd /opt/www/DjangoApp/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js")
-    run("uglifyjs -nc /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.js > /opt/www/DjangoApp/DjangoApp/base/static/js/libs/bootstrap.min.js")
-    run("recess --compress /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.min.css")
-    run("recess --compile /opt/www/DjangoApp/DjangoApp/base/static/less/aplication.less > /opt/www/DjangoApp/DjangoApp/base/static/css/aplication.css")
-    run("cp -u /opt/www/DjangoApp/extras/tinymce_setup.js /opt/www/DjangoApp/static/js/")
-    run("cp -ur /opt/www/DjangoApp/extras/tinymce_language_pack/* /opt/www/DjangoApp/static/grappelli/tinymce/jscripts/tiny_mce/")
-    #run("cp -u /opt/www/DjangoApp/extras/jquery-equal-heights/jQuery.equalHeights.js /opt/www/DjangoApp/DjangoApp/base/static/js/libs/")
-    #run("cp -u /opt/www/DjangoApp/extras/jquery-pixel-em-converter/pxem.jQuery.js /opt/www/DjangoApp/DjangoApp/base/static/js/libs/")
+    run("cp /opt/www/kvazar/lib/bootstrap/img/* /opt/www/kvazar/kvazar/base/static/img/")
+    run("cp /opt/www/kvazar/extras/fontawesome/font/* /opt/www/kvazar/kvazar/base/static/font/")
+    run("recess --compile /opt/www/kvazar/kvazar/base/static/less/bootstrap.less > /opt/www/kvazar/kvazar/base/static/css/bootstrap.css")
+    run("recess --compress /opt/www/kvazar/kvazar/base/static/less/bootstrap.less > /opt/www/kvazar/kvazar/base/static/css/bootstrap.min.css")
+    run("recess --compile /opt/www/kvazar/kvazar/base/static/less/responsive.less > /opt/www/kvazar/kvazar/base/static/css/bootstrap-responsive.css")
+    run("recess --compress /opt/www/kvazar/kvazar/base/static/less/responsive.less > /opt/www/kvazar/kvazar/base/static/css/bootstrap-responsive.min.css")
+    run("cd /opt/www/kvazar/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > /opt/www/kvazar/kvazar/base/static/js/libs/bootstrap.js")
+    run("uglifyjs -nc /opt/www/kvazar/kvazar/base/static/js/libs/bootstrap.js > /opt/www/kvazar/kvazar/base/static/js/libs/bootstrap.min.js")
+    run("recess --compress /opt/www/kvazar/kvazar/base/static/less/aplication.less > /opt/www/kvazar/kvazar/base/static/css/aplication.min.css")
+    run("recess --compile /opt/www/kvazar/kvazar/base/static/less/aplication.less > /opt/www/kvazar/kvazar/base/static/css/aplication.css")
+    run("cp -u /opt/www/kvazar/extras/tinymce_setup.js /opt/www/kvazar/static/js/")
+    run("cp -ur /opt/www/kvazar/extras/tinymce_language_pack/* /opt/www/kvazar/static/grappelli/tinymce/jscripts/tiny_mce/")
+    #run("cp -u /opt/www/kvazar/extras/jquery-equal-heights/jQuery.equalHeights.js /opt/www/kvazar/kvazar/base/static/js/libs/")
+    #run("cp -u /opt/www/kvazar/extras/jquery-pixel-em-converter/pxem.jQuery.js /opt/www/kvazar/kvazar/base/static/js/libs/")
 
 def build_trans():
   with virtualenv(env.virtualenv):

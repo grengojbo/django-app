@@ -67,7 +67,7 @@ SECRET_KEY = 'n5!e^9w$4z6an_nju9y#muwed%xi8spii-64)1pff&amp;1tukwbd8'
 # CELERY_RESULT_BACKEND = 'amqp'
 
 # Common Event Format logging parameters
-#CEF_PRODUCT = 'DjangoApp'
+#CEF_PRODUCT = 'kvazar'
 #CEF_VENDOR = 'Your Company'
 #CEF_VERSION = '0'
 #CEF_DEVICE_VERSION = '0'
@@ -83,7 +83,7 @@ INTERNAL_IPS = ('127.0.0.1')
 
 SERVER_EMAIL = "webmaster@example.com"
 DEFAULT_FROM_EMAIL = "webmaster@example.com"
-SYSTEM_EMAIL_PREFIX = "[DjangoApp]"
+SYSTEM_EMAIL_PREFIX = "[kvazar]"
 
 #GRAPPELLI_ADMIN_TITLE = "Admin Django App"
 #Number of items to show with autocomplete drop-downs

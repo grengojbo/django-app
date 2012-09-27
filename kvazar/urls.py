@@ -1,5 +1,5 @@
 # -*- mode: python; coding: utf-8; -*-
-""" Default urlconf for DjangoApp """
+""" Default urlconf for kvazar """
 
 from django.conf import settings
 from django.conf.urls import include, patterns
@@ -22,7 +22,7 @@ def bad(request):
 urlpatterns = patterns('',
     (r'^grappelli/', include('grappelli.urls')),
     #(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
-    (r'', include('DjangoApp.base.urls')),
+    (r'', include('kvazar.base.urls')),
     (r'^admin/filebrowser/', include(site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/$', anonymous_csrf(admin.site.admin_view(admin.site.index))),

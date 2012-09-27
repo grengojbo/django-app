@@ -4,7 +4,7 @@ __author__ = 'jbo'
 from django.conf import settings
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from DjangoApp.base.models import Publication
+from kvazar.base.models import Publication
 
 class PublicationAdmin(admin.ModelAdmin):
     class Media:
