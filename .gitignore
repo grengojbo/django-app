@@ -23,9 +23,12 @@ test_db/
 *.sublime-workspace
 media/*
 static/*
+public/system
 .idea/
 */base/static/css/bootstrap*
 */base/static/img/glyphicons-halflings*
 */base/static/css/aplication.*
 */base/static/js/libs/bootstrap.*
 */base/static/font/fontawesome-*
+/log
+/system

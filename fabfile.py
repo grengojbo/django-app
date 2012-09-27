@@ -70,18 +70,18 @@ def install_dependencies():
     run("ln -s {0}/media {1}".format(env.shared_dir, env.media_root))
   if not exists(env.static_root):
     run("mkdir -p {0}".format(env.static_root))
-  if not exists("{0}/config}".format(env.shared_dir)):
+  if not exists("{0}/config".format(env.shared_dir)):
     run("mkdir -p {0}/config".format(env.shared_dir))
-  if not exists("{0}/log}".format(env.shared_dir)):
+  if not exists("{0}/log".format(env.shared_dir)):
     run("mkdir -p {0}/log".format(env.shared_dir))
-  if not exists("{0}/log}".format(env.project_dir)):
-    run("ln -s {0}/log".format(env.project_dir))
+  if not exists("{0}/log".format(env.project_dir)):
+    run("ln -s {0}/log {1}/log".format(env.shared_dir, env.project_dir))
   if not exists("{0}/pids".format(env.shared_dir)):
     run("mkdir -p {0}/pids".format(env.shared_dir))
   if not exists("{0}/system".format(env.shared_dir)):
     run("mkdir -p {0}/system".format(env.shared_dir))
   if not exists("{0}/system".format(env.public_root)):
-    run("ln -s {0}/system".format(env.project_dir))
+    run("ln -s {0}/system {1}/system".format(env.shared_dir, env.public_root))
   ensure_virtualenv()
   if not exists("{0}/lib/libz.so".format(env.virtualenv)):
     with cd("{0}/lib".format(env.virtualenv)):
