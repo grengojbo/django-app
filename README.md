@@ -22,7 +22,15 @@ Describe your project here.
 
 ## Installation ##
 
-Fill out with installation instructions for your project.
+mkdir -p /opt/www/kvazar/kvazar-app/releases/
+mkdir -p /opt/www/kvazar/kvazar-app/shared/
+cd /opt/www/kvazar/kvazar-app/releases/
+git clone git@git.089.com.ua:kvazar-app.git dev
+git branch --track -b kvazar origin/kvazar
+ln -s /opt/www/kvazar/kvazar-app/releases/dev /opt/www/kvazar/kvazar-app/current
+cd /opt/www/kvazar/kvazar-app/current
+git submodule update --init
+
 
 
 License

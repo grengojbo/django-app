@@ -14,15 +14,25 @@ from fabric.operations import _prefix_commands, _prefix_env_vars
 #from fabric.context_managers import cd, lcd, settings, hide
 
 # CHANGEME
-env.home = '/opt/www'
+env.home = '/opt/www/kvazar/kvazar-app'
+env.app_name = 'kvazar'
 env.dev_server = '192.168.125.94:8000'
+env.deploy_revision = 'kvazar'
+env.requirements_dev = 'requirements/dev.txt'
+env.requirements_prod = 'requirements/prod.txt'
+env.local_settings_file = 'local.py'
+# Strategy developer or production
+env.strategy = 'developer'
 env.sup_lang = 'ru'
 env.hosts = ['jbo@app03.089.com.ua']
-env.code_dir = "{0}/kvazar".format(env.home)
-env.project_dir = "{0}/kvazar/kvazar".format(env.home)
-env.static_root = "{0}/kvazar/static/".format(env.home)
-env.virtualenv = "{0}/kvazar/.virtualenv".format(env.home)
-env.code_repo = 'git@github.com:user/kvazar.git'
+env.code_dir = "{0}/current".format(env.home)
+env.shared_dir = "{0}/shared".format(env.home)
+env.project_dir = "{0}/current".format(env.home)
+env.app_dir = "{0}/current/{1}".format(env.home, env.app_name)
+env.static_root = "{0}/current/public/static/".format(env.home)
+env.media_root = "{0}/current/public/media/".format(env.home)
+env.virtualenv = "{0}/shared/env".format(env.home)
+env.code_repo = 'git@git.089.com.ua:kvazar-app.git'
 env.django_settings_module = 'kvazar.settings'
 
 # Python version
@@ -51,8 +61,12 @@ def run_venv(command, **kwargs):
 
 
 def install_dependencies():
-  if not exists("{0}/media/uploads".format(env.code_dir)):
-    run("mkdir -p {0}/media/uploads".format(env.code_dir))
+  if not exists("{0}/media/uploads".format(env.shared_dir)):
+    run("mkdir -p {0}/media/uploads".format(env.shared_dir))
+  if not exists(env.media_root):
+    run("ln -s {0}/media {1}".format(env.shared_dir, env.media_root))
+  if not exists(env.static_root):
+    run("mkdir -p {0}".format(env.static_root))
   ensure_virtualenv()
   if not exists("{0}/lib/libz.so".format(env.virtualenv)):
     with cd("{0}/lib".format(env.virtualenv)):
@@ -62,7 +76,10 @@ def install_dependencies():
   with virtualenv(env.virtualenv):
     with cd(env.code_dir):
       #run_venv("pip install -r requirements/prod.txt")
-      run_venv("pip install -r requirements/dev.txt")
+      if env.strategy == 'developer':
+        run_venv("pip install -r {0}".format(env.requirements_dev))
+      else:
+        run_venv("pip install -r {0}".format(env.requirements_prod))
 
 def ensure_virtualenv():
     if exists(env.virtualenv):
@@ -154,23 +171,23 @@ def build_static():
         with cd(env.code_dir):
             run_venv("./manage.py collectstatic -v 0 --clear --noinput")
 
-    run("chmod -R ugo+r %s" % env.static_root)
+    run("chmod -R ugo+r {0}".format(env.static_root))
 
 def build_bootstrap():
-    run("cp /opt/www/kvazar/lib/bootstrap/img/* /opt/www/kvazar/kvazar/base/static/img/")
-    run("cp /opt/www/kvazar/extras/fontawesome/font/* /opt/www/kvazar/kvazar/base/static/font/")
-    run("recess --compile /opt/www/kvazar/kvazar/base/static/less/bootstrap.less > /opt/www/kvazar/kvazar/base/static/css/bootstrap.css")
-    run("recess --compress /opt/www/kvazar/kvazar/base/static/less/bootstrap.less > /opt/www/kvazar/kvazar/base/static/css/bootstrap.min.css")
-    run("recess --compile /opt/www/kvazar/kvazar/base/static/less/responsive.less > /opt/www/kvazar/kvazar/base/static/css/bootstrap-responsive.css")
-    run("recess --compress /opt/www/kvazar/kvazar/base/static/less/responsive.less > /opt/www/kvazar/kvazar/base/static/css/bootstrap-responsive.min.css")
-    run("cd /opt/www/kvazar/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > /opt/www/kvazar/kvazar/base/static/js/libs/bootstrap.js")
-    run("uglifyjs -nc /opt/www/kvazar/kvazar/base/static/js/libs/bootstrap.js > /opt/www/kvazar/kvazar/base/static/js/libs/bootstrap.min.js")
-    run("recess --compress /opt/www/kvazar/kvazar/base/static/less/aplication.less > /opt/www/kvazar/kvazar/base/static/css/aplication.min.css")
-    run("recess --compile /opt/www/kvazar/kvazar/base/static/less/aplication.less > /opt/www/kvazar/kvazar/base/static/css/aplication.css")
-    run("cp -u /opt/www/kvazar/extras/tinymce_setup.js /opt/www/kvazar/static/js/")
-    run("cp -ur /opt/www/kvazar/extras/tinymce_language_pack/* /opt/www/kvazar/static/grappelli/tinymce/jscripts/tiny_mce/")
-    #run("cp -u /opt/www/kvazar/extras/jquery-equal-heights/jQuery.equalHeights.js /opt/www/kvazar/kvazar/base/static/js/libs/")
-    #run("cp -u /opt/www/kvazar/extras/jquery-pixel-em-converter/pxem.jQuery.js /opt/www/kvazar/kvazar/base/static/js/libs/")
+    run("cp {0}/lib/bootstrap/img/* {1}/base/static/img/".format(env.code_dir, env.app_dir))
+    run("cp {0}/extras/fontawesome/font/* {1}/base/static/font/".format(env.code_dir, env.app_dir))
+    run("recess --compile {0}/base/static/less/bootstrap.less > {0}/base/static/css/bootstrap.css".format(env.app_dir))
+    run("recess --compress {0}/base/static/less/bootstrap.less > {0}/base/static/css/bootstrap.min.css".format(env.app_dir))
+    run("recess --compile {0}/base/static/less/responsive.less > {0}/base/static/css/bootstrap-responsive.css".format(env.app_dir))
+    run("recess --compress {0}/base/static/less/responsive.less > {0}/base/static/css/bootstrap-responsive.min.css".format(env.app_dir))
+    run("cd {0}/lib/bootstrap/ && cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > {0}/base/static/js/libs/bootstrap.js".format(env.app_dir))
+    run("uglifyjs -nc {0}/base/static/js/libs/bootstrap.js > {0}/base/static/js/libs/bootstrap.min.js".format(env.app_dir))
+    run("recess --compress {0}/base/static/less/aplication.less > {0}/base/static/css/aplication.min.css".format(env.app_dir))
+    run("recess --compile {0}/base/static/less/aplication.less > {0}/base/static/css/aplication.css".format(env.app_dir))
+    run("cp -u {0}/extras/tinymce_setup.js {1}static/js/".format(env.code_dir, env.static_root))
+    run("cp -ur {0}/extras/tinymce_language_pack/* {1}static/grappelli/tinymce/jscripts/tiny_mce/".format(env.code_dir, env.app_dir))
+    #run("cp -u {0}/extras/jquery-equal-heights/jQuery.equalHeights.js {0}/base/static/js/libs/".format(env.code_dir, env.app_dir))
+    #run("cp -u {0}/extras/jquery-pixel-em-converter/pxem.jQuery.js {0}/base/static/js/libs/".format(env.code_dir, env.app_dir))
 
 def build_trans():
   with virtualenv(env.virtualenv):
@@ -251,7 +268,6 @@ def bootstrap():
 def runs():
   with virtualenv(env.virtualenv):
     with cd(env.code_dir):
-      #run_venv("./manage.py customdashboard")
       run_venv("./manage.py runserver {0}".format(env.dev_server))
 
 @task
