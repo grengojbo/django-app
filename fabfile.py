@@ -26,7 +26,7 @@ env.local_settings_file = 'local.py'
 # Strategy developer or production
 env.strategy = 'developer'
 env.sup_lang = 'ru'
-env.hosts = ['jbo@app03.089.com.ua']
+env.hosts = ['kvazar@app03.089.com.ua']
 env.code_dir = "{0}/current".format(env.home)
 env.shared_dir = "{0}/shared".format(env.home)
 env.project_dir = "{0}/current".format(env.home)

@@ -25,6 +25,14 @@ Describe your project here.
 
 ## Installation ##
 
+scp ~/.ssh/id_dsa.pub jbo@git.089.com.ua:/home/jbo/gitolite-admin/keydir/${USERNAME}.pub
+
+на сервере с GIT
+git add .
+git ci -am "Added new user kvazar"
+git pull
+git push
+
 mkdir -p /opt/www/kvazar/kvazar-app/releases/
 mkdir -p /opt/www/kvazar/kvazar-app/shared/
 cd /opt/www/kvazar/kvazar-app/releases/
