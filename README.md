@@ -26,6 +26,7 @@ Describe your project here.
 ## Installation ##
 
 scp ~/.ssh/id_dsa.pub jbo@git.089.com.ua:/home/jbo/gitolite-admin/keydir/${USERNAME}.pub
+ssh-copy-id -i ~/.ssh/id_dsa.pub kvazar@app03.089.com.ua
 
 на сервере с GIT
 git add .
@@ -42,6 +43,10 @@ ln -s /opt/www/kvazar/kvazar-app/releases/dev /opt/www/kvazar/kvazar-app/current
 cd /opt/www/kvazar/kvazar-app/current
 git submodule update --init
 
+запускаем
+cp /opt/www/kvazar/kvazar-app/current/kvazar/settings/local-dist.py /opt/www/kvazar/kvazar-app/shared/local.py
+cd ~/kvazar-app/current
+fab deploy
 
 
 License

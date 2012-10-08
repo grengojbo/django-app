@@ -18,7 +18,7 @@ from fab_deploy import *
 # CHANGEME
 env.home = '/opt/www/kvazar/kvazar-app'
 env.app_name = 'kvazar'
-env.dev_server = '192.168.125.94:8000'
+env.dev_server = '192.168.125.94:8001'
 env.deploy_revision = 'kvazar'
 env.requirements_dev = 'requirements/dev.txt'
 env.requirements_prod = 'requirements/prod.txt'
@@ -137,6 +137,8 @@ def push_sources():
     with cd(env.code_dir):
         run('git pull origin master')
 
+#clean_pyc
+#compile_pyc
 
 @task
 def run_tests():
