@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
     'djcelery',
+    'gunicorn',
     #'django_nose',
     'session_csrf',
     #'debug_toolbar',
@@ -106,7 +107,7 @@ TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.example.com/media/"
-MEDIA_ROOT = FILEBROWSER_MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = FILEBROWSER_MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'public/media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -117,7 +118,7 @@ MEDIA_URL = FILEBROWSER_MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.example.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'public/static')
 
 # URL prefix for static files.
 # Example: "http://media.example.com/static/"
