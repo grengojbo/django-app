@@ -4,7 +4,7 @@
 from django.conf.urls import url, patterns
 
 
-urlpatterns = patterns('kvazar.base.views',
+urlpatterns = patterns('DjangoApp.base.views',
     url(r'^$', 'home', name='home'),
     url(r'^register/', 'register', name='register_form')
 )

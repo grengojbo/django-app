@@ -18,7 +18,7 @@ from fab_deploy import *
 # CHANGEME
 env.home = '/opt/www/kvazar/kvazar-app'
 env.app_name = 'kvazar'
-env.dev_server = '192.168.125.94:8001'
+env.dev_server = '192.168.125.94:8000'
 env.deploy_revision = 'kvazar'
 env.requirements_dev = 'requirements/dev.txt'
 env.requirements_prod = 'requirements/prod.txt'
@@ -26,7 +26,7 @@ env.local_settings_file = 'local.py'
 # Strategy developer or production
 env.strategy = 'developer'
 env.sup_lang = 'ru'
-env.hosts = ['kvazar@app03.089.com.ua']
+env.hosts = ['jbo@app03.089.com.ua']
 env.code_dir = "{0}/current".format(env.home)
 env.shared_dir = "{0}/shared".format(env.home)
 env.project_dir = "{0}/current".format(env.home)
@@ -36,7 +36,7 @@ env.static_root = "{0}/current/public/static/".format(env.home)
 env.media_root = "{0}/current/public/media".format(env.home)
 env.virtualenv = "{0}/shared/env".format(env.home)
 env.code_repo = 'git@git.089.com.ua:kvazar-app.git'
-env.django_settings_module = 'kvazar.settings'
+env.django_settings_module = 'DjangoApp.settings'
 env.conf = dict(
     VCS = 'git',
     GIT_BRANCH = env.deploy_revision,
@@ -192,7 +192,7 @@ def webserver_restart():
 def restart():
   """ Restart the wsgi process """
   with cd(env.code_dir):
-    run("touch %s/kvazar/wsgi.py" % env.code_dir)
+    run("touch %s/DjangoApp/wsgi.py" % env.code_dir)
 
 
 def build_static():

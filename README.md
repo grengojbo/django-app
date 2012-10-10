@@ -1,5 +1,5 @@
 
-# kvazar Project #
+# DjangoApp Project #
 
 ## About ##
 
@@ -26,11 +26,11 @@ Describe your project here.
 ## Installation ##
 
 scp ~/.ssh/id_dsa.pub jbo@git.089.com.ua:/home/jbo/gitolite-admin/keydir/${USERNAME}.pub
-ssh-copy-id -i ~/.ssh/id_dsa.pub kvazar@app03.089.com.ua
+ssh-copy-id -i ~/.ssh/id_dsa.pub DjangoApp@app03.089.com.ua
 
 на сервере с GIT
 git add .
-git ci -am "Added new user kvazar"
+git ci -am "Added new user DjangoApp"
 git pull
 git push
 
@@ -44,8 +44,8 @@ cd /opt/www/kvazar/kvazar-app/current
 git submodule update --init
 
 запускаем
-cp /opt/www/kvazar/kvazar-app/current/kvazar/settings/local-dist.py /opt/www/kvazar/kvazar-app/shared/local.py
-cd ~/kvazar-app/current
+cp /opt/www/DjangoApp/DjangoApp-app/current/DjangoApp/settings/local-dist.py /opt/www/DjangoApp/DjangoApp-app/shared/local.py
+cd ~/DjangoApp-app/current
 fab deploy
 
 

@@ -2,7 +2,7 @@
 __author__ = 'jbo'
 
 from django.db import models
-from kvazar.base.querysets import PublicationQuerySet
+from DjangoApp.base.querysets import PublicationQuerySet
 
 class PublicationManager(models.Manager):
 

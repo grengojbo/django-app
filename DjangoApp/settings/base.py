@@ -37,7 +37,7 @@ LANGUAGE_CODE = 'ru-ru'
 SITE_ID = 1
 
 # Defines the views served for root URLs.
-ROOT_URLCONF = 'kvazar.urls'
+ROOT_URLCONF = 'DjangoApp.urls'
 
 INSTALLED_APPS = [
     'grappelli.dashboard',
@@ -77,9 +77,9 @@ INSTALLED_APPS = [
     'south',
 
     # Application base, containing global templates.
-    'kvazar.base',
+    'DjangoApp.base',
 
-    # Local apps, referenced via kvazar.appname
+    # Local apps, referenced via DjangoApp.appname
     'flatpages_plus',
 ]
 
@@ -205,7 +205,7 @@ LANGUAGES = (
     ('ru', gettext('Russian')),
 )
 # Specify a model to use for user profiles, if desired.
-#AUTH_PROFILE_MODULE = 'kvazar.accounts.UserProfile'
+#AUTH_PROFILE_MODULE = 'DjangoApp.accounts.UserProfile'
 
 FILE_UPLOAD_PERMISSIONS = 0664
 
@@ -213,7 +213,7 @@ FILE_UPLOAD_PERMISSIONS = 0664
 # apps here:
 JINGO_EXCLUDE_APPS = [
     'admin',
-    'kvazar',
+    'DjangoApp',
     'registration',
     'debug_toolbar',
     'debug_toolbar_user_panel',
@@ -222,9 +222,9 @@ JINGO_EXCLUDE_APPS = [
 
 #JINJA_CONFIG = {'extensions': ['jinja2.ext.i18n', 'jinja2.ext.InternationalizationExtension'],}
 # The WSGI Application to use for runserver
-WSGI_APPLICATION = 'kvazar.wsgi.application'
+WSGI_APPLICATION = 'DjangoApp.wsgi.application'
 
-GRAPPELLI_INDEX_DASHBOARD = 'kvazar.dashboard.CustomIndexDashboard'
+GRAPPELLI_INDEX_DASHBOARD = 'DjangoApp.dashboard.CustomIndexDashboard'
 DIRECTORY = 'uploads/'
 
 # https://github.com/mozilla/django-session-csrf
@@ -236,7 +236,7 @@ ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения ко�
 
 LOG_LEVEL = logging.INFO
 HAS_SYSLOG = True
-SYSLOG_TAG = "http_app_kvazar"  # Make this unique to your project.
+SYSLOG_TAG = "http_app_DjangoApp"  # Make this unique to your project.
 # Remove this configuration variable to use your custom logging configuration
 LOGGING_CONFIG = None
 # A sample logging configuration. The only tangible logging
@@ -265,7 +265,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'kvazar': {
+        'DjangoApp': {
             'level': "DEBUG"
         }
     }
