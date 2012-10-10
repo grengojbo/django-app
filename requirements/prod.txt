@@ -51,7 +51,7 @@ django-grappelli>=2.4.2
 django_extensions
 
 # HelpDesk
-git://github.com/grengojbo/django-knowledge.git#egg=knowledge
+-e git://github.com/grengojbo/django-knowledge.git#egg=knowledge
 
 # Migrations
 South
