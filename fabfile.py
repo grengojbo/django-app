@@ -19,7 +19,7 @@ from fab_deploy import *
 env.home = '/opt/www/kvazar/kvazar-app'
 env.app_name = 'kvazar'
 env.dev_server = '192.168.125.94:8000'
-env.deploy_revision = 'kvazar'
+env.deploy_revision = 'masater'
 env.requirements_dev = 'requirements/dev.txt'
 env.requirements_prod = 'requirements/prod.txt'
 env.local_settings_file = 'local.py'

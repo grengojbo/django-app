@@ -1,5 +1,5 @@
 
-# DjangoApp Project #
+# kvazar Project #
 
 ## About ##
 
