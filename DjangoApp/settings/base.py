@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'djcelery',
     'gunicorn',
     #'django_nose',
-    'session_csrf',
+    #'session_csrf',
     #'debug_toolbar',
     #'debug_toolbar_user_panel',
     #'memcache_toolbar',
@@ -154,8 +154,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
-    #django.middleware.csrf.CsrfViewMiddleware
+    #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'flatpages_plus.middleware.FlatpageFallbackMiddleware',
     #'commonware.middleware.FrameOptionsHeader',
@@ -170,7 +170,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.i18n',
     'django.core.context_processors.static',
     'django.core.context_processors.tz',
-    'session_csrf.context_processor',
+    #'session_csrf.context_processor',
     'django.contrib.messages.context_processors.messages',
     #'jingo_minify.helpers.build_ids',
 ]
