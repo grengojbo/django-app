@@ -39,6 +39,7 @@ python-memcached
 
 # Admin
 django-debug-toolbar
+#django-debug-toolbar==0.8.5
 #-e git://github.com/sehmaschine/django-grappelli.git#egg=django-grappelli
 django-grappelli>=2.4.2
 -e git://github.com/sehmaschine/django-filebrowser.git#egg=django-filebrowser
@@ -48,8 +49,13 @@ django-grappelli>=2.4.2
 #-e git+git://github.com/django-extensions/django-extensions.git#egg=django_extensions
 django_extensions
 
+# HelpDesk
+Markdown==2.1.1
+git://github.com/grengojbo/django-knowledge.git#egg=knowledge
+
 # Migrations
 South
+#South==0.7.3
 
 # Various tidbits
 commonware

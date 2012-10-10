@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     'registration',
     # Database migrations
     'south',
-
+    'knowledge',
     # Application base, containing global templates.
     'DjangoApp.base',
 
