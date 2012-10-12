@@ -28,7 +28,7 @@ def bad(request):
 urlpatterns = patterns('',
     (r'^grappelli/', include('grappelli.urls')),
     #(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
-    (r'', include('DjangoApp.base.urls')),
+    #(r'', include('DjangoApp.base.urls')),
     (r'^admin/filebrowser/', include(site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     #(r'^admin/$', anonymous_csrf(admin.site.admin_view(admin.site.index))),
@@ -36,10 +36,10 @@ urlpatterns = patterns('',
     #url(r'^', include('debug_toolbar_user_panel.urls')),
     (r'^bad/$', bad),
     (r'^contact/', include('knowledge.urls')),
-    #(r'^accounts/', include('userena.urls')),
+    (r'^accounts/', include('userena.urls')),
     #(r'^messages/', include('userena.contrib.umessages.urls')),
     (r'^i18n/', include('django.conf.urls.i18n')),
-    (r'^accounts/', include('registration.backends.default.urls')),
+    #(r'^accounts/', include('registration.backends.default.urls')),
 )
 
 #https://docs.djangoproject.com/en/dev/topics/i18n/translation/#url-internationalization
@@ -63,4 +63,4 @@ urlpatterns += patterns('flatpages_plus.views',
 
 # Add media and static files
 urlpatterns += staticfiles_urlpatterns()
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

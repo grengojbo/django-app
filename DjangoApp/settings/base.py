@@ -72,12 +72,12 @@ INSTALLED_APPS = [
     'taggit',
     'intellipages',
     'django_extensions',
-    'registration',
+    #'registration',
     'guardian',
     # Database migrations
     'south',
     'userena',
-    'userena.contrib.umessages',
+    #'userena.contrib.umessages',
     'knowledge',
     # Application base, containing global templates.
     'DjangoApp.base',
@@ -201,10 +201,10 @@ gettext = lambda s: s
 
 LANGUAGES = (
     ('en', gettext('English')),
-    ('fr', gettext('French')),
-    ('es', gettext('Spanish')),
-    ('pt', gettext('Portuguese')),
-    ('de', gettext('German')),
+    #('fr', gettext('French')),
+    #('es', gettext('Spanish')),
+    #('pt', gettext('Portuguese')),
+    #('de', gettext('German')),
     ('ru', gettext('Russian')),
 )
 # Specify a model to use for user profiles, if desired.
@@ -244,7 +244,7 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/accounts/signout/'
-AUTH_PROFILE_MODULE = 'profiles.Profile'
+#AUTH_PROFILE_MODULE = 'profiles.Profile'
 USERENA_DISABLE_PROFILE_LIST = True
 USERENA_MUGSHOT_SIZE = 140
 
