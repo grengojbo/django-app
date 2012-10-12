@@ -84,7 +84,7 @@ INSTALLED_APPS = [
     'profiles',
 
     # Local apps, referenced via DjangoApp.appname
-    #'flatpages_plus',
+    'flatpages_plus',
 ]
 
 # Place bcrypt first in the list, so it will be the default password hashing
