@@ -1,6 +1,7 @@
 # -*- mode: python; coding: utf-8; -*-
 """ Default urlconf for DjangoApp """
 
+from django.conf.urls.defaults import *
 from django.conf import settings
 from django.conf.urls import include, patterns
 #from session_csrf import anonymous_csrf
@@ -28,7 +29,6 @@ def bad(request):
 urlpatterns = patterns('',
     (r'^grappelli/', include('grappelli.urls')),
     #(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
-    #(r'', include('DjangoApp.base.urls')),
     (r'^admin/filebrowser/', include(site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     #(r'^admin/$', anonymous_csrf(admin.site.admin_view(admin.site.index))),
@@ -37,7 +37,9 @@ urlpatterns = patterns('',
     (r'^accounts/', include('userena.urls')),
     (r'^messages/', include('userena.contrib.umessages.urls')),
     (r'^bad/$', bad),
-    #(r'^contact/', include('knowledge.urls')),
+    (r'^contact/', include('knowledge.urls')),
+    #(r'', include('DjangoApp.base.urls')),
+    url(r'^$', direct_to_template, {'template': 'static/promo.html'}, name='promo'),
     (r'^i18n/', include('django.conf.urls.i18n')),
     #(r'^accounts/', include('registration.backends.default.urls')),
 )

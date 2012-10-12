@@ -1,0 +1,134 @@
+<!doctype html>{% load i18n %}
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ LANGUAGE_CODE }}"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>{% block page_title %}{{ _("Your Site") }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{% endblock %}">
+  <meta name="author" content="{% block meta_author %}{% endblock %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/aplication.css">
+  {% block css %}{% endblock %}
+  <!--<script src="{{ STATIC_URL }}js/libs/modernizr-2.5.3.min.js"></script>-->
+  <script src="{{ STATIC_URL }}js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+  {% block extrajs %}{% endblock %}
+  <!--<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">-->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}apple-touch-icon-57x57-precomposed.png">
+  <link rel="shortcut icon" href="{{ STATIC_URL }}apple-touch-icon.png">
+  <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
+  <!--<script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>-->
+  {% block extrahead %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+{% block body %}
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+{% block header %}
+<header id="header">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="http://sky5.com.ua">Sky5.com.ua</a>
+        <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="{% url home %}"><i class="icon-home"></i> {% trans 'Home' %}</a></li>
+            <li><a href="/about"><i class="icon-info-sign"></i> {% trans 'About' %}</a></li>
+        </ul>
+            <ul class="nav pull-right">
+                <li  class="divider-vertical"><a href="/contact"><i class="icon-envelope-alt"></i> {% trans 'Contact' %}</a></li>
+                <li  class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {% if user.is_authenticated %}{{ user.username }}{% else %}{% trans 'Login or register' %}{% endif %} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url auth_logout %}"><i class="icon-signin"></i> {% trans 'Log Out' %}</a></li>
+                        {% if user.is_staff %}
+                        <li class="divider"></li>
+                        <li><a href="/admin/"><i class="icon-signin"></i> {% trans 'Admin' %}</a></li>
+                        {% endif %}
+                    {% else %}
+                    <li><a href="{% url auth_login %}" id='goLogin'><i class="icon-signin"></i> {% trans 'Log In' %}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url registration_register %}" id='goRigister' data-toggle="modal" data-target="#ajaxRegister"><i class="icon-key"></i> {% trans 'Register' %}</a></li>
+                    {% endif %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</header>
+{% endblock %}
+{% block layout %}
+<div id="main">
+  <div class="container">
+      <div class="row">
+          <div class="span3" id="sidebar">
+          {% block sidebar %}
+            <h3>Sidebar</h3>
+          {% endblock %}
+          </div>
+          <div class="span9" id="content">
+          {% block content %}
+              <h1>Content</h1>
+              <a href="index.html">Sample</a>
+          {% endblock %}
+          </div>
+      </div>
+  </div>
+</div>
+<div class="modal hide fade" id='ajaxRegister'></div>
+{% endblock %}
+{% block footer %}
+<footer id="footer" class="navbar-fixed-bottom">
+    <div class="container">
+        <p id="copy">Авторские права &copy; <a href="http://sky5.com.ua">Oleg Dolya</a> 2012</p>
+    </div>
+</footer>
+{% endblock %}
+  <!-- JavaScript at the bottom for fast page loading -->
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+  <script src="{{ STATIC_URL }}js/libs/prettify.js"></script>
+  <script src="{{ STATIC_URL }}js/libs/bootstrap.min.js"></script>
+  <script src="{{ STATIC_URL }}js/libs/jQuery.equalHeights.js"></script>
+  <!-- scripts concatenated and minified via build script -->
+  <script src="{{ STATIC_URL }}js/plugins.js"></script>
+  <script src="{{ STATIC_URL }}js/script.js"></script>
+  <!-- end scripts -->
+  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+  <script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+<script type="text/javascript">
+  // Use the modernizr.load() function to run polyfills for older browsers.
+  Modernizr.load({
+      
+  });
+$('#goLogin').click(function(){ $('#ajaxRegister').show(); });
+  $('#ajaxRegister').modal({
+    remote: 'http://192.168.125.94:8000/register/',
+    show: false
+  });
+</script>
+<script type="text/javascript"> $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}}) </script>
+{% endblock %}
+</body>
+</html>

@@ -76,12 +76,12 @@ INSTALLED_APPS = [
     'guardian',
     # Database migrations
     'south',
+    'knowledge',
+    # Application base, containing global templates.
+    'DjangoApp.base',
     'userena',
     'userena.contrib.umessages',
     'profiles',
-    #'knowledge',
-    # Application base, containing global templates.
-    #'DjangoApp.base',
 
     # Local apps, referenced via DjangoApp.appname
     #'flatpages_plus',
