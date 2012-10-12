@@ -77,13 +77,14 @@ INSTALLED_APPS = [
     # Database migrations
     'south',
     'userena',
-    #'userena.contrib.umessages',
-    'knowledge',
+    'userena.contrib.umessages',
+    'profiles',
+    #'knowledge',
     # Application base, containing global templates.
-    'DjangoApp.base',
+    #'DjangoApp.base',
 
     # Local apps, referenced via DjangoApp.appname
-    'flatpages_plus',
+    #'flatpages_plus',
 ]
 
 # Place bcrypt first in the list, so it will be the default password hashing
@@ -163,6 +164,7 @@ MIDDLEWARE_CLASSES = (
     'flatpages_plus.middleware.FlatpageFallbackMiddleware',
     #'commonware.middleware.FrameOptionsHeader',
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'userena.middleware.UserenaLocaleMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = [
@@ -244,7 +246,7 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/accounts/signout/'
-#AUTH_PROFILE_MODULE = 'profiles.Profile'
+AUTH_PROFILE_MODULE = 'profiles.Profile'
 USERENA_DISABLE_PROFILE_LIST = True
 USERENA_MUGSHOT_SIZE = 140
 
