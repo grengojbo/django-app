@@ -17,13 +17,15 @@ django-widget-tweaks
 
 # Translate
 
-
 # Security
 bleach
 django-session-csrf
 django-registration
 django-guardian
 #cef
+
+# Profile
+django-userena
 
 # Logging
 #raven
