@@ -232,6 +232,11 @@ ANON_ALWAYS = True # always provide CSRF protection for anonymous users (нер�
 
 ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
 
+# Help Desk
+KNOWLEDGE_ALLOW_ANONYMOUS = True
+KNOWLEDGE_FREE_RESPONSE = False
+KNOWLEDGE_SLUG_URLS = False
+KNOWLEDGE_ALERTS = True
 ## Log settings
 
 LOG_LEVEL = logging.INFO
