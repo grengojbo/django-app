@@ -22,6 +22,7 @@ django-widget-tweaks
 bleach
 django-session-csrf
 django-registration
+django-guardian
 #cef
 
 # Logging

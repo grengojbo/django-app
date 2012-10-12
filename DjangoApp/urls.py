@@ -6,6 +6,12 @@ from django.conf.urls import include, patterns
 #from session_csrf import anonymous_csrf
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
+#from django.views.generic.simple import direct_to_template
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+
+#from profiles.forms import SignupFormExtra
+
 from django.contrib import admin
 from filebrowser.sites import site
 admin.autodiscover()
@@ -30,6 +36,9 @@ urlpatterns = patterns('',
     #url(r'^', include('debug_toolbar_user_panel.urls')),
     (r'^bad/$', bad),
     (r'^contact/', include('knowledge.urls')),
+    #(r'^accounts/', include('userena.urls')),
+    #(r'^messages/', include('userena.contrib.umessages.urls')),
+    (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^accounts/', include('registration.backends.default.urls')),
 )
 
@@ -51,3 +60,7 @@ if settings.DEBUG:
 urlpatterns += patterns('flatpages_plus.views',
     (r'^(?P<url>.*)$', 'flatpage'),
 )
+
+# Add media and static files
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

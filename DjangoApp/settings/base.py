@@ -33,7 +33,7 @@ SUPPORTED_NONLOCALES = ['media', 'admin', 'static']
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'ru-ru'
 
-#LOCALE_PATHS
+#LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'locale'),)
 SITE_ID = 1
 
 # Defines the views served for root URLs.
@@ -73,8 +73,11 @@ INSTALLED_APPS = [
     'intellipages',
     'django_extensions',
     'registration',
+    'guardian',
     # Database migrations
     'south',
+    'userena',
+    'userena.contrib.umessages',
     'knowledge',
     # Application base, containing global templates.
     'DjangoApp.base',
@@ -230,6 +233,21 @@ DIRECTORY = 'uploads/'
 # https://github.com/mozilla/django-session-csrf
 ANON_ALWAYS = True # always provide CSRF protection for anonymous users (неработает registration Login)
 
+# Add the Guardian and userena authentication backends
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Settings used by Userena
+LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
+AUTH_PROFILE_MODULE = 'profiles.Profile'
+USERENA_DISABLE_PROFILE_LIST = True
+USERENA_MUGSHOT_SIZE = 140
+
 ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
 
 # Help Desk
@@ -275,3 +293,6 @@ LOGGING = {
         }
     }
 }
+
+# Needed for Django guardian
+ANONYMOUS_USER_ID = -1
