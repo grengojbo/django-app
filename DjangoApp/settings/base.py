@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.syndication',
     'django.contrib.staticfiles',
-
+    'dajaxice',
+    'dajax',
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
     'djcelery',
@@ -152,6 +153,7 @@ USE_TZ = True
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'dajaxice.finders.DajaxiceFinder',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -194,6 +196,7 @@ TEMPLATE_LOADERS = (
     #'jingo.Loader',
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 FIXTURE_DIRS = (
@@ -252,6 +255,7 @@ USERENA_DISABLE_PROFILE_LIST = True
 USERENA_MUGSHOT_SIZE = 140
 
 ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
+DAJAXICE_MEDIA_PREFIX="dajaxice"
 
 # Help Desk
 KNOWLEDGE_ALLOW_ANONYMOUS = True
