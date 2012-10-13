@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     #'debug_toolbar',
     #'debug_toolbar_user_panel',
     #'memcache_toolbar',
+    'easy_thumbnails',
     'widget_tweaks',
     'taggit',
     'intellipages',
