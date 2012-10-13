@@ -17,6 +17,7 @@ django-intellipages
 django-widget-tweaks
 
 # Translate
+django-modeltranslation
 
 # Security
 bleach
