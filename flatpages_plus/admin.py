@@ -2,12 +2,12 @@
 from django.conf import settings
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-
+from modeltranslation.admin import TranslationAdmin
 from flatpages_plus.forms import FlatpageForm
 from flatpages_plus.models import FlatPage
 
 
-class FlatPageAdmin(admin.ModelAdmin):
+class FlatPageAdmin(TranslationAdmin):
     form = FlatpageForm
     fieldsets = (
         (None, {'fields': (

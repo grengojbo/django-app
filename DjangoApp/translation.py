@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from modeltranslation.translator import translator, TranslationOptions
-from app.models import Modelka
+from flatpages_plus.models import FlatPage
 
 
-class ModelkaTranslationOptions(TranslationOptions):
+class FlatPageTranslationOptions(TranslationOptions):
     """
-    Класс настроек интернационализации полей модели Modelka.
+    Класс настроек интернационализации полей модели FlatPage.
     """
     
-    fields = ('name', 'description',)
+    fields = ('title', 'content',)
 
-translator.register(Modelka, ModelkaTranslationOptions)
+translator.register(FlatPage, FlatPageTranslationOptions)
