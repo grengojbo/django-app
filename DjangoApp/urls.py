@@ -10,12 +10,14 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.simple import direct_to_template
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
+from dajaxice.core import dajaxice_autodiscover, dajaxice_config
 
 from profiles.forms import SignupFormExtra
 
 from django.contrib import admin
 from filebrowser.sites import site
 admin.autodiscover()
+dajaxice_autodiscover()
 
 # django-session-csrf monkeypatcher
 #import session_csrf
@@ -41,6 +43,7 @@ urlpatterns = patterns('',
     #(r'', include('DjangoApp.base.urls')),
     url(r'^$', direct_to_template, {'template': 'static/promo.html'}, name='promo'),
     (r'^i18n/', include('django.conf.urls.i18n')),
+    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     #(r'^accounts/', include('registration.backends.default.urls')),
 )
 

@@ -1,4 +1,4 @@
-<!doctype html>{% load i18n %}
+<!doctype html>{% load i18n static dajaxice_templatetags %}
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
@@ -10,18 +10,18 @@
   <meta name="description" content="{% block meta_description %}{% endblock %}">
   <meta name="author" content="{% block meta_author %}{% endblock %}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/aplication.css">
+  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+  <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
+  <link rel="stylesheet" href="{% static "css/aplication.css" %}">
   {% block css %}{% endblock %}
-  <!--<script src="{{ STATIC_URL }}js/libs/modernizr-2.5.3.min.js"></script>-->
-  <script src="{{ STATIC_URL }}js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+  <!--<script src="{% static "js/libs/modernizr-2.5.3.min.js" %}"></script>-->
+  <script src="{% static "js/libs/modernizr-2.5.3-respond-1.1.0.min.js" %}"></script>
   {% block extrajs %}{% endblock %}
   <!--<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">-->
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}apple-touch-icon-114x114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}apple-touch-icon-72x72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}apple-touch-icon-57x57-precomposed.png">
-  <link rel="shortcut icon" href="{{ STATIC_URL }}apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "apple-touch-icon-114x114-precomposed.png" %}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "apple-touch-icon-72x72-precomposed.png" %}">
+  <link rel="apple-touch-icon-precomposed" href="{% static "}apple-touch-icon-57x57-precomposed.png" %}">
+  <link rel="shortcut icon" href="{% static "apple-touch-icon.png" %}">
   <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
   <!--<script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>-->
   {% block extrahead %}{% endblock %}
@@ -101,13 +101,15 @@
   <!-- JavaScript at the bottom for fast page loading -->
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-  <script src="{{ STATIC_URL }}js/libs/prettify.js"></script>
-  <script src="{{ STATIC_URL }}js/libs/bootstrap.min.js"></script>
-  <script src="{{ STATIC_URL }}js/libs/jQuery.equalHeights.js"></script>
+  <script>window.jQuery || document.write('<script src="{% static "js/libs/jquery-1.7.1.min.js" %}"><\/script>')</script>
+  {% static "dajax/jquery.core.js" %}
+  <script src="{% static "js/libs/prettify.js" %}"></script>
+  <script src="{% static "js/libs/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/libs/jQuery.equalHeights.js" %}"></script>
+  {% dajaxice_js_import %}
   <!-- scripts concatenated and minified via build script -->
-  <script src="{{ STATIC_URL }}js/plugins.js"></script>
-  <script src="{{ STATIC_URL }}js/script.js"></script>
+  <script src="{% static "js/plugins.js" %}"></script>
+  <script src="{% static "js/script.js" %}"></script>
   <!-- end scripts -->
   <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
        mathiasbynens.be/notes/async-analytics-snippet -->
