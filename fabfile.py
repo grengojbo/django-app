@@ -1,5 +1,5 @@
 """
-Starter fabfile for deploying the kvazar project.
+Starter fabfile for deploying the DjangoApp project.
 
 Change all the things marked CHANGEME. Other things can be left at their
 defaults if you are happy with the default layout.
@@ -16,10 +16,10 @@ from fabric.colors import red, green
 from fab_deploy import *
 
 # CHANGEME
-env.home = '/opt/www/kvazar/kvazar-app'
-env.app_name = 'kvazar'
+env.home = '/opt/www/DjangoApp/DjangoApp-app'
+env.app_name = 'DjangoApp'
 env.dev_server = '192.168.125.94:8000'
-env.deploy_revision = 'masater'
+env.deploy_revision = 'DjangoApp'
 env.requirements_dev = 'requirements/dev.txt'
 env.requirements_prod = 'requirements/prod.txt'
 env.local_settings_file = 'local.py'
@@ -35,7 +35,7 @@ env.public_root = "{0}/current/public".format(env.home)
 env.static_root = "{0}/current/public/static/".format(env.home)
 env.media_root = "{0}/current/public/media".format(env.home)
 env.virtualenv = "{0}/shared/env".format(env.home)
-env.code_repo = 'git@git.089.com.ua:kvazar-app.git'
+env.code_repo = 'git@git.089.com.ua:DjangoApp-app.git'
 env.django_settings_module = 'DjangoApp.settings'
 env.conf = dict(
     VCS = 'git',
@@ -43,6 +43,7 @@ env.conf = dict(
     LOCAL_CONFIG = 'local.py',
     DB_USER = 'my_site',
     DB_PASSWORD = 'password',
+    DB_NAME = ''
     )
 
 # Python version
