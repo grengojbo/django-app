@@ -39,6 +39,10 @@ django-celery
 #-e git://github.com/clouserw/tower.git#egg=tower
 pytils
 
+# Ajax
+django-dajaxice
+django-dajax
+
 # Caching
 python-memcached
 
