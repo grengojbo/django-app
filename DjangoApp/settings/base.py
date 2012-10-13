@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'commonware.response.cookies',
     'djcelery',
     'gunicorn',
-    'modeltranslation',
+    #'modeltranslation',
     #'django_nose',
     #'session_csrf',
     #'debug_toolbar',
