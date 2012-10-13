@@ -73,7 +73,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'taggit',
     'intellipages',
-    'django_extensions',
     #'registration',
     'guardian',
     # Database migrations
@@ -229,7 +228,14 @@ JINGO_EXCLUDE_APPS = [
     'memcache_toolbar',
 ]
 
-#JINJA_CONFIG = {'extensions': ['jinja2.ext.i18n', 'jinja2.ext.InternationalizationExtension'],}
+# Django extensions
+try:
+    import django_extensions
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS = INSTALLED_APPS + ['django_extensions']
+
 # The WSGI Application to use for runserver
 WSGI_APPLICATION = 'DjangoApp.wsgi.application'
 
@@ -263,45 +269,118 @@ KNOWLEDGE_FREE_RESPONSE = False
 KNOWLEDGE_SLUG_URLS = False
 KNOWLEDGE_ALERTS = True
 
-#INSTALLED_APPS = INSTALLED_APPS + ['debug_toolbar']
 ## Log settings
 
 LOG_LEVEL = logging.INFO
-HAS_SYSLOG = True
-SYSLOG_TAG = "http_app_DjangoApp"  # Make this unique to your project.
+LOG_COLORSQL_ENABLE = True
+LOG_COLORSQL_VERBOSE = True
+#HAS_SYSLOG = True
+#SYSLOG_TAG = "http_app_DjangoApp"  # Make this unique to your project.
 # Remove this configuration variable to use your custom logging configuration
-LOGGING_CONFIG = None
+#LOGGING_CONFIG = None
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+#LOGGING = {
+#    'version': 1,
+#    'disable_existing_loggers': False,
+#    'filters': {
+#        'require_debug_false': {
+#            '()': 'django.utils.log.RequireDebugFalse'
+#        }
+#    },
+#    'handlers': {
+#        'mail_admins': {
+#            'level': 'ERROR',
+#            'filters': ['require_debug_false'],
+#            'class': 'django.utils.log.AdminEmailHandler'
+#        }
+#    },
+#    'loggers': {
+#        'django.request': {
+#            'handlers': ['mail_admins'],
+#            'level': 'ERROR',
+#            'propagate': True,
+#        },
+#        'DjangoApp': {
+#            'level': "DEBUG"
+#        }
+#    }
+#}
+
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
+    'disable_existing_loggers': True,
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['default'],
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(asctime)s %(levelname)s || %(message)s'
+        },
     },
     'handlers': {
+        # Include the default Django email handler for errors
+        # This is what you'd get without configuring logging at all.
         'mail_admins': {
+            'class': 'django.utils.log.AdminEmailHandler',
             'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
+             # But the emails are plain text by default - HTML is nicer
+            'include_html': True,
+        },
+        'default': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': 'log/django-app.log',
+            'formatter': 'verbose',
+        },
+        'default-db': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'log/django-app-db.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 20,
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
     },
     'loggers': {
+        # Again, default Django configuration to email unhandled exceptions
+        'django': {
+            'handlers': ['default'],
+            'propagate': False,
+            'level': 'DEBUG',
+        },
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
+        'django.db.backends': {
+            'handlers': ['default-db'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'userena': {
+            'handlers': ['console'],
+            'propagate': False,
+            'level': 'DEBUG',
+        },
         'DjangoApp': {
-            'level': "DEBUG"
-        }
-    }
+            'handlers': ['console'],
+            'propagate': False,
+            'level': 'DEBUG',
+        },
+    },
 }
-
 # Needed for Django guardian
 ANONYMOUS_USER_ID = -1
