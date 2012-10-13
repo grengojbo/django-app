@@ -22,3 +22,5 @@ pylint
 #pylint==0.25.1
 #coverage==3.5.1
 django-coverage==1.2.2
+
+Werkzeug
