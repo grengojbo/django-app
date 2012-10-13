@@ -7,8 +7,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>{% block page_title %}{{ _("Your Site") }}{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}{% endblock %}">
-  <meta name="author" content="{% block meta_author %}{% endblock %}">
+  <meta name="description" content="{% block meta_description %}{% endblock %}" />
+  <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
+  <meta name="author" content="{% block meta_author %}Oleg Dolya{% endblock %}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
   <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
   <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
@@ -48,20 +49,36 @@
             <li><a href="/about"><i class="icon-info-sign"></i> {% trans 'About' %}</a></li>
         </ul>
             <ul class="nav pull-right">
+                <div id="lang_form">
+                    <form action="/i18n/setlang/" method="post" id="locale_switcher">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.path }}"/>
+                        <label>{% trans 'Choose language' %}:</label>
+                        <select name="language" onchange="$('#locale_switcher').submit()">
+                            {% for lang in LANGUAGES %}
+                                <option value="{{ lang.0 }}"
+                                        {% if request.LANGUAGE_CODE == lang.0 %}selected{% endif %}>{{ lang.1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <noscript>
+                            <input type="submit" value="{% trans "Change language" %}"/>
+                        </noscript>
+                    </form>
+                </div>
                 <li  class="divider-vertical"><a href="/contact"><i class="icon-envelope-alt"></i> {% trans 'Contact' %}</a></li>
                 <li  class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {% if user.is_authenticated %}{{ user.username }}{% else %}{% trans 'Login or register' %}{% endif %} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url auth_logout %}"><i class="icon-signin"></i> {% trans 'Log Out' %}</a></li>
+                        <li><a href="{% url userena_signout %}"><i class="icon-signin"></i> {% trans 'Signout' %}</a></li>
                         {% if user.is_staff %}
                         <li class="divider"></li>
                         <li><a href="/admin/"><i class="icon-signin"></i> {% trans 'Admin' %}</a></li>
                         {% endif %}
                     {% else %}
-                    <li><a href="{% url auth_login %}" id='goLogin'><i class="icon-signin"></i> {% trans 'Log In' %}</a></li>
+                    <li><a href="{% url userena_signin %}" id='goLogin'><i class="icon-signin"></i> {% trans 'Signin' %}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{% url registration_register %}" id='goRigister' data-toggle="modal" data-target="#ajaxRegister"><i class="icon-key"></i> {% trans 'Register' %}</a></li>
+                        <li><a href="{% url userena_signup %}" id='goRigister' data-toggle="modal" data-target="#ajaxRegister"><i class="icon-key"></i> {% trans 'Signup' %}</a></li>
                     {% endif %}
                     </ul>
                 </li>
@@ -69,6 +86,13 @@
         </div>
     </div>
     </div>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </header>
 {% endblock %}
 {% block layout %}

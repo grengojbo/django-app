@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'commonware.response.cookies',
     'djcelery',
     'gunicorn',
+    'modeltranslation',
     #'django_nose',
     #'session_csrf',
     #'debug_toolbar',
@@ -211,7 +212,10 @@ LANGUAGES = (
     #('pt', gettext('Portuguese')),
     #('de', gettext('German')),
     ('ru', gettext('Russian')),
+    ('ua', gettext('Ukraine')),
 )
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+MODELTRANSLATION_TRANSLATION_REGISTRY = 'DjangoApp.translation'
 # Specify a model to use for user profiles, if desired.
 #AUTH_PROFILE_MODULE = 'DjangoApp.accounts.UserProfile'
 
