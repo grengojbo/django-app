@@ -24,3 +24,4 @@ pylint
 django-coverage==1.2.2
 
 Werkzeug
+-e git://github.com/mbi/django-rosetta.git#egg=django-rosetta

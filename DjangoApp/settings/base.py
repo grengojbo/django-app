@@ -42,6 +42,7 @@ ROOT_URLCONF = 'DjangoApp.urls'
 INSTALLED_APPS = [
     'grappelli.dashboard',
     'grappelli',
+    'grappellifit',
     'filebrowser',
     # Template apps
     'jingo_minify',
@@ -53,6 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'modeltranslation_wrapper',
+    'modeltranslation',
     'django.contrib.admindocs',
     'django.contrib.markup',
     'django.contrib.humanize',
@@ -64,7 +67,8 @@ INSTALLED_APPS = [
     'commonware.response.cookies',
     'djcelery',
     'gunicorn',
-    #'modeltranslation',
+    'rosetta',
+    'seoutils',
     #'django_nose',
     #'session_csrf',
     #'debug_toolbar',
@@ -216,6 +220,7 @@ LANGUAGES = (
 )
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 MODELTRANSLATION_TRANSLATION_REGISTRY = 'DjangoApp.translation'
+#MODELTRANSLATION_TRANSLATION_FILES = ('DjangoApp',)
 # Specify a model to use for user profiles, if desired.
 #AUTH_PROFILE_MODULE = 'DjangoApp.accounts.UserProfile'
 

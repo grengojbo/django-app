@@ -65,7 +65,10 @@ if settings.DEBUG:
 urlpatterns += patterns('flatpages_plus.views',
     (r'^(?P<url>.*)$', 'flatpage'),
 )
-
+if 'rosetta' in settings.INSTALLED_APPS:
+  urlpatterns += patterns('',
+      url(r'^rosetta/', include('rosetta.urls')),
+  )
 # Add media and static files
 urlpatterns += staticfiles_urlpatterns()
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
