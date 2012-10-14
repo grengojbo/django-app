@@ -42,7 +42,7 @@ ROOT_URLCONF = 'DjangoApp.urls'
 INSTALLED_APPS = [
     'grappelli.dashboard',
     'grappelli',
-    'grappellifit',
+    #'grappellifit',
     'filebrowser',
     # Template apps
     'jingo_minify',
@@ -68,7 +68,6 @@ INSTALLED_APPS = [
     'djcelery',
     'gunicorn',
     #'rosetta',
-    'seoutils',
     #'django_nose',
     #'session_csrf',
     #'debug_toolbar',
@@ -237,6 +236,12 @@ JINGO_EXCLUDE_APPS = [
     'memcache_toolbar',
 ]
 
+try:
+    import seoutils
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS = INSTALLED_APPS + ['seoutils']
 # Django extensions
 try:
     import django_extensions
