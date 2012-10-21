@@ -9,6 +9,9 @@ Fabric
 # Documentation
 Sphinx
 
+django-rosetta
+django-rosetta-grappelli
+
 # Testing
 nose
 mock

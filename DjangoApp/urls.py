@@ -16,6 +16,7 @@ from profiles.forms import SignupFormExtra
 
 from django.contrib import admin
 from filebrowser.sites import site
+
 admin.autodiscover()
 dajaxice_autodiscover()
 
@@ -28,8 +29,14 @@ def bad(request):
     """ Simulates a server error """
     1 / 0
 
-urlpatterns = patterns('',
-    (r'^grappelli/', include('grappelli.urls')),
+urlpatterns = patterns('', )
+
+if 'grappelli' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'^grappelli/', include('grappelli.urls')),
+    )
+
+urlpatterns += patterns('',
     #(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
     (r'^admin/filebrowser/', include(site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -66,9 +73,9 @@ urlpatterns += patterns('flatpages_plus.views',
     (r'^(?P<url>.*)$', 'flatpage'),
 )
 if 'rosetta' in settings.INSTALLED_APPS:
-  urlpatterns += patterns('',
-      url(r'^rosetta/', include('rosetta.urls')),
-  )
+    urlpatterns += patterns('',
+        url(r'^rosetta/', include('rosetta.urls')),
+    )
 # Add media and static files
 urlpatterns += staticfiles_urlpatterns()
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
