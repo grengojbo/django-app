@@ -74,7 +74,7 @@
                     {% else %}
                     <li><a href="{% url userena_signin %}" id='goLogin'><i class="icon-signin"></i> {% trans 'Signin' %}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{% url userena_signup %}" id='goRigister' data-toggle="modal" data-target="#ajaxRegister"><i class="icon-key"></i> {% trans 'Signup' %}</a></li>
+                        <li><a href="{% url userena_signup %}" id="goReg" data-toggle="modal" data-target="#regModal"><i class="icon-key"></i> {% trans 'Signup' %}</a></li>
                     {% endif %}
                     </ul>
                 </li>
@@ -109,7 +109,6 @@
       </div>
   </div>
 </div>
-<div class="modal hide fade" id='ajaxRegister'></div>
 {% endblock %}
 {% block footer %}
 <footer id="footer" class="navbar-fixed-bottom">
@@ -117,16 +116,27 @@
         <p id="copy">Авторские права &copy; <a href="http://sky5.com.ua">Oleg Dolya</a> 2012</p>
     </div>
 </footer>
+<div id="regModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" aria-hidden="true">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 id="refModalLabel">{% trans "Signup" %}</h3>
+            </div>
+            <div class="modal-body"></div>
+<div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close"%}</button>
+    <button type="submit" data-loading-text="Loading..." id="load_sigup_form" class="btn btn-primary">{% trans "Signup"%}</button>
+  </div>
+</div>
 {% endblock %}
   <!-- JavaScript at the bottom for fast page loading -->
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="{% static "js/libs/jquery-1.7.1.min.js" %}"><\/script>')</script>
+  <script type="text/javascript" src="{% static "js/jquery.ba-serializeobject.min.js" %}"></script>
   <script src="{% static "dajax/jquery.dajax.core.js" %}"></script>
+  {% dajaxice_js_import %}
   <script src="{% static "js/libs/prettify.js" %}"></script>
   <script src="{% static "js/libs/bootstrap.min.js" %}"></script>
-  <script src="{% static "js/libs/jQuery.equalHeights.js" %}"></script>
-  {% dajaxice_js_import %}
   <!-- scripts concatenated and minified via build script -->
   <script src="{% static "js/plugins.js" %}"></script>
   <script src="{% static "js/script.js" %}"></script>
@@ -144,11 +154,12 @@
   Modernizr.load({
       
   });
-$('#goLogin').click(function(){ $('#ajaxRegister').show(); });
-  $('#ajaxRegister').modal({
-    remote: 'http://192.168.125.94:8000/register/',
-    show: false
-  });
+$('#load_sigup_form').click(function(){
+  $('#load_sigup_form').val("Loading...");
+  Dajaxice.sigup_form(Dajax.process,{'form':$('#sigup_form').serialize(true)});
+  //$('#load_sigup_form').val({% trans "Signup"%});
+});
+//Dajaxice.DjangoApp.base.say_hello(Dajax.process);
 </script>
 <script type="text/javascript"> $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}}) </script>
 {% endblock %}

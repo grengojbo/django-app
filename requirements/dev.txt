@@ -10,9 +10,6 @@ Fabric
 Sphinx
 #Sphinx==1.1.3
 
-django-rosetta
-django-rosetta-grappelli
-
 # Testing
 nose
 mock
@@ -28,3 +25,5 @@ django-coverage==1.2.2
 
 Werkzeug
 -e git://github.com/mbi/django-rosetta.git#egg=django-rosetta
+django-rosetta-grappelli
+
