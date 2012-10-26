@@ -4,6 +4,6 @@
   <label class="control-label{% if field.field.required %} required{% endif %}" for="{{ field.auto_id}}">{{ field.label_tag }}</label>
   <div class="controls">
     <div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span>{{ field }}</div><span class="help-inline" id="e_{{ field.auto_id}}">{% if field.errors %}{{ field.errors }}{% endif %}</span>
-    {% if field.help_text %}<span class="help-block" id="h_{{ field.auto_id}}">{{ field.help_text }}</span>{% endif %}
+    <span class="help-block" id="h_{{ field.auto_id}}">{% if field.help_text %}{{ field.help_text }}{% endif %}</span>
   </div>
 </div>

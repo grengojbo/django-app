@@ -72,9 +72,9 @@
                         <li><a href="/admin/"><i class="icon-signin"></i> {% trans 'Admin' %}</a></li>
                         {% endif %}
                     {% else %}
-                    <li><a href="{% url userena_signin %}" id='goLogin'><i class="icon-signin"></i> {% trans 'Signin' %}</a></li>
+                    <li><a href="{% url userena_login %}" id='goLogin' data-toggle="modal" data-target="#loginModal"><i class="icon-signin"></i> {% trans 'Signin' %}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{% url userena_signup %}" id="goReg" data-toggle="modal" data-target="#regModal"><i class="icon-key"></i> {% trans 'Signup' %}</a></li>
+                        <li><a href="{% url userena_register %}" id="goReg" data-toggle="modal" data-target="#regModal"><i class="icon-key"></i> {% trans 'Signup' %}</a></li>
                     {% endif %}
                     </ul>
                 </li>
@@ -116,17 +116,6 @@
         <p id="copy">Авторские права &copy; <a href="http://sky5.com.ua">Oleg Dolya</a> 2012</p>
     </div>
 </footer>
-<div id="regModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" aria-hidden="true">
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3 id="refModalLabel">{% trans "Signup" %}</h3>
-            </div>
-            <div class="modal-body"></div>
-<div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close"%}</button>
-    <button type="submit" data-loading-text="Loading..." id="load_sigup_form" class="btn btn-primary">{% trans "Signup"%}</button>
-  </div>
-</div>
 {% endblock %}
   <!-- JavaScript at the bottom for fast page loading -->
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
@@ -161,6 +150,46 @@ $('#load_sigup_form').click(function(){
 });
 //Dajaxice.DjangoApp.base.say_hello(Dajax.process);
 </script>
+    <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+             aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="loginModalLabel">{% trans "Signup" %}</h3>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+                <button type="submit" data-loading-text="Loading..." id="load_signin_form"
+                        class="btn btn-primary">{% trans "Signup" %}</button>
+            </div>
+        </div>
+    <div id="regModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="regModalLabel"
+         aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="refModalLabel">{% trans "Signup" %}</h3>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+            <button type="submit" data-loading-text="Loading..." id="load_sigup_form"
+                    class="btn btn-primary">{% trans "Signup" %}</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#load_signin_form').click(function(){
+              //$('#load_sigup_form').val("Loading...");
+              Dajaxice.sigup_form(Dajax.process,{'form':$('#signin_form').serialize(true)});
+              //$('#load_sigup_form').val({% trans "Signup"%});
+            });
+     $('#load_sigup_form').click(function(){
+      //$('#load_sigup_form').val("Loading...");
+      Dajaxice.sigup_form(Dajax.process,{'form':$('#sigup_form').serialize(true)});
+      //$('#load_sigup_form').val({% trans "Signup"%});
+    });
+    //Dajaxice.DjangoApp.base.say_hello(Dajax.process);
+    </script>
+
 <script type="text/javascript"> $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}}) </script>
 {% endblock %}
 </body>
