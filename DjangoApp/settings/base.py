@@ -400,8 +400,7 @@ LOGGING = {
             'propagate': False,
         },
         'userena': {
-            'handlers': ['console'],
-            'propagate': False,
+            'handlers': ['console', 'default'],
             'level': 'DEBUG',
         },
         'DjangoApp': {

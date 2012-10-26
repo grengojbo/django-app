@@ -72,6 +72,7 @@
                         <li><a href="/admin/"><i class="icon-signin"></i> {% trans 'Admin' %}</a></li>
                         {% endif %}
                     {% else %}
+                    <li><a href="{% url userena_signin %}">Login</a></li>
                     <li><a href="{% url userena_login %}" id='goLogin' data-toggle="modal" data-target="#loginModal"><i class="icon-signin"></i> {% trans 'Signin' %}</a></li>
                         <li class="divider"></li>
                         <li><a href="{% url userena_register %}" id="goReg" data-toggle="modal" data-target="#regModal"><i class="icon-key"></i> {% trans 'Signup' %}</a></li>
@@ -143,24 +144,17 @@
   Modernizr.load({
       
   });
-$('#load_sigup_form').click(function(){
-  $('#load_sigup_form').val("Loading...");
-  Dajaxice.sigup_form(Dajax.process,{'form':$('#sigup_form').serialize(true)});
-  //$('#load_sigup_form').val({% trans "Signup"%});
-});
-//Dajaxice.DjangoApp.base.say_hello(Dajax.process);
 </script>
     <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
              aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 id="loginModalLabel">{% trans "Signup" %}</h3>
+                <h3 id="loginModalLabel">{% trans "Signin" %}</h3>
             </div>
             <div class="modal-body"></div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
                 <button type="submit" data-loading-text="Loading..." id="load_signin_form"
-                        class="btn btn-primary">{% trans "Signup" %}</button>
+                  class="btn btn-primary">{% trans "Signin" %}</button> <a href="{% url userena_password_reset %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a>
             </div>
         </div>
     <div id="regModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="regModalLabel"
@@ -179,7 +173,7 @@ $('#load_sigup_form').click(function(){
     <script type="text/javascript">
         $('#load_signin_form').click(function(){
               //$('#load_sigup_form').val("Loading...");
-              Dajaxice.sigup_form(Dajax.process,{'form':$('#signin_form').serialize(true)});
+              Dajaxice.signin_form(Dajax.process,{'form':$('#signin_form').serialize(true)});
               //$('#load_sigup_form').val({% trans "Signup"%});
             });
      $('#load_sigup_form').click(function(){
