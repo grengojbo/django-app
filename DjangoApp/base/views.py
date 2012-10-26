@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.generic.simple import direct_to_template
 from registration.forms import RegistrationFormUniqueEmail
-
+from userena.forms import SignupFormOnlyEmail
 
 def home(request):
     """ Default view for the root """
@@ -13,5 +13,5 @@ def home(request):
         context_instance=RequestContext(request))
 
 def register(request):
-    form = RegistrationFormUniqueEmail()
+    form = SignupFormOnlyEmail()
     return direct_to_template(request, "registration/ajax_registration.html", extra_context={'form': form })

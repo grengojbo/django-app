@@ -50,7 +50,8 @@ urlpatterns += patterns('',
     (r'', include('DjangoApp.base.urls')),
     #url(r'^$', direct_to_template, {'template': 'static/promo.html'}, name='promo'),
     (r'^i18n/', include('django.conf.urls.i18n')),
-    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
+    (dajaxice_config.dajaxice_url, include('dajaxice.urls')),
+    #url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     #(r'^accounts/', include('registration.backends.default.urls')),
 )
 

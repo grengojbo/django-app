@@ -40,8 +40,8 @@ SITE_ID = 1
 ROOT_URLCONF = 'DjangoApp.urls'
 
 INSTALLED_APPS = [
-    'grappelli.dashboard',
-    'grappelli',
+    #'grappelli.dashboard',
+    #'grappelli',
     #'grappellifit',
     'filebrowser',
     # Template apps
@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'commonware.response.cookies',
     'djcelery',
     'gunicorn',
+    #'rosetta-grappelli',
     #'rosetta',
     #'django_nose',
     #'session_csrf',
@@ -111,6 +112,7 @@ SESSION_COOKIE_HTTPONLY = True
 # Set this to true if you are using https
 SESSION_COOKIE_SECURE = False
 
+CSRF_COOKIE_IN_EVERY_RESPONSE = True
 ## Tests
 TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
@@ -165,12 +167,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'flatpages_plus.middleware.FlatpageFallbackMiddleware',
     #'commonware.middleware.FrameOptionsHeader',
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'userena.middleware.UserenaLocaleMiddleware',
+    #'userena.middleware.CsrfFixMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = [
@@ -183,6 +186,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.tz',
     #'session_csrf.context_processor',
     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.csrf',
     #'jingo_minify.helpers.build_ids',
 ]
 
@@ -276,6 +280,12 @@ USERENA_MUGSHOT_SIZE = 140
 
 ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
 DAJAXICE_MEDIA_PREFIX="dajaxice"
+DAJAXICE_DEBUG = True
+DAJAXICE_JS_DOCSTRINGS = True
+#DAJAX_FUNCTIONS=(
+# "userena.ajax.send_form",
+# "userena.assign_test",
+#)
 
 # Help Desk
 KNOWLEDGE_ALLOW_ANONYMOUS = True
@@ -373,6 +383,11 @@ LOGGING = {
             'handlers': ['default'],
             'propagate': False,
             'level': 'DEBUG',
+        },
+        'dajaxice': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
         'django.request': {
             'handlers': ['mail_admins'],
