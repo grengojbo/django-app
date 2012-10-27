@@ -91,6 +91,7 @@ INSTALLED_APPS = [
 
     # Local apps, referenced via DjangoApp.appname
     'flatpages_plus',
+    'compressor',
 ]
 
 # Place bcrypt first in the list, so it will be the default password hashing
@@ -159,6 +160,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'dajaxice.finders.DajaxiceFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -292,6 +294,14 @@ KNOWLEDGE_ALLOW_ANONYMOUS = True
 KNOWLEDGE_FREE_RESPONSE = False
 KNOWLEDGE_SLUG_URLS = False
 KNOWLEDGE_ALERTS = True
+
+# Compress
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc DjangoApp/base/static/less/bootstrap.less DjangoApp/base/static/css/bootstrap.css'),
+    ('text/less', 'lessc DjangoApp/base/static/less/aplication.less DjangoApp/base/static/css/aplication.css'),
+)
 
 ## Log settings
 

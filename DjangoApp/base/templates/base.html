@@ -1,4 +1,4 @@
-<!doctype html>{% load i18n static dajaxice_templatetags %}
+<!doctype html>{% load i18n static dajaxice_templatetags compress %}
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
@@ -11,20 +11,20 @@
   <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
   <meta name="author" content="{% block meta_author %}Oleg Dolya{% endblock %}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
-  <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">
-  <link rel="stylesheet" href="{% static "css/aplication.css" %}">
+  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="{% static "css/aplication.css" %}" type="text/css" charset="utf-8">
   {% block css %}{% endblock %}
-  <!--<script src="{% static "js/libs/modernizr-2.5.3.min.js" %}"></script>-->
-  <script src="{% static "js/libs/modernizr-2.5.3-respond-1.1.0.min.js" %}"></script>
+  <!--<script src="{% static "js/libs/modernizr-2.5.3.min.js" %}" type="text/javascript" charset="utf-8"></script>-->
+  <script src="{% static "js/libs/modernizr-2.5.3-respond-1.1.0.min.js" %}" type="text/javascript" charset="utf-8"></script>
   {% block extrajs %}{% endblock %}
   <!--<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">-->
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "apple-touch-icon-114x114-precomposed.png" %}">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "apple-touch-icon-72x72-precomposed.png" %}">
   <link rel="apple-touch-icon-precomposed" href="{% static "}apple-touch-icon-57x57-precomposed.png" %}">
-  <link rel="shortcut icon" href="{% static "apple-touch-icon.png" %}">
+  <link rel="shortcut icon" href="{% static "favicon.png" %}">
   <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
-  <!--<script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>-->
+  <!--<script type="text/javascript" charset="utf-8">(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>-->
   {% block extrahead %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
@@ -114,29 +114,23 @@
 {% endblock %}
   <!-- JavaScript at the bottom for fast page loading -->
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script>window.jQuery || document.write('<script src="{% static "js/libs/jquery-1.7.1.min.js" %}"><\/script>')</script>
-  <script type="text/javascript" src="{% static "js/jquery.ba-serializeobject.min.js" %}"></script>
-  <script src="{% static "dajax/jquery.dajax.core.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/jquery.ba-serializeobject.min.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "dajax/jquery.dajax.core.js" %}" type="text/javascript" charset="utf-8"></script>
   {% dajaxice_js_import %}
-  <script src="{% static "js/libs/prettify.js" %}"></script>
-  <script src="{% static "js/libs/bootstrap.min.js" %}"></script>
-  <script src="{% static "js/noty/jquery.noty.js" %}"></script>
-  <script src="{% static "js/noty/layouts/topRight.js" %}"></script>
-  <script src="{% static "js/noty/themes/default.js" %}"></script>
+  <script src="{% static "js/libs/prettify.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/libs/bootstrap.min.js" %}" type="text/javascript" charset="utf-8"></script>
+{% compress js %}
+  <script src="{% static "js/noty/jquery.noty.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/noty/layouts/topRight.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/noty/themes/default.js" %}" type="text/javascript" charset="utf-8"></script>
   <!-- scripts concatenated and minified via build script -->
-  <script src="{% static "js/plugins.js" %}"></script>
-  <script src="{% static "js/script.js" %}"></script>
+  <script src="{% static "js/plugins.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/script.js" %}" type="text/javascript" charset="utf-8"></script>
+{% endcompress %}
   <!-- end scripts -->
-  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-       mathiasbynens.be/notes/async-analytics-snippet -->
-  <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
-<script type="text/javascript">
+<script type="text/javascript" charset="utf-8">
   // Use the modernizr.load() function to run polyfills for older browsers.
   Modernizr.load({
       
@@ -173,7 +167,7 @@ var noty = noty({text: '{{ message }}', timeout: 5000, layout: 'topRight', type:
                     class="btn btn-primary">{% trans "Signup" %}</button>
         </div>
     </div>
-    <script type="text/javascript">
+    <script type="text/javascript" charset="utf-8">
         $('#load_signin_form').click(function(){
               //$('#load_sigup_form').val("Loading...");
               Dajaxice.signin_form(Dajax.process,{'form':$('#signin_form').serialize(true)});
@@ -187,7 +181,7 @@ var noty = noty({text: '{{ message }}', timeout: 5000, layout: 'topRight', type:
     //Dajaxice.DjangoApp.base.say_hello(Dajax.process);
     </script>
 
-<script type="text/javascript"> $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}}) </script>
+<script type="text/javascript" charset="utf-8"> $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}}) </script>
 {% endblock %}
 </body>
 </html>
