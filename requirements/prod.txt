@@ -9,6 +9,8 @@ Django>=1.4
 # Templates
 jingo
 jingo-minify
+#django_compressor==dev
+django_compressor
 Markdown
 #Markdown==2.1.1
 -e git://github.com/hcarvalhoalves/django-taggit.git#egg=django-taggit
