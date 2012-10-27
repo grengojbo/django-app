@@ -289,18 +289,22 @@ DAJAXICE_JS_DOCSTRINGS = True
 # "userena.assign_test",
 #)
 
-# Help Desk
+## Help Desk
 KNOWLEDGE_ALLOW_ANONYMOUS = True
 KNOWLEDGE_FREE_RESPONSE = False
 KNOWLEDGE_SLUG_URLS = False
 KNOWLEDGE_ALERTS = True
 
-# Compress
+## Compress
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc DjangoApp/base/static/less/aplication.less DjangoApp/base/static/css/aplication.css'),
 )
+
+## Rosetta
+ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
+ROSETTA_STORAGE_CLASS = 'rosetta.storage.SessionRosettaStorage'
 
 ## Log settings
 
