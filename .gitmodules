@@ -10,3 +10,6 @@
 [submodule "extras/jquery-pixel-em-converter"]
 	path = extras/jquery-pixel-em-converter
 	url = git://github.com/filamentgroup/jQuery-Pixel-Em-Converter.git
+[submodule "extras/noty"]
+	path = extras/noty
+	url = git://github.com/needim/noty.git

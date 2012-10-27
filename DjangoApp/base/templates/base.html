@@ -84,13 +84,6 @@
         </div>
     </div>
     </div>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 </header>
 {% endblock %}
 {% block layout %}
@@ -128,6 +121,9 @@
   {% dajaxice_js_import %}
   <script src="{% static "js/libs/prettify.js" %}"></script>
   <script src="{% static "js/libs/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/noty/jquery.noty.js" %}"></script>
+  <script src="{% static "js/noty/layouts/topRight.js" %}"></script>
+  <script src="{% static "js/noty/themes/default.js" %}"></script>
   <!-- scripts concatenated and minified via build script -->
   <script src="{% static "js/plugins.js" %}"></script>
   <script src="{% static "js/script.js" %}"></script>
@@ -144,7 +140,13 @@
   // Use the modernizr.load() function to run polyfills for older browsers.
   Modernizr.load({
       
-  });
+      });
+{% if messages %}
+            {% for message in messages %}
+var noty = noty({text: '{{ message }}', timeout: 5000, layout: 'topRight', type: '{% if message.tags %}{{ message.tags }}{% endif %}', dismissQueue: true});
+            {% endfor %}
+    {% endif %}
+
 </script>
     <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
              aria-hidden="true">
