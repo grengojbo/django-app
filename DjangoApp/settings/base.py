@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     'djcelery',
     'gunicorn',
     #'rosetta-grappelli',
-    #'rosetta',
+    'rosetta',
     #'django_nose',
     #'session_csrf',
     #'debug_toolbar',
