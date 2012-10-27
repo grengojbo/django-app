@@ -299,7 +299,6 @@ KNOWLEDGE_ALERTS = True
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc DjangoApp/base/static/less/bootstrap.less DjangoApp/base/static/css/bootstrap.css'),
     ('text/less', 'lessc DjangoApp/base/static/less/aplication.less DjangoApp/base/static/css/aplication.css'),
 )
 
