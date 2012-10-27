@@ -4,28 +4,32 @@ This is your project's main settings file that can be committed to your
 repo. If you need to override a setting locally, use local.py
 """
 
+import django
 import os
 import logging
 #import memcache_toolbar.panels.memcache
 
 # Your project root
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__) + "../../../")
+
+PYTHON_VERSION = '%s.%s' % sys.version_info[:2]
+DJANGO_VERSION = django.get_version()
 #path = lambda *a: os.path.join(ROOT, *a)
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
-MINIFY_BUNDLES = {
-    'css': {
-        'base_css': (
-            'css/style.css',
-        ),
-    },
-    'js': {
-        'libs_js': (
-            'js/libs/jquery-1.6.2.min.js',
-            'js/libs/modernizr-2.0.6.min.js',
-        ),
-    }
-}
+#MINIFY_BUNDLES = {
+#    'css': {
+#        'base_css': (
+#            'css/style.css',
+#        ),
+#    },
+#    'js': {
+#        'libs_js': (
+#            'js/libs/jquery-1.6.2.min.js',
+#            'js/libs/modernizr-2.0.6.min.js',
+#        ),
+#    }
+#}
 
 SUPPORTED_NONLOCALES = ['media', 'admin', 'static']
 
@@ -231,16 +235,18 @@ MODELTRANSLATION_TRANSLATION_REGISTRY = 'DjangoApp.translation'
 
 FILE_UPLOAD_PERMISSIONS = 0664
 
+SOUTH_TESTS_MIGRATE = False
+
 # Because Jinja2 is the default template loader, add any non-Jinja templated
 # apps here:
-JINGO_EXCLUDE_APPS = [
-    'admin',
-    'DjangoApp',
-    'registration',
-    'debug_toolbar',
-    'debug_toolbar_user_panel',
-    'memcache_toolbar',
-]
+#JINGO_EXCLUDE_APPS = [
+#    'admin',
+#    'DjangoApp',
+#    'registration',
+#    'debug_toolbar',
+#    'debug_toolbar_user_panel',
+#    'memcache_toolbar',
+#]
 
 try:
     import seoutils
