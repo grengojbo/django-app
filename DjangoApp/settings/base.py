@@ -5,7 +5,7 @@ repo. If you need to override a setting locally, use local.py
 """
 
 import django
-import os
+import os, sys
 import logging
 #import memcache_toolbar.panels.memcache
 
