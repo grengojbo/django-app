@@ -13,3 +13,6 @@
 [submodule "extras/noty"]
 	path = extras/noty
 	url = git://github.com/needim/noty.git
+[submodule "extras/elements"]
+	path = extras/elements
+	url = git://github.com/dmitryf/elements.git
