@@ -75,4 +75,5 @@ South
 # Various tidbits
 commonware
 -e git://github.com/mozilla/nuggets.git#egg=nuggets
+easy_thumbnails
 
