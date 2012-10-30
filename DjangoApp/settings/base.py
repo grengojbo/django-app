@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     #'grappellifit',
     'filebrowser',
     # Template apps
-    #'jingo_minify',
+    'jingo_minify',
 
     # Django contrib apps
     'django.contrib.auth',
