@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     #'grappellifit',
     'filebrowser',
     # Template apps
-    'jingo_minify',
+    #'jingo_minify',
 
     # Django contrib apps
     'django.contrib.auth',
@@ -66,9 +66,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.syndication',
     'django.contrib.staticfiles',
-    #'djangorestframework',
-    #'mptt',
-    #'compressor',
+    'djangorestframework',
+    'mptt',
+    'compressor',
     #'fiber',
     'dajaxice',
     'dajax',
@@ -100,7 +100,7 @@ INSTALLED_APPS = [
 
     # Local apps, referenced via DjangoApp.appname
     'flatpages_plus',
-    'compressor',
+    #'compressor',
 ]
 
 # Place bcrypt first in the list, so it will be the default password hashing
