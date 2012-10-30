@@ -47,6 +47,7 @@
         </a>
         <a class="brand" href="http://sky5.com.ua">Sky5.com.ua</a>
         <div class="nav-collapse">
+            {% show_menu "mainmenu" 1 2 "all" %}
           <ul class="nav">
           <li class="active"><a href="/"><i class="icon-home"></i> {% trans 'Home' %}</a></li>
             <li><a href="/about"><i class="icon-info-sign"></i> {% trans 'About' %}</a></li>
@@ -94,8 +95,7 @@
   <div class="container">
       <div class="row">
           <div class="span3" id="sidebar">
-            {% show_menu "mainmenu" 1 2 %}
-          {% block sidebar %}
+            {% block sidebar %}
           {% show_page_content "aside" %}
           {% show_content "address" %}
           {% endblock %}
