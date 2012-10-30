@@ -39,11 +39,6 @@ if 'fiber' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         (r'^api/v2/', include('fiber.rest_api.urls')),
         (r'^admin/fiber/', include('fiber.admin_urls')),
-        (r'', 'fiber.views.page'),
-    )
-else:
-    urlpatterns += patterns('',
-        (r'', include('DjangoApp.base.urls')),
     )
 
 urlpatterns += patterns('',
@@ -64,6 +59,20 @@ urlpatterns += patterns('',
     #(r'^accounts/', include('registration.backends.default.urls')),
 )
 
+if 'fiber' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'', 'fiber.views.page'),
+    )
+else:
+    urlpatterns += patterns('',
+        (r'', include('DjangoApp.base.urls')),
+    )
+
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        url(r'^rosetta/', include('rosetta.urls')),
+    )
+
 #https://docs.djangoproject.com/en/dev/topics/i18n/translation/#url-internationalization
 #urlpatterns += i18n_patterns('',
 #    url(_(r'^about/$'), 'about.view', name='about'),
@@ -79,13 +88,9 @@ if settings.DEBUG:
          {'document_root': settings.MEDIA_ROOT}),
     )
 
-urlpatterns += patterns('flatpages_plus.views',
-    (r'^(?P<url>.*)$', 'flatpage'),
-)
-if 'rosetta' in settings.INSTALLED_APPS:
-    urlpatterns += patterns('',
-        url(r'^rosetta/', include('rosetta.urls')),
-    )
+#urlpatterns += patterns('flatpages_plus.views',
+#    (r'^(?P<url>.*)$', 'flatpage'),
+#)
 # Add media and static files
 urlpatterns += staticfiles_urlpatterns()
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
