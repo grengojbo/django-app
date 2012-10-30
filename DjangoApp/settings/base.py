@@ -68,8 +68,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djangorestframework',
     'mptt',
-    'compressor',
-    #'fiber',
+    #'compressor',
+    'fiber',
     'dajaxice',
     'dajax',
     # Third-party apps, patches, fixes
@@ -100,7 +100,7 @@ INSTALLED_APPS = [
 
     # Local apps, referenced via DjangoApp.appname
     'flatpages_plus',
-    #'compressor',
+    'compressor',
 ]
 
 # Place bcrypt first in the list, so it will be the default password hashing
@@ -187,7 +187,7 @@ MIDDLEWARE_CLASSES = (
     #'userena.middleware.CsrfFixMiddleware',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = [
+TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.media',
@@ -199,7 +199,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.csrf',
     #'jingo_minify.helpers.build_ids',
-]
+)
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or
@@ -272,6 +272,9 @@ if 'fiber' in INSTALLED_APPS:
         'fiber.middleware.ObfuscateEmailAddressMiddleware',
         'fiber.middleware.AdminPageMiddleware',
     )
+    TEMPLATE_CONTEXT_PROCESSORS = TEMPLATE_CONTEXT_PROCESSORS + (
+                'fiber.context_processors.page_info',
+                )
 
 
 # The WSGI Application to use for runserver

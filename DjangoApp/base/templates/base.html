@@ -1,4 +1,4 @@
-<!doctype html>{% load i18n static dajaxice_templatetags compress %}
+<!doctype html>{% load i18n static dajaxice_templatetags compress fiber_tags %}
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>{% block title %}{{ _("Your Site") }}{% endblock %}</title>
+  <title>{% block title %}{{ fiber_page.title }}{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}{% endblock %}" />
   <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
   <meta name="author" content="{% block meta_author %}Oleg Dolya{% endblock %}" />
@@ -30,7 +30,7 @@
   <!--<script type="text/javascript" charset="utf-8">(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>-->
   {% block extrahead %}{% endblock %}
 </head>
-<body class="{% block body_class %}{% endblock %}">
+<body class="{% block body_class %}{{ fiber_page.title|slugify }}{% endblock %}">
 {% block body %}
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
@@ -47,8 +47,8 @@
         </a>
         <a class="brand" href="http://sky5.com.ua">Sky5.com.ua</a>
         <div class="nav-collapse">
-        <ul class="nav">
-          <li class="active"><a href="{% url home %}"><i class="icon-home"></i> {% trans 'Home' %}</a></li>
+          <ul class="nav">
+          <li class="active"><a href="/"><i class="icon-home"></i> {% trans 'Home' %}</a></li>
             <li><a href="/about"><i class="icon-info-sign"></i> {% trans 'About' %}</a></li>
         </ul>
             <ul class="nav pull-right">
@@ -94,15 +94,16 @@
   <div class="container">
       <div class="row">
           <div class="span3" id="sidebar">
+            {% show_menu "mainmenu" 1 2 %}
           {% block sidebar %}
-            <h3>Sidebar</h3>
+          {% show_page_content "aside" %}
+          {% show_content "address" %}
           {% endblock %}
           </div>
           <div class="span9" id="content">
           {% block content_title %}{% endblock %}
           {% block content %}
-              <h1>Content</h1>
-              <a href="index.html">Sample</a>
+          {% show_page_content "main" %}
           {% endblock %}
           </div>
       </div>
