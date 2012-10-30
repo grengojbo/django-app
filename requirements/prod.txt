@@ -76,4 +76,7 @@ South
 commonware
 -e git://github.com/mozilla/nuggets.git#egg=nuggets
 easy_thumbnails
-
+#django-mptt==0.5.1
+django-mptt
+#djangorestframework==0.3.3
+djangorestframework
