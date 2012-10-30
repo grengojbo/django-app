@@ -410,6 +410,10 @@ LOGGING = {
             'handlers': ['console', 'default'],
             'level': 'DEBUG',
         },
+        'fiber': {
+                    'handlers': ['console', 'default'],
+                    'level': 'DEBUG',
+                },
         'DjangoApp': {
             'handlers': ['console'],
             'propagate': False,
