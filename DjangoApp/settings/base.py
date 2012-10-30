@@ -7,7 +7,7 @@ repo. If you need to override a setting locally, use local.py
 import django
 import os, sys
 import logging
-import django.conf.global_settings as DEFAULT_SETTINGS
+#import django.conf.global_settings as DEFAULT_SETTINGS
 #import memcache_toolbar.panels.memcache
 
 # Your project root
