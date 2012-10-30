@@ -66,9 +66,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.syndication',
     'django.contrib.staticfiles',
-    'djangorestframework',
-    'mptt',
-    'compressor',
+    #'djangorestframework',
+    #'mptt',
+    #'compressor',
     #'fiber',
     'dajaxice',
     'dajax',
@@ -100,18 +100,19 @@ INSTALLED_APPS = [
 
     # Local apps, referenced via DjangoApp.appname
     'flatpages_plus',
+    'compressor',
 ]
 
 # Place bcrypt first in the list, so it will be the default password hashing
 # mechanism
-#PASSWORD_HASHERS = (
-#    'django.contrib.auth.hashers.BCryptPasswordHasher',
-#    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-#    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-#    'django.contrib.auth.hashers.SHA1PasswordHasher',
-#    'django.contrib.auth.hashers.MD5PasswordHasher',
-#    'django.contrib.auth.hashers.CryptPasswordHasher',
-#)
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)
 
 # Sessions
 #
@@ -164,7 +165,9 @@ USE_TZ = True
 
 # List of finder classes that know how to find static files in
 # various locations.
-STATICFILES_FINDERS =  DEFAULT_SETTINGS.STATICFILES_FINDERS + (
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'dajaxice.finders.DajaxiceFinder',
     'compressor.finders.CompressorFinder',
 )
@@ -184,13 +187,19 @@ MIDDLEWARE_CLASSES = (
     #'userena.middleware.CsrfFixMiddleware',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
     #'session_csrf.context_processor',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.csrf',
     #'jingo_minify.helpers.build_ids',
-)
+]
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or
@@ -201,7 +210,10 @@ TEMPLATE_DIRS = (
 )
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = DEFAULT_SETTINGS.TEMPLATE_LOADERS + (
+TEMPLATE_LOADERS = (
+    #'jingo.Loader',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
     'django.template.loaders.eggs.Loader',
 )
 
@@ -213,10 +225,13 @@ gettext = lambda s: s
 
 LANGUAGES = (
     ('en', gettext('English')),
+    #('fr', gettext('French')),
+    #('es', gettext('Spanish')),
+    #('pt', gettext('Portuguese')),
+    #('de', gettext('German')),
     ('ru', gettext('Russian')),
     ('ua', gettext('Ukraine')),
 )
-LANGUAGES_BIDI = ("ru", "en")
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 MODELTRANSLATION_TRANSLATION_REGISTRY = 'DjangoApp.translation'
 #MODELTRANSLATION_TRANSLATION_FILES = ('DjangoApp',)
