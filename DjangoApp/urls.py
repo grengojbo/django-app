@@ -35,6 +35,16 @@ if 'grappelli' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         (r'^grappelli/', include('grappelli.urls')),
     )
+if 'fiber' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'^api/v2/', include('fiber.rest_api.urls')),
+        (r'^admin/fiber/', include('fiber.admin_urls')),
+        (r'', 'fiber.views.page'),
+    )
+else:
+    urlpatterns += patterns('',
+        (r'', include('DjangoApp.base.urls')),
+    )
 
 urlpatterns += patterns('',
     #(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
@@ -47,7 +57,6 @@ urlpatterns += patterns('',
     (r'^messages/', include('userena.contrib.umessages.urls')),
     (r'^bad/$', bad),
     (r'^contact/', include('knowledge.urls')),
-    (r'', include('DjangoApp.base.urls')),
     #url(r'^$', direct_to_template, {'template': 'static/promo.html'}, name='promo'),
     (r'^i18n/', include('django.conf.urls.i18n')),
     (dajaxice_config.dajaxice_url, include('dajaxice.urls')),
