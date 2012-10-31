@@ -73,7 +73,7 @@ INSTALLED_APPS = [
     'dajaxice',
     'dajax',
     # Third-party apps, patches, fixes
-    'commonware.response.cookies',
+    ##'commonware.response.cookies',
     'djcelery',
     'gunicorn',
     #'rosetta-grappelli',
@@ -178,7 +178,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     #'session_csrf.CsrfMiddleware',  # Must be after auth middleware.
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'flatpages_plus.middleware.FlatpageFallbackMiddleware',
     #'commonware.middleware.FrameOptionsHeader',
