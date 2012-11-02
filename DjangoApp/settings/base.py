@@ -250,16 +250,11 @@ FILE_UPLOAD_PERMISSIONS = 0664
 
 SOUTH_TESTS_MIGRATE = False
 
-# Because Jinja2 is the default template loader, add any non-Jinja templated
-# apps here:
-#JINGO_EXCLUDE_APPS = [
-#    'admin',
-#    'DjangoApp',
-#    'registration',
-#    'debug_toolbar',
-#    'debug_toolbar_user_panel',
-#    'memcache_toolbar',
-#]
+FIBER_TEMPLATE_CHOICES = (
+    ('', 'Default template'),
+    ('tpl-home.html', 'Home template'),
+    ('tpl-sidebar.html', 'With sidebar template'),
+)
 
 try:
     import seoutils

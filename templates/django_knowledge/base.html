@@ -1,0 +1,27 @@
+<!doctype html>
+{% load i18n static%}
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  
+  <title>{% block title %}{% endblock title %} | Support Center</title>
+    {% block css %}
+        <link rel="stylesheet" href="{% static "knowledge/css/reset.css" %}" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="{% static "knowledge/css/main.css" %}" type="text/css" charset="utf-8">
+    {% endblock %}
+
+
+</head>
+
+<body>
+
+<div class="wrapper">
+  
+  {% block knowledge_inner %}
+  {% endblock knowledge_inner %}
+
+</div>
+  
+</body>
+</html>
