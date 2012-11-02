@@ -168,17 +168,9 @@ USE_TZ = True
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-
-if 'dajaxice' in INSTALLED_APPS:
-    STATICFILES_FINDERS = STATICFILES_FINDERS + (
     'dajaxice.finders.DajaxiceFinder',
-    )
-
-if 'compressor' in INSTALLED_APPS:
-    STATICFILES_FINDERS = STATICFILES_FINDERS + ( 
     'compressor.finders.CompressorFinder',
-    )
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

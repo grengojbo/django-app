@@ -18,8 +18,7 @@ from django.contrib import admin
 from filebrowser.sites import site
 
 admin.autodiscover()
-if 'dajaxice' in settings.INSTALLED_APPS:
-    dajaxice_autodiscover()
+dajaxice_autodiscover()
 
 # django-session-csrf monkeypatcher
 #import session_csrf
@@ -56,6 +55,9 @@ urlpatterns += patterns('',
     #url(r'^$', direct_to_template, {'template': 'static/promo.html'}, name='promo'),
     (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', {'packages': ('fiber',),}),
+    (dajaxice_config.dajaxice_url, include('dajaxice.urls')),
+    #url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
+    #(r'^accounts/', include('registration.backends.default.urls')),
 )
 
 if 'fiber' in settings.INSTALLED_APPS:
@@ -70,11 +72,6 @@ else:
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         url(r'^rosetta/', include('rosetta.urls')),
-    )
-
-if 'dajaxice' in settings.INSTALLED_APPS:
-    urlpatterns += patterns('',
-    (dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     )
 
 #https://docs.djangoproject.com/en/dev/topics/i18n/translation/#url-internationalization
