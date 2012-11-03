@@ -16,21 +16,6 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__) + "../../../")
 PYTHON_VERSION = '%s.%s' % sys.version_info[:2]
 DJANGO_VERSION = django.get_version()
 #path = lambda *a: os.path.join(ROOT, *a)
-# Bundles is a dictionary of two dictionaries, css and js, which list css files
-# and js files that can be bundled together by the minify app.
-#MINIFY_BUNDLES = {
-#    'css': {
-#        'base_css': (
-#            'css/style.css',
-#        ),
-#    },
-#    'js': {
-#        'libs_js': (
-#            'js/libs/jquery-1.6.2.min.js',
-#            'js/libs/modernizr-2.0.6.min.js',
-#        ),
-#    }
-#}
 
 SUPPORTED_NONLOCALES = ['media', 'admin', 'static']
 
@@ -43,6 +28,9 @@ SITE_ID = 1
 
 # Defines the views served for root URLs.
 ROOT_URLCONF = 'DjangoApp.urls'
+
+IMAGESTORE_SHOW_USER = False
+IMAGESTORE_LOAD_CSS = False
 
 INSTALLED_APPS = [
     #'grappelli.dashboard',
@@ -85,6 +73,8 @@ INSTALLED_APPS = [
     #'memcache_toolbar',
     'easy_thumbnails',
     'widget_tweaks',
+    'imagestore',
+    'sorl.thumbnail',
     'taggit',
     'intellipages',
     #'registration',
@@ -150,6 +140,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    'static',
 )
 
 # If you set this to False, Django will make some optimizations so as not
@@ -199,6 +190,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.csrf',
     #'jingo_minify.helpers.build_ids',
+    "imagestore.context_processors.imagestore_processor",
 )
 
 TEMPLATE_DIRS = (

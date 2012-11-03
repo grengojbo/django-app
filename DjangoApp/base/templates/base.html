@@ -12,6 +12,7 @@
   <meta name="author" content="{% block meta_author %}Oleg Dolya{% endblock %}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
   {% block meta %}{% endblock %}
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css" type="text/css" />
   {% compress css %}
   <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" type="text/css" charset="utf-8">
   <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}" type="text/css" charset="utf-8">
@@ -47,12 +48,8 @@
         </a>
         <a class="brand" href="http://sky5.com.ua">Sky5.com.ua</a>
         <div class="nav-collapse">
-            {% show_menu "mainmenu" 1 2 "all" %}
-          <ul class="nav">
-          <li class="active"><a href="/"><i class="icon-home"></i> {% trans 'Home' %}</a></li>
-            <li><a href="/about"><i class="icon-info-sign"></i> {% trans 'About' %}</a></li>
-        </ul>
-            <ul class="nav pull-right">
+        {% show_menu "mainmenu" 1 2 "all" %}
+        <ul class="nav pull-right">
                     <form action="/i18n/setlang/" method="post" id="locale_switcher" class="navbar-form pull-left">{% csrf_token %}
                        <input name="next" type="hidden" value="{{ request.path }}"/>
                         <select name="language" onchange="$('#locale_switcher').submit()">
@@ -121,6 +118,11 @@
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script>window.jQuery || document.write('<script src="{% static "js/libs/jquery-1.7.1.min.js" %}"><\/script>')</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/i18n/jquery-ui-i18n.min.js"></script>
+  <script src="http://yandex.st/json2/2011-01-18/json2.min.js"></script>
+  <script src="{% static "csrf.js" %}"></script>
+
   <script type="text/javascript" src="{% static "js/jquery.ba-serializeobject.min.js" %}" type="text/javascript" charset="utf-8"></script>
   <script src="{% static "dajax/jquery.dajax.core.js" %}" type="text/javascript" charset="utf-8"></script>
   {% dajaxice_js_import %}

@@ -43,6 +43,7 @@ if 'fiber' in settings.INSTALLED_APPS:
 
 urlpatterns += patterns('',
     #(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
+    (r'^gallery/', include('imagestore.urls', namespace='imagestore')),
     (r'^admin/filebrowser/', include(site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     #(r'^admin/$', anonymous_csrf(admin.site.admin_view(admin.site.index))),
