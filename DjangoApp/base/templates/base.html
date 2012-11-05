@@ -47,8 +47,8 @@
         </a>
         <a class="brand" href="http://sky5.com.ua">Sky5.com.ua</a>
         <div class="nav-collapse">
-            {% show_menu "mainmenu" 1 2 "all" %}
-            <ul class="nav pull-right">
+        {% show_menu "mainmenu" 1 2 "all" %}
+        <ul class="nav pull-right">
                     <form action="/i18n/setlang/" method="post" id="locale_switcher" class="navbar-form pull-left">{% csrf_token %}
                        <input name="next" type="hidden" value="{{ request.path }}"/>
                         <select name="language" onchange="$('#locale_switcher').submit()">
@@ -61,6 +61,7 @@
                           <button type="submit" class="btn">{% trans "Change language" %}</button>
                         </noscript>
                     </form>
+                <li  class="divider-vertical"><a href="/contact"><i class="icon-envelope-alt"></i> {% trans 'Contact' %}</a></li>
                 <li  class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {% if user.is_authenticated %}{{ user.username }}{% else %}{% trans 'Login or register' %}{% endif %} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -72,6 +73,7 @@
                         <li><a href="/admin/"><i class="icon-signin"></i> {% trans 'Admin' %}</a></li>
                         {% endif %}
                     {% else %}
+                    <li><a href="{% url userena_signin %}">Login</a></li>
                     <li><a href="{% url userena_login %}" id='goLogin' data-toggle="modal" data-target="#loginModal"><i class="icon-signin"></i> {% trans 'Signin' %}</a></li>
                         <li class="divider"></li>
                         <li><a href="{% url userena_register %}" id="goReg" data-toggle="modal" data-target="#regModal"><i class="icon-key"></i> {% trans 'Signup' %}</a></li>
@@ -115,6 +117,7 @@
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script>window.jQuery || document.write('<script src="{% static "js/libs/jquery-1.7.1.min.js" %}"><\/script>')</script>
+
   <script type="text/javascript" src="{% static "js/jquery.ba-serializeobject.min.js" %}" type="text/javascript" charset="utf-8"></script>
   <script src="{% static "dajax/jquery.dajax.core.js" %}" type="text/javascript" charset="utf-8"></script>
   {% dajaxice_js_import %}

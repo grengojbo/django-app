@@ -1,0 +1,8 @@
+{% load i18n %}
+{% if my_questions %}
+<li class="nav-header">{% trans "My Questions" %}</li>
+{% for question in my_questions %}<li><a href="{{ question.get_absolute_url }}">{{ question.title }}</a></li>{% endfor %}
+{% endif %}
+<li class="nav-header">{% trans "Categories" %}</li>
+{% for category in categories %}<li><a href="{% url knowledge_list_category category.slug %}">{{ category.title }}</a></li>{% endfor %}
+<li class="nav-header">{% trans "Navigate" %}</li>  <li><a href="{% url knowledge_ask %}">{% trans "Ask a question or give suggestion." %}</a></li>

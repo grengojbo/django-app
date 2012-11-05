@@ -1,0 +1,52 @@
+{% extends 'layout_splet_col.html' %}
+{% load i18n static %}
+{% block content %}
+    <h3>{% trans "Ask a Question" %}</h3>
+    {% if form %}
+        {% include "django_knowledge/form.html" with submit_value="Submit this support request" submit_and="and we'll get back to you as soon as possible." %}
+    {% else %}
+        <p class="center"><em>{% trans "Please log in to ask a question." %}</em></p>
+    {% endif %}
+{% endblock content %}
+{% block content2 %}
+    <!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (начало) -->
+    <div id="ymaps-map-id_1351681579328134814732" style="width: 600px; height: 450px;"></div>
+    <div style="width: 600px; text-align: right;"><a href="http://api.yandex.ru/maps/tools/constructor/index.xml" target="_blank" style="color: #1A3DC1; font: 13px Arial, Helvetica, sans-serif;">Создано с помощью инструментов Яндекс.Карт</a></div>
+    <script type="text/javascript">
+    function fid_1351681579328134814732(ymaps) {
+        var map = new ymaps.Map("ymaps-map-id_1351681579328134814732", {
+            center: [30.52385822465074, 50.415532698347775],
+            zoom: 15,
+            type: "yandex#map"
+        });
+        map.controls
+            .add("zoomControl")
+            .add("mapTools")
+            .add(new ymaps.control.TypeSelector(["yandex#map", "yandex#satellite", "yandex#hybrid", "yandex#publicMap"]));
+        map.geoObjects
+            .add(new ymaps.Polygon([
+                [
+                    [30.5222274415697, 50.41210493135527],
+                    [30.521841203471595, 50.41257112231677],
+                    [30.52299991776601, 50.4132018439193],
+                    [30.524072801371975, 50.41215977758599],
+                    [30.52299991776601, 50.41169358255898],
+                    [30.5222274415697, 50.41210493135527]
+                ]
+            ], {
+                balloonContent: "ТРЦ Ocean Plaza на ул. Антоновича, 176, в Киеве – единственный в столице центрально-городской торгово-развлекательный центр"
+            }, {
+                strokeColor: "006cff",
+                strokeWidth: 5,
+                strokeOpacity: 1,
+                fillOpacity: 0.8,
+                fillColor: "006cff"
+            }));
+            map.balloon.open([30.523858224650184, 50.41270823673724],
+                {contentBody: '<img src="http://oceanplaza.kiev.ua/static/img/logo2.png"></img><strong>ТРЦ Ocean Plaza</strong> на ул. Антоновича, 176',
+    });
+    };
+    </script>
+    <script type="text/javascript" src="http://api-maps.yandex.ru/2.0-stable/?lang=ru-RU&coordorder=longlat&load=package.full&wizard=constructor&onload=fid_1351681579328134814732"></script>
+    <!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (конец) -->
+{% endblock content2 %}

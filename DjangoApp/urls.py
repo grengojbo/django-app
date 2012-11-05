@@ -39,10 +39,12 @@ if 'fiber' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         (r'^api/v2/', include('fiber.rest_api.urls')),
         (r'^admin/fiber/', include('fiber.admin_urls')),
+        (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', {'packages': ('fiber',), }),
     )
 
 urlpatterns += patterns('',
     #(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
+    (r'^gallery/', include('imagestore.urls', namespace='imagestore')),
     (r'^admin/filebrowser/', include(site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     #(r'^admin/$', anonymous_csrf(admin.site.admin_view(admin.site.index))),
@@ -54,20 +56,10 @@ urlpatterns += patterns('',
     (r'^contact/', include('knowledge.urls')),
     #url(r'^$', direct_to_template, {'template': 'static/promo.html'}, name='promo'),
     (r'^i18n/', include('django.conf.urls.i18n')),
-    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', {'packages': ('fiber',),}),
     (dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     #url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     #(r'^accounts/', include('registration.backends.default.urls')),
 )
-
-if 'fiber' in settings.INSTALLED_APPS:
-    urlpatterns += patterns('',
-        (r'', 'fiber.views.page'),
-    )
-else:
-    urlpatterns += patterns('',
-        (r'', include('DjangoApp.base.urls')),
-    )
 
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
@@ -82,12 +74,7 @@ if 'rosetta' in settings.INSTALLED_APPS:
 
 ## In DEBUG mode, serve media files through Django.
 if settings.DEBUG:
-    # Remove leading and trailing slashes so the regex matches.
-    media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
-    urlpatterns += patterns('',
-        (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
-         {'document_root': settings.MEDIA_ROOT}),
-    )
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #urlpatterns += patterns('flatpages_plus.views',
 #    (r'^(?P<url>.*)$', 'flatpage'),
@@ -95,3 +82,13 @@ if settings.DEBUG:
 # Add media and static files
 urlpatterns += staticfiles_urlpatterns()
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if 'fiber' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'', 'fiber.views.page'),
+    )
+else:
+    urlpatterns += patterns('',
+        (r'', include('DjangoApp.base.urls')),
+    )
+
