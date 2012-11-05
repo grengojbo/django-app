@@ -22,7 +22,7 @@ test_db/
 *.sublime-project
 *.sublime-workspace
 /public/media
-static/*
+#static/*
 /public/static
 public/system
 .idea/
