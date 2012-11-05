@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
 {% load i18n static fiber_tags %}
-{% block content %}
-{% show_content "address" %}
-{% endblock %}
+{% block sidebar %}{% show_content "address" %}{% endblock %}
+{% block content %}{% show_content "main" %}{% endblock %}
