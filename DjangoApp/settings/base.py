@@ -33,6 +33,9 @@ IMAGESTORE_SHOW_USER = False
 IMAGESTORE_LOAD_CSS = False
 
 INSTALLED_APPS = [
+    'mptt',
+    #'compressor',
+    'fiber',
     #'grappelli.dashboard',
     #'grappelli',
     #'grappellifit',
@@ -53,9 +56,6 @@ INSTALLED_APPS = [
     'django.contrib.syndication',
     'django.contrib.staticfiles',
     'djangorestframework',
-    'mptt',
-    #'compressor',
-    'fiber',
     'dajaxice',
     'dajax',
     # Third-party apps, patches, fixes
@@ -100,7 +100,7 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.SHA1PasswordHasher',
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'django.contrib.auth.hashers.CryptPasswordHasher',
-)
+    )
 
 # Sessions
 #
@@ -139,7 +139,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     'static',
-)
+    )
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -159,7 +159,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'dajaxice.finders.DajaxiceFinder',
     'compressor.finders.CompressorFinder',
-)
+    )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -174,7 +174,7 @@ MIDDLEWARE_CLASSES = (
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'userena.middleware.UserenaLocaleMiddleware',
     #'userena.middleware.CsrfFixMiddleware',
-)
+    )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -189,7 +189,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.csrf',
     #'jingo_minify.helpers.build_ids',
     "imagestore.context_processors.imagestore_processor",
-)
+    )
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or
@@ -197,7 +197,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_ROOT, 'templates'),
-)
+    )
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -205,11 +205,11 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.eggs.Loader',
-)
+    )
 
 FIXTURE_DIRS = (
     os.path.join(PROJECT_ROOT, 'fixtures'),
-)
+    )
 
 gettext = lambda s: s
 
@@ -221,7 +221,7 @@ LANGUAGES = (
     #('de', gettext('German')),
     ('ru', gettext('Russian')),
     ('ua', gettext('Ukraine')),
-)
+    )
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 MODELTRANSLATION_TRANSLATION_REGISTRY = 'DjangoApp.translation'
 #MODELTRANSLATION_TRANSLATION_FILES = ('DjangoApp',)
@@ -236,7 +236,7 @@ FIBER_TEMPLATE_CHOICES = (
     ('', 'Default template'),
     ('tpl-home.html', 'Home template'),
     ('tpl-sidebar.html', 'With sidebar template'),
-)
+    )
 
 try:
     import seoutils
@@ -256,10 +256,10 @@ if 'fiber' in INSTALLED_APPS:
     MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
         'fiber.middleware.ObfuscateEmailAddressMiddleware',
         'fiber.middleware.AdminPageMiddleware',
-    )
+        )
     TEMPLATE_CONTEXT_PROCESSORS = TEMPLATE_CONTEXT_PROCESSORS + (
-                'fiber.context_processors.page_info',
-                )
+        'fiber.context_processors.page_info',
+        )
 
 
 # The WSGI Application to use for runserver
@@ -276,7 +276,7 @@ AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
-)
+    )
 
 # Settings used by Userena
 LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
@@ -287,7 +287,7 @@ USERENA_DISABLE_PROFILE_LIST = True
 USERENA_MUGSHOT_SIZE = 140
 
 ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
-DAJAXICE_MEDIA_PREFIX="dajaxice"
+DAJAXICE_MEDIA_PREFIX = "dajaxice"
 DAJAXICE_DEBUG = True
 DAJAXICE_JS_DOCSTRINGS = True
 #DAJAX_FUNCTIONS=(
@@ -306,7 +306,7 @@ COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc DjangoApp/base/static/less/aplication.less DjangoApp/base/static/css/aplication.css'),
-)
+    )
 
 ## Rosetta
 #ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
@@ -347,7 +347,7 @@ LOGGING = {
         'mail_admins': {
             'class': 'django.utils.log.AdminEmailHandler',
             'level': 'ERROR',
-             # But the emails are plain text by default - HTML is nicer
+            # But the emails are plain text by default - HTML is nicer
             'include_html': True,
         },
         'default': {
@@ -359,7 +359,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'log/django-app-db.log',
-            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'maxBytes': 1024 * 1024 * 5, # 5 MB
             'backupCount': 20,
             'formatter': 'verbose',
         },
@@ -396,9 +396,9 @@ LOGGING = {
             'level': 'DEBUG',
         },
         'fiber': {
-                    'handlers': ['console', 'default'],
-                    'level': 'DEBUG',
-                },
+            'handlers': ['console', 'default'],
+            'level': 'DEBUG',
+        },
         'DjangoApp': {
             'handlers': ['console'],
             'propagate': False,
@@ -408,3 +408,18 @@ LOGGING = {
 }
 # Needed for Django guardian
 ANONYMOUS_USER_ID = -1
+
+try:
+    import django_jenkins
+
+    installed_apps = list(INSTALLED_APPS)
+    installed_apps.append('django_jenkins')
+    INSTALLED_APPS = tuple(installed_apps)
+except ImportError:
+    pass
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.with_coverage',
+    'django_jenkins.tasks.django_tests',
+    )
+
