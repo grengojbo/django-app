@@ -30,9 +30,11 @@
                 </div>
                 <div class="span9" id="content">
                     {% block content_title %}{% endblock %}
+                    {% block breadcrumb %}{% endblock %}
                     {% block content %}
                        <a href="index.html">Sample</a>
                     {% endblock %}
+                    {% block content-related %}{% endblock %}
                 </div>
             </div>
         </div>
