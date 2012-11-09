@@ -84,3 +84,4 @@ django-mptt
 djangorestframework==0.3.3
 #djangorestframework
 django-tagging
+django-photologue
