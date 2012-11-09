@@ -72,6 +72,11 @@ if 'rosetta' in settings.INSTALLED_APPS:
 #    url(_(r'^news/'), include(news_patterns, namespace='news')),
 #)
 
+if 'photologue' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'^photologue/', include('photologue.urls')),
+    )
+
 ## In DEBUG mode, serve media files through Django.
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

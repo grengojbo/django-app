@@ -74,6 +74,8 @@ INSTALLED_APPS = [
     'imagestore',
     'sorl.thumbnail',
     'taggit',
+    'tagging',
+    'photologue',
     'intellipages',
     #'registration',
     'guardian',
@@ -285,6 +287,7 @@ LOGOUT_URL = '/accounts/signout/'
 AUTH_PROFILE_MODULE = 'profiles.Profile'
 USERENA_DISABLE_PROFILE_LIST = True
 USERENA_MUGSHOT_SIZE = 140
+#USERENA_MUGSHOT_DEFAULT = "http://example.com/gravatar.png"
 
 ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
 DAJAXICE_MEDIA_PREFIX = "dajaxice"
@@ -300,6 +303,13 @@ KNOWLEDGE_ALLOW_ANONYMOUS = True
 KNOWLEDGE_FREE_RESPONSE = False
 KNOWLEDGE_SLUG_URLS = False
 KNOWLEDGE_ALERTS = True
+
+### imagestore
+#IMAGESTORE_LOAD_CSS = False
+#IMAGESTORE_SHOW_USER = False
+#IMAGESTORE_UPLOAD_TO = 'imagestore/'
+IMAGESTORE_TEMPLATE = 'layout_2_col.html'
+#IMAGESTORE_SELF_MANAGE = False
 
 ## Compress
 COMPRESS_ENABLED = True
