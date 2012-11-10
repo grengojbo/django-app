@@ -89,7 +89,7 @@ INSTALLED_APPS = [
     'profiles',
 
     # Local apps, referenced via DjangoApp.appname
-    'flatpages_plus',
+    #'flatpages_plus',
     'compressor',
 ]
 
