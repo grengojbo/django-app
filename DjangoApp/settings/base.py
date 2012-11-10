@@ -36,9 +36,9 @@ INSTALLED_APPS = [
     'mptt',
     #'compressor',
     'fiber',
-    #'grappelli.dashboard',
-    #'grappelli',
-    #'grappellifit',
+    'grappelli.dashboard',
+    'grappelli',
+    'grappellifit',
     'filebrowser',
 
     # Django contrib apps
