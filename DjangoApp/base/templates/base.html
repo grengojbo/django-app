@@ -12,21 +12,34 @@
   <meta name="author" content="{% block meta_author %}Oleg Dolya{% endblock %}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
   {% block meta %}{% endblock %}
-  {% compress css %}
-  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" type="text/css" charset="utf-8">
-  <link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}" type="text/css" charset="utf-8">
-  <link rel="stylesheet" href="{% static "css/aplication.css" %}" type="text/css" charset="utf-8">
-  {% endcompress %}
-  {% block head %}{% endblock %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-responsive.css' %}" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="{% static 'css/jquery.qtip.css' %}" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="{% static 'css/aplication.css' %}" type="text/css" charset="utf-8">
+    {% block head %}{% endblock %}
   {% block css %}{% endblock %}
-  <!--<script src="{% static "js/libs/modernizr-2.5.3.min.js" %}" type="text/javascript" charset="utf-8"></script>-->
-  <script src="{% static "js/libs/modernizr-2.5.3-respond-1.1.0.min.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static 'js/libs/modernizr-2.5.3-respond-1.1.0.min.js' %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static 'js/libs/jquery-1.8.2.js' %}" type="text/javascript" charset="utf-8"></script>
+
+  <script type="text/javascript" src="{% static "js/jquery.ba-serializeobject.min.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "dajax/jquery.dajax.core.js" %}" type="text/javascript" charset="utf-8"></script>
+  {% dajaxice_js_import %}
+  <script src="{% static "js/libs/prettify.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/libs/bootstrap.min.js" %}" type="text/javascript" charset="utf-8"></script>
+
+  <script src="{% static "js/noty/jquery.noty.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/noty/layouts/topRight.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/noty/themes/default.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/jquery.qtip.min.js" %}" type="text/javascript" charset="utf-8"></script>
+
+  <script src="{% static "js/plugins.js" %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static "js/script.js" %}" type="text/javascript" charset="utf-8"></script>
   {% block extrajs %}{% endblock %}
   <!--<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">-->
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "apple-touch-icon-114x114-precomposed.png" %}">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "apple-touch-icon-72x72-precomposed.png" %}">
-  <link rel="apple-touch-icon-precomposed" href="{% static "}apple-touch-icon-57x57-precomposed.png" %}">
-  <link rel="shortcut icon" href="{% static "favicon.png" %}">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'apple-touch-icon-114x114-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'apple-touch-icon-72x72-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" href="{% static 'apple-touch-icon-57x57-precomposed.png' %}">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
   <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
   <!--<script type="text/javascript" charset="utf-8">(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>-->
   {% block extrahead %}{% endblock %}
@@ -93,14 +106,14 @@
       <div class="row">
           <div class="span3" id="sidebar">
             {% block sidebar %}
-          {% show_page_content "aside" %}
+          {% show_content "aside" %}
           {% show_content "address" %}
           {% endblock %}
           </div>
           <div class="span9" id="content">
           {% block content_title %}{% endblock %}
           {% block content %}
-          {% show_content "main" %}
+          {% show_page_content "main" %}
           {% endblock %}
           </div>
       </div>
@@ -114,25 +127,6 @@
     </div>
 </footer>
 {% endblock %}
-  <!-- JavaScript at the bottom for fast page loading -->
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script>window.jQuery || document.write('<script src="{% static "js/libs/jquery-1.7.1.min.js" %}"><\/script>')</script>
-
-  <script type="text/javascript" src="{% static "js/jquery.ba-serializeobject.min.js" %}" type="text/javascript" charset="utf-8"></script>
-  <script src="{% static "dajax/jquery.dajax.core.js" %}" type="text/javascript" charset="utf-8"></script>
-  {% dajaxice_js_import %}
-  <script src="{% static "js/libs/prettify.js" %}" type="text/javascript" charset="utf-8"></script>
-  <script src="{% static "js/libs/bootstrap.min.js" %}" type="text/javascript" charset="utf-8"></script>
-{% compress js %}
-  <script src="{% static "js/noty/jquery.noty.js" %}" type="text/javascript" charset="utf-8"></script>
-  <script src="{% static "js/noty/layouts/topRight.js" %}" type="text/javascript" charset="utf-8"></script>
-  <script src="{% static "js/noty/themes/default.js" %}" type="text/javascript" charset="utf-8"></script>
-  <!-- scripts concatenated and minified via build script -->
-  <script src="{% static "js/plugins.js" %}" type="text/javascript" charset="utf-8"></script>
-  <script src="{% static "js/script.js" %}" type="text/javascript" charset="utf-8"></script>
-{% endcompress %}
-  <!-- end scripts -->
 <script type="text/javascript" charset="utf-8">
   // Use the modernizr.load() function to run polyfills for older browsers.
   Modernizr.load({
@@ -145,8 +139,8 @@ var noty = noty({text: '{{ message }}', timeout: 5000, layout: 'topRight', type:
     {% endif %}
 
 </script>
-    <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-             aria-hidden="true">
+
+<div id="mapModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3 id="loginModalLabel">{% trans "Signin" %}</h3>
@@ -181,6 +175,11 @@ var noty = noty({text: '{{ message }}', timeout: 5000, layout: 'topRight', type:
       Dajaxice.sigup_form(Dajax.process,{'form':$('#sigup_form').serialize(true)});
       //$('#load_sigup_form').val({% trans "Signup"%});
     });
+    $('body').tooltip({
+                selector: "[rel=tooltip]", // можете использовать любой селектор
+                placement: "top"
+    });
+     //   $("AREA").popover({trigger: 'hover', placement: 'bottom'});
     //Dajaxice.DjangoApp.base.say_hello(Dajax.process);
     </script>
 
