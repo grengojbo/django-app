@@ -82,7 +82,7 @@ sorl-thumbnail
 django-fancy-autocomplete
 Pillow==1.7.7
 #django-mptt==0.5.1
-django-mptt
+-e git://github.com/django-mptt/django-mptt.git#egg=django-mptt
 djangorestframework==0.3.3
 #djangorestframework
 django-tagging
