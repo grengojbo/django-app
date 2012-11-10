@@ -34,11 +34,11 @@ IMAGESTORE_LOAD_CSS = False
 
 INSTALLED_APPS = [
     'mptt',
-    #'compressor',
     'fiber',
     'grappelli.dashboard',
     'grappelli',
     'grappellifit',
+    #'compressor',
     'filebrowser',
 
     # Django contrib apps
