@@ -7,8 +7,8 @@ gunicorn
 Django>=1.4
 
 # Templates
-jingo
-jingo-minify
+#jingo
+#jingo-minify
 #django_compressor==dev
 django_compressor
 Markdown
@@ -17,6 +17,8 @@ Markdown
 django-intellipages
 #-e git://github.com/grengojbo/django-flatpages-plus.git#egg=django-flatpages-plus
 django-widget-tweaks
+django-ttag
+-e git://github.com/SmileyChris/django-forms.git#egg=django-forms
 
 # Translate
 django-modeltranslation
