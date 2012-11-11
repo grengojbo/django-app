@@ -29,9 +29,6 @@ SITE_ID = 1
 # Defines the views served for root URLs.
 ROOT_URLCONF = 'DjangoApp.urls'
 
-IMAGESTORE_SHOW_USER = False
-IMAGESTORE_LOAD_CSS = False
-
 INSTALLED_APPS = [
     'mptt',
     'fiber',
@@ -71,6 +68,7 @@ INSTALLED_APPS = [
     #'memcache_toolbar',
     #'easy_thumbnails',
     'widget_tweaks',
+    'django_forms_bootstrap',
     'imagestore',
     'sorl.thumbnail',
     'taggit',
