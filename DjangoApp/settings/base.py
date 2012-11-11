@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     #'memcache_toolbar',
     #'easy_thumbnails',
     'widget_tweaks',
+    'django_forms_bootstrap',
     'imagestore',
     'sorl.thumbnail',
     'taggit',

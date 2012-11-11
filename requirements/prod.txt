@@ -19,6 +19,7 @@ django-intellipages
 django-widget-tweaks
 django-ttag
 -e git://github.com/SmileyChris/django-forms.git#egg=django-forms
+-e git://github.com/pinax/django-forms-bootstrap.git#egg=django-forms-bootstrap
 
 # Translate
 django-modeltranslation

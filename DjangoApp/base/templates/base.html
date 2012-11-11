@@ -175,15 +175,20 @@ var noty = noty({text: '{{ message }}', timeout: 5000, layout: 'topRight', type:
       Dajaxice.sigup_form(Dajax.process,{'form':$('#sigup_form').serialize(true)});
       //$('#load_sigup_form').val({% trans "Signup"%});
     });
-    $('body').tooltip({
+    /*$('body').tooltip({
                 selector: "[rel=tooltip]", // можете использовать любой селектор
                 placement: "top"
+                });
+    $('body').on('click', 'a.pd', function(e) {
+            //функция будет вызвана при клике на любую ссылку с классом external
+    e.popover({
+        trigger: 'click',
+                placement: "right"
     });
+    });*/
      //   $("AREA").popover({trigger: 'hover', placement: 'bottom'});
     //Dajaxice.DjangoApp.base.say_hello(Dajax.process);
     </script>
-
-<script type="text/javascript" charset="utf-8"> $(function(){if($.browser.msie&&parseInt($.browser.version,10)===6){$('.row div[class^="span"]:last-child').addClass("last-child");$('[class="span"]').addClass("margin-left-20");$(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");$(":checkbox").addClass("input-checkbox");$('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");$(".pagination li:first-child a").addClass("pagination-first-child")}}) </script>
 {% endblock %}
 </body>
 </html>
