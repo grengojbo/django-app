@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'fiber',
     'grappelli.dashboard',
     'grappelli',
-    'grappellifit',
+    #'grappellifit',
     #'compressor',
     'filebrowser',
 
@@ -87,8 +87,8 @@ INSTALLED_APPS = [
     'profiles',
 
     # Local apps, referenced via DjangoApp.appname
-    #'flatpages_plus',
-    'newsly',
+    'flatpages_plus',
+    #'newsly',
     'compressor',
 ]
 
