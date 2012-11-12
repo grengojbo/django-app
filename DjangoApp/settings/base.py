@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.admin',
     #'modeltranslation_wrapper',
-    'modeltranslation',
+    #'modeltranslation',
     'django.contrib.admindocs',
     'django.contrib.markup',
     'django.contrib.humanize',
@@ -88,7 +88,8 @@ INSTALLED_APPS = [
 
     # Local apps, referenced via DjangoApp.appname
     #'flatpages_plus',
-    'newsly',
+    #'django_generic_flatblocks',
+    #'newsly',
     'compressor',
 ]
 
