@@ -88,3 +88,4 @@ djangorestframework==0.3.3
 #djangorestframework
 django-tagging
 django-photologue
+git+git://github.com/jpwatts/django-positions.git#egg=django-positions
