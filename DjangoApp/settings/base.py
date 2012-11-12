@@ -87,8 +87,7 @@ INSTALLED_APPS = [
     'profiles',
 
     # Local apps, referenced via DjangoApp.appname
-    #'flatpages_plus',
-    #'django_generic_flatblocks',
+    'flatpages_plus',
     #'newsly',
     'compressor',
 ]
