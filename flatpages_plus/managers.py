@@ -88,7 +88,7 @@ class FlatpagesManager(models.Manager):
         
         if owners:
             owners_list = str(owners).split(',')
-            query_set = query_set.filter(owner__pk__in=owner_list)
+            query_set = query_set.filter(owner__pk__in=owners_list)
             
         if remove:
             remove_list = str(remove).split(',')
