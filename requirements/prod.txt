@@ -20,6 +20,8 @@ django-widget-tweaks
 django-ttag
 -e git://github.com/SmileyChris/django-forms.git#egg=django-forms
 -e git://github.com/pinax/django-forms-bootstrap.git#egg=django-forms-bootstrap
+-e git://github.com/lambdalisue/django-filter.git#egg=django-filter
+django-tables2
 
 # Translate
 django-modeltranslation
