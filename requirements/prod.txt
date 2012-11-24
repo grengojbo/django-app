@@ -22,6 +22,10 @@ django-ttag
 -e git://github.com/pinax/django-forms-bootstrap.git#egg=django-forms-bootstrap
 -e git://github.com/lambdalisue/django-filter.git#egg=django-filter
 django-tables2
+BeautifulSoup
+git+git://github.com/frol/postmarkup.git
+git+git://github.com/ilblackdragon/django-misc.git
+git+git://github.com/ilblackdragon/django-voter.git
 
 # Translate
 django-modeltranslation
