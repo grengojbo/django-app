@@ -32,11 +32,11 @@ ROOT_URLCONF = 'DjangoApp.urls'
 INSTALLED_APPS = [
     'mptt',
     'fiber',
-    'grappelli.dashboard',
-    'grappelli',
+    #'grappelli.dashboard',
+    #'grappelli',
     #'grappellifit',
     #'compressor',
-    'filebrowser',
+    #'filebrowser',
 
     # Django contrib apps
     'django.contrib.auth',
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.admin',
     #'modeltranslation_wrapper',
-    'modeltranslation',
+    #'modeltranslation',
     'django.contrib.admindocs',
     'django.contrib.markup',
     'django.contrib.humanize',
@@ -87,7 +87,7 @@ INSTALLED_APPS = [
     'profiles',
 
     # Local apps, referenced via DjangoApp.appname
-    'flatpages_plus',
+    #'flatpages_plus',
     #'newsly',
     'compressor',
 ]
@@ -235,11 +235,30 @@ FILE_UPLOAD_PERMISSIONS = 0664
 
 SOUTH_TESTS_MIGRATE = False
 
+API_RENDER_HTML = True
 FIBER_TEMPLATE_CHOICES = (
     ('', 'Default template'),
     ('tpl-home.html', 'Home template'),
     ('tpl-sidebar.html', 'With sidebar template'),
     )
+#FIBER_CONTENT_TEMPLATE_CHOICES = (
+#    ('', 'Default template'),
+#    ('special-content-template.html', 'Special template'),
+#)
+FIBER_METADATA_CONTENT_SCHEMA = FIBER_METADATA_PAGE_SCHEMA = {
+    'title': {
+        'widget': 'select',
+        'values': ['option1', 'option2', 'option3',],
+    },
+    'bgcolor': {
+        'widget': 'combobox',
+        'values': ['#ffffff', '#fff000', '#ff00cc'],
+        'prefill_from_db': True,
+    },
+    'description': {
+        'widget': 'textarea',
+    },
+}
 
 try:
     import seoutils
