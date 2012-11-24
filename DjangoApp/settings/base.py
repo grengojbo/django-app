@@ -93,7 +93,8 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += ['misc',]
-INSTALLED_APPS += ['ratings',]
+#INSTALLED_APPS += ['ratings',]
+
 # Place bcrypt first in the list, so it will be the default password hashing
 # mechanism
 PASSWORD_HASHERS = (
