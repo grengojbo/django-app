@@ -81,7 +81,7 @@
                 <li  class="divider-vertical"><a href="/contact"><i class="icon-envelope-alt"></i> {% trans 'Contact' %}</a></li>
                 <li  class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {% if user.is_authenticated %}{{ user.username }}{% else %}{% trans 'Login or register' %}{% endif %} <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
                     {% if user.is_authenticated %}
                     <li><a href="{% url userena_profile_detail user.username %}">{% trans 'Account' %}</a></li>
                         <li><a href="{% url userena_signout %}"><i class="icon-signin"></i> {% trans 'Signout' %}</a></li>
@@ -90,6 +90,16 @@
                         <li><a href="/admin/"><i class="icon-signin"></i> {% trans 'Admin' %}</a></li>
                         {% endif %}
                     {% else %}
+                        <form method="post" action="login" accept-charset="UTF-8">
+                        								<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
+                        								<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
+                        								<input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
+                        								<label class="string optional" for="user_remember_me"> Remember me</label>
+                        								<input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                        								<label style="text-align:center;margin-top:5px">or</label>
+                                                        <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+                        								<input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+                        							</form>
                     <li><a href="{% url userena_signin %}">Login</a></li>
                     <li><a href="{% url userena_login %}" id='goLogin' data-toggle="modal" data-target="#loginModal"><i class="icon-signin"></i> {% trans 'Signin' %}</a></li>
                         <li class="divider"></li>
