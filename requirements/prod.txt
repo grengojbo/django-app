@@ -59,7 +59,7 @@ pytils
 
 # Caching
 python-memcached
-
+django-cache-machine
 # Admin
 django-debug-toolbar
 #django-debug-toolbar==0.8.5
