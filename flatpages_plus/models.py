@@ -28,9 +28,10 @@ class FlatPage(models.Model):
     views = models.IntegerField(_('views'), default=0, blank=True, null=True, 
         help_text=_('The number of the times the page has been viewed (other than the owner).'), )
     status = models.CharField(_('status'), max_length=1, choices=STATUS_LEVELS, 
-        default='d', help_text=_('Whether or not the page is visible on the site'))
+        default='p', help_text=_('Whether or not the page is visible on the site'))
     tags = TaggableManager(blank=True, help_text=_('A comma seperated list of tags that help to relate pages to each other.'))
-    enable_comments = models.BooleanField(_('enable comments'))
+    enable_comments = models.BooleanField(_('enable comments'), default=True)
+    #enable_social= models.BooleanField(_('enable comments'), default=True)
     template_name = models.CharField(_('template name'), max_length=70, blank=True,
         help_text=_("Example: 'flatpages_plus/contact_page.html'. If this isn't provided, the system will use 'flatpages/default.html'."))
     registration_required = models.BooleanField(_('registration required'), 
