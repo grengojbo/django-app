@@ -19,7 +19,7 @@ class Categories(models.Model):
         verbose_name_plural = _(u'Categories')
 
     def __unicode__(self):
-        return u"{0}".format((self.name))
+        return u"{0}".format(self.name)
 
 class FlatPage(models.Model):
     """

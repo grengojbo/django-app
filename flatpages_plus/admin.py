@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 #from modeltranslation.admin import TranslationAdmin
 from flatpages_plus.forms import FlatpageForm
-from flatpages_plus.models import FlatPage
+from flatpages_plus.models import FlatPage, Categories
 
 
 #try:
@@ -23,11 +23,17 @@ from flatpages_plus.models import FlatPage
 ModelAdmin = admin.ModelAdmin
 StackedInlineAdmin = admin.StackedInline
 
+class CategoriesAdmin(ModelAdmin):
+    list_display = ('name', 'is_enable', 'slug',)
+    list_filter = ('is_enable',)
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name',)
+
 class FlatPageAdmin(ModelAdmin):
     #form = FlatpageForm
     fieldsets = (
         (_('Title'), {
-              'fields': ('title','url',)
+              'fields': ('title','url','category')
         }),
         (None, {'fields': (
             ('owner','status',),
@@ -39,7 +45,7 @@ class FlatPageAdmin(ModelAdmin):
             'classes': ('grp-collapse grp-closed',),
             'fields': (
                 'sites',
-                'enable_comments', 
+                ('enable_comments', 'enable_social',),
                 'registration_required', 
                 'template_name',
                 'views',
@@ -47,8 +53,8 @@ class FlatPageAdmin(ModelAdmin):
         }),
     )
     #prepopulated_fields = {'url': ('title',)}
-    list_display = ('url', 'title', 'name', 'status', 'owner', 'views', 'modified', 'created')
-    list_filter = ('status', 'sites', 'enable_comments', 'registration_required',)
+    list_display = ('url', 'title', 'name', 'category', 'status', 'owner', 'views', 'modified', 'created')
+    list_filter = ('status', 'sites', 'enable_comments', 'registration_required', 'enable_social', 'category',)
     prepopulated_fields = {'url': ('title',)}
     search_fields = ('url', 'title', 'name', 'owner',)
     class Media:
@@ -68,3 +74,4 @@ class FlatPageAdmin(ModelAdmin):
     #    #}
 
 admin.site.register(FlatPage, FlatPageAdmin)
+admin.site.register(Categories, CategoriesAdmin)

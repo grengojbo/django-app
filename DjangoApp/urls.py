@@ -91,7 +91,10 @@ if settings.DEBUG:
 # Add media and static files
 urlpatterns += staticfiles_urlpatterns()
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+if 'flatpages_plus' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('flatpages_plus.views',
+        (r'^news/(?P<url>.*)$', 'flatpage'),
+)
 if 'fiber' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         (r'', 'fiber.views.page'),
