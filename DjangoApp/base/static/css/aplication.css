@@ -8,3 +8,6 @@
 #df-wpr-sidebar {
   margin-top: 43px;
 }
+.item {
+  float: left;
+}
